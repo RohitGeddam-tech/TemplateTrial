@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 export interface ButtonTrialProps {
-  width?: number;
-  height?: number;
   opt?: "link" | "normal" | "outline" | "red";
   variations?: "active" | "disabled" | "normal";
   label?: string;
@@ -22,12 +20,10 @@ export const buttonVar = ["active", "disabled", "normal"];
 
 interface LabelProps {
   view: string;
-  width: number;
-  height: number;
   label: string;
 }
 
-export const labelView = ({ view, width, height, label }: LabelProps) => {
+export const labelView = ({ view, label }: LabelProps) => {
   return (
     <>
       {view === "arrowFirst" ? (
@@ -35,8 +31,6 @@ export const labelView = ({ view, width, height, label }: LabelProps) => {
           <img
             src={"/arrow-right-short.svg"}
             alt="arrow"
-            width={width}
-            height={height}
             style={{marginRight:"10px"}}
           />
           {label}
@@ -48,8 +42,6 @@ export const labelView = ({ view, width, height, label }: LabelProps) => {
           <img
             src={"/arrow-right-short.svg"}
             alt="arrow"
-            width={width}
-            height={height}
             style={{marginLeft:"10px"}}
           />
         </>
@@ -59,8 +51,6 @@ export const labelView = ({ view, width, height, label }: LabelProps) => {
           <img
             src={"/arrow-right-short.svg"}
             alt="arrow"
-            width={width}
-            height={height}
           />
         </>
       ) : null}

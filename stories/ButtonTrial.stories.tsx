@@ -29,19 +29,19 @@ label.args = {
   label: "Proceed",
 };
 
-// width
+// // width
 
-export const width = Template.bind({});
-width.args = {
-  width: 30,
-};
+// export const width = Template.bind({});
+// width.args = {
+//   width: 30,
+// };
 
-// height
+// // height
 
-export const height = Template.bind({});
-height.args = {
-  height: 30,
-};
+// export const height = Template.bind({});
+// height.args = {
+//   height: 30,
+// };
 
 //styles
 

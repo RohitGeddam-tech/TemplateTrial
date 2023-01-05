@@ -11,8 +11,6 @@ import { ButtonTrialProps, labelView, classOpt, classVar } from "./Util";
 //labelView is used to render the jsx content of button fr various arrow and label views.
 
 export const ButtonTrial = ({
-  width = 20,
-  height = 20,
   opt = "normal",
   variations = "normal",
   label = "click here!",
@@ -26,7 +24,7 @@ export const ButtonTrial = ({
       disabled={variations === "disabled"}
       style={styles}
     >
-      {labelView({ view, width, height, label })}
+      {labelView({ view, label })}
     </button>
   );
 };
