@@ -108,6 +108,8 @@ body {
   font-size: 13.5px;
 }
 
+/* Buttons */
+
 .btn {
   display: flex;
   align-items: center;
@@ -145,16 +147,16 @@ body {
   border: 1px solid #3684d1 !important;
 }
 
-.btn-primary:hover,
-.btn-primary.active:hover {
+.btn-primary:hover {
   background: #2767b3 !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
   border: 1px solid #2767b3 !important;
 }
 
-.btn-primary.active {
+.btn-primary:active {
   background: #1b4c96 !important;
   border: 1px solid #1b4c96 !important;
+  box-shadow: none !important;
 }
 
 .btn-primary.disabled {
@@ -168,16 +170,16 @@ body {
   border: 1px solid #fa8c16 !important;
 }
 
-.btn-danger:hover,
-.btn-danger.active:hover {
+.btn-danger:hover {
   background: #d46b08 !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
   border: 1px solid #d46b08 !important;
 }
 
-.btn-danger.active {
+.btn-danger:active {
   border: 1px solid #ad4e00 !important;
   background: #ad4e00 !important;
+  box-shadow: none !important;
 }
 
 .btn-danger.disabled {
@@ -191,14 +193,14 @@ body {
   color: #2767b3 !important;
 }
 
-.btn-outline-info:hover,
-.btn-outline-info.active:hover {
+.btn-outline-info:hover {
   background: rgba(39, 103, 179, 0.1) !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
 }
 
-.btn-outline-info.active {
+.btn-outline-info:active {
   background: rgba(39, 103, 179, 0.2) !important;
+  box-shadow: none !important;
 }
 
 .btn-outline-info.disabled {
@@ -212,18 +214,123 @@ body {
   text-decoration: none !important;
 }
 
-.btn-link:hover,
-.btn-link.active:hover {
+.btn-link:hover {
   background: rgba(39, 103, 179, 0.1) !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
 }
 
-.btn-link.active {
+.btn-link:active {
   background: rgba(39, 103, 179, 0.2) !important;
+  box-shadow: none !important;
 }
 
 .btn-link.disabled {
   background: transparent !important;
   color: #c4cdd5 !important;
   border: none !important;
+}
+
+/* Text */
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.sub,
+.caption,
+.normal {
+  color: #000;
+}
+
+/* title */
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 600;
+  line-height: 135%;
+}
+
+.h1 {
+  font-size: 60px;
+}
+.h2 {
+  font-size: 52px;
+  letter-spacing: 0.01em;
+}
+.h3 {
+  font-size: 44px;
+  letter-spacing: 0.015em;
+}
+.h4 {
+  font-size: 36px;
+  letter-spacing: 0.02em;
+}
+.h5 {
+  font-size: 28px;
+  letter-spacing: 0.02em;
+}
+
+/* subtitle */
+
+.sub {
+  font-weight: 500;
+  line-height: 135%;
+}
+
+.sub-lg {
+  font-size: 24px;
+  letter-spacing: 0.015em;
+}
+.sub-md {
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+.sub-sm {
+  font-size: 20px;
+  letter-spacing: 0.025em;
+}
+
+/* para */
+
+.para {
+  font-weight: 400;
+  line-height: 140%;
+}
+
+.para-lg {
+  font-size: 18px;
+  letter-spacing: 0.03em;
+}
+.para-md {
+  font-size: 16px;
+  letter-spacing: 0.03em;
+}
+.para-sm {
+  font-size: 14px;
+  letter-spacing: 0.035em;
+}
+
+/* caption */
+
+.caption {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.03em;
+}
+
+/* overline */
+
+.overline {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }

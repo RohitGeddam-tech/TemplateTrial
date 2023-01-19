@@ -7,7 +7,7 @@ import React from "react";
 // hover, active, disbled, size and normal are the variations
 // arrows, onlyLabel, onlyArrow, arrow first, arrowLast are the view options
 
-interface ButtonProps {
+interface ButtonTrialProps {
   color?:
     | "secondary"
     | "success"
@@ -33,7 +33,7 @@ interface ButtonProps {
   height?: number;
 }
 
-export const Button = ({
+export const ButtonTrial = ({
   color = "primary",
   label = "button",
   type = "button",
@@ -48,7 +48,7 @@ export const Button = ({
   arrowLast = false,
   width = 20,
   height = 20,
-}: ButtonProps) => {
+}: ButtonTrialProps) => {
   return (
     <button
       className={`btn ${
@@ -87,4 +87,4 @@ export const Button = ({
   );
 };
 
-export default Button;
+export default ButtonTrial;

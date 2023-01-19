@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Text } from './Text';
+import { Text } from '../Components/Text/Text';
 
 export default {
   title: 'Example/Text',
@@ -10,21 +10,44 @@ export default {
 
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
-export const Small = Template.bind({});
-Small.args = {
-  size: "small",
-  label: 'Small',
+// label
+
+export const label = Template.bind({});
+label.args = {
+  label: "Label",
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
-  size: "medium",
-  label: 'medium',
+// headings
+
+export const headings = Template.bind({});
+headings.args = {
+  headings: "h1",
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: "large",
-  label: 'large',
+// subTitle
+
+export const subTitle = Template.bind({});
+subTitle.args = {
+  subTitle: "lg",
 };
 
+// body
+
+export const body = Template.bind({});
+body.args = {
+  body:  "lg",
+};
+
+// caption
+
+export const caption = Template.bind({});
+caption.args = {
+  caption: true,
+};
+
+// overline
+
+export const overline = Template.bind({});
+overline.args = {
+  overline: true,
+};

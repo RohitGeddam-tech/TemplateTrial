@@ -1,79 +1,55 @@
 /* eslint-disable @next/next/no-img-element */
 
-export interface ButtonTrialProps {
-  opt?: "link" | "normal" | "outline" | "red";
-  variations?: "active" | "disabled" | "normal";
+export interface ButtonProps {
+  Type?: "primary" | "secondary" | "tertiary" | "ghost";
+  state?: "disabled" | "default";
   label?: string;
-  size?: "sm" | "md" | "lg";
-  view?: "onlyArrow" | "onlyLabel" | "arrowFirst" | "arrowLast";
+  size?: "small" | "medium" | "large";
   styles?: Object;
+  trailingIcon?: boolean;
+  leadingIcon?: boolean;
+  text?: boolean;
 }
 
 export const buttonOptions = [
-  { label: "link", value: "btn-link" },
-  { label: "normal", value: "btn-primary" },
-  { label: "outline", value: "btn-outline-info" },
-  { label: "red", value: "btn-danger" },
+  { label: "ghost", value: "btn-link" },
+  { label: "primary", value: "btn-primary" },
+  { label: "tertiary", value: "btn-outline-info" },
+  { label: "secondary", value: "btn-danger" },
 ];
 
-export const buttonVar = ["active", "disabled", "normal"];
+export const buttonSize = [
+  { label: "small", value: "btn-sm" },
+  { label: "medium", value: "btn-md" },
+  { label: "large", value: "btn-lg" },
+];
 
-interface LabelProps {
-  view: string;
-  label: string;
-}
+// export const buttonVar = ["disabled", "default"];
 
-export const labelView = ({ view, label }: LabelProps) => {
-  return (
-    <>
-      {view === "arrowFirst" ? (
-        <>
-          <img
-            src={"/arrow-right-short.svg"}
-            alt="arrow"
-            style={{marginRight:"10px"}}
-          />
-          {label}
-        </>
-      ) : null}
-      {view === "arrowLast" ? (
-        <>
-          {label}
-          <img
-            src={"/arrow-right-short.svg"}
-            alt="arrow"
-            style={{marginLeft:"10px"}}
-          />
-        </>
-      ) : null}
-      {view === "onlyArrow" ? (
-        <>
-          <img
-            src={"/arrow-right-short.svg"}
-            alt="arrow"
-          />
-        </>
-      ) : null}
-      {view === "onlyLabel" ? <>{label}</> : null}
-    </>
-  );
-};
-
-export const classOpt = (opt:string) => {
+export const classType = (type: string) => {
   let name = null;
   for (let i = 0; i < buttonOptions.length; i++) {
-    if (buttonOptions[i].label === opt) {
+    if (buttonOptions[i].label === type) {
       name = buttonOptions[i].value;
     }
   }
   return name;
 };
 
-export const classVar = (variations:string) => {
-  let name = "";
-  for (let i = 0; i < buttonVar.length; i++) {
-    if (buttonVar[i] === variations) name = `${buttonVar[i]}`;
+export const classSize = (size: string) => {
+  let name = null;
+  for (let i = 0; i < buttonSize.length; i++) {
+    if (buttonSize[i].label === size) {
+      name = buttonSize[i].value;
+    }
   }
-  console.log(name);
   return name;
+};
+
+interface ArrowButton {
+  imgStyle: object;
+}
+
+export const ButtonArrow = ({ imgStyle }: ArrowButton) => {
+  return <img src={"/arrow-right-short.svg"} alt="arrow" style={imgStyle} />;
 };
