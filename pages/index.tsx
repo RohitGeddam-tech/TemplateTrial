@@ -13,6 +13,9 @@ export default function Home() {
       </Head>
       <Button state="default" Type="ghost" text={true} size="small" />
       <Text />
+      <span className="material-icons">face</span>
+      <span className="material-icons-outlined">account_circle</span>
+      <span className="material-icons">arrow_forward</span>
     </>
   );
 }
