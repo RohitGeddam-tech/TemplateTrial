@@ -1,0 +1,302 @@
+.input-group {
+  border: 1px solid var(--grayscale-dark);
+  background-color: transparent;
+  width: 100%;
+  max-width: 218px;
+  padding: 12px;
+  border-radius: 5px;
+  position: relative;
+
+  .input-group-text {
+    border: none !important;
+    background-color: transparent !important;
+    padding: 0 8px !important;
+    color: var(--grayscale-dark) !important;
+    &.lead {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .material-icons-round {
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .form-control {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    height: 22px !important;
+    // padding: 0 !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 140% !important;
+    padding: 0 8px !important;
+    padding-left: 0 !important;
+    &:focus ~ label,
+    &:not(:placeholder-shown) ~ label {
+      opacity: 1 !important;
+      transform: none !important;
+      background-color: #fff !important;
+      width: fit-content !important;
+      height: fit-content !important;
+      padding: 0 5px !important;
+      top: -10px !important;
+      font-size: 12px !important;
+      left: 8px !important;
+    }
+    &.prefixLabel {
+      ~ label {
+        left: 43px !important;
+      }
+      &:focus ~ label,
+      &:not(:placeholder-shown) ~ label {
+        opacity: 1 !important;
+        transform: none !important;
+        background-color: #fff !important;
+        width: fit-content !important;
+        height: fit-content !important;
+        padding: 0 5px !important;
+        top: -10px !important;
+        font-size: 12px !important;
+        left: 8px !important;
+      }
+    }
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+
+  label {
+    color: var(--grayscale-dark) !important;
+    height: 22px !important;
+    border: none !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 140% !important;
+    padding: 0 !important;
+    position: absolute;
+    left: 16px !important;
+  }
+
+  &:hover {
+    border-color: var(--grayscale-darker) !important;
+    label {
+      color: var(--grayscale-darker) !important;
+    }
+    .input-group-text {
+      color: var(--grayscale-darker) !important;
+    }
+  }
+
+  &.filled {
+    border-color: var(--grayscale-darkest) !important;
+    label {
+      color: var(--grayscale-darkest) !important;
+    }
+    &:hover {
+      border-color: var(--grayscale-darker) !important;
+      label {
+        color: var(--grayscale-darker) !important;
+      }
+      .input-group-text {
+        color: var(--grayscale-darker) !important;
+      }
+    }
+    &.inputFocused,
+    &.inputFocused:hover {
+      border-color: var(--secondary-main) !important;
+      label {
+        color: var(--secondary-main) !important;
+      }
+    }
+    .input-group-text {
+      color: var(--grayscale-darkest) !important;
+    }
+    &.disabled {
+      background: rgba(196, 205, 213, 0.1) !important;
+      border: 1px solid var(--grayscale-light) !important;
+      label {
+        color: var(--grayscale-light) !important;
+      }
+      .input-group-text {
+        color: var(--grayscale-light) !important;
+      }
+    }
+  }
+
+  &.inputFocused,
+  &.inputFocused:hover {
+    border-color: var(--secondary-main) !important;
+    label {
+      color: var(--secondary-main) !important;
+    }
+    .input-group-text {
+      color: var(--grayscale-main) !important;
+    }
+  }
+
+  &.disabled {
+    background: rgba(196, 205, 213, 0.1) !important;
+    border: 1px solid var(--grayscale-light) !important;
+    label {
+      color: var(--grayscale-light) !important;
+    }
+    .input-group-text {
+      color: var(--grayscale-light) !important;
+    }
+  }
+
+  &.success {
+    border: 1px solid var(--success-main) !important;
+    label {
+      color: var(--success-main) !important;
+    }
+    &:hover {
+      border-color: var(--grayscale-darker) !important;
+      label {
+        color: var(--grayscale-darker) !important;
+      }
+      .input-group-text {
+        color: var(--grayscale-darker) !important;
+      }
+    }
+    &.inputFocused,
+    &.inputFocused:hover {
+      border-color: var(--secondary-main) !important;
+      label {
+        color: var(--secondary-main) !important;
+      }
+    }
+  }
+
+  &.warning {
+    border: 1px solid var(--warning-main) !important;
+    label {
+      color: var(--warning-main) !important;
+    }
+    &:hover {
+      border-color: var(--grayscale-darker) !important;
+      label {
+        color: var(--grayscale-darker) !important;
+      }
+      .input-group-text {
+        color: var(--grayscale-darker) !important;
+      }
+    }
+    &.inputFocused,
+    &.inputFocused:hover {
+      border-color: var(--secondary-main) !important;
+      label {
+        color: var(--secondary-main) !important;
+      }
+    }
+  }
+
+  &.error {
+    border: 1px solid var(--error-main) !important;
+    label {
+      color: var(--error-main) !important;
+    }
+    &:hover {
+      border-color: var(--grayscale-darker) !important;
+      label {
+        color: var(--grayscale-darker) !important;
+      }
+      .input-group-text {
+        color: var(--grayscale-darker) !important;
+      }
+    }
+    &.inputFocused,
+    &.inputFocused:hover {
+      border-color: var(--secondary-main) !important;
+      label {
+        color: var(--secondary-main) !important;
+      }
+    }
+  }
+
+  &.large {
+    padding: 20px;
+    .form-control {
+      &.prefixLabel {
+        ~ label {
+          left: 53px !important;
+        }
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+          opacity: 1 !important;
+          transform: none !important;
+          background-color: #fff !important;
+          width: fit-content !important;
+          height: fit-content !important;
+          padding: 0 5px !important;
+          top: -10px !important;
+          font-size: 12px !important;
+          left: 8px !important;
+        }
+      }
+    }
+  }
+
+  &.medium {
+    padding: 16px;
+    .form-control {
+      &.prefixLabel {
+        ~ label {
+          left: 47px !important;
+        }
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+          opacity: 1 !important;
+          transform: none !important;
+          background-color: #fff !important;
+          width: fit-content !important;
+          height: fit-content !important;
+          padding: 0 5px !important;
+          top: -10px !important;
+          font-size: 12px !important;
+          left: 8px !important;
+        }
+      }
+    }
+  }
+
+  &.small {
+    padding: 12px;
+  }
+}
+
+.bottomLayer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 5px;
+  .inputFeedback {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 140%;
+    text-transform: capitalize;
+    color: var(--grayscale-dark);
+    .material-icons-outlined {
+      font-size: 12px;
+      padding-right: 6px;
+    }
+    &.success {
+      color: var(--success-main);
+    }
+    &.warning {
+      color: var(--warning-main);
+    }
+    &.error {
+      color: var(--error-main);
+    }
+    &.disabled {
+      color: var(--grayscale-light);
+    }
+  }
+}

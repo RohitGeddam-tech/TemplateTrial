@@ -76,6 +76,10 @@ body {
   /* border-radius: .3rem !important; */
 }
 
+.btn.fab > .material-icons-outlined {
+  font-size: 14px !important;
+}
+
 .btn-sm {
   padding: 12px !important;
 }
@@ -86,6 +90,18 @@ body {
 
 .btn-lg {
   padding: 19px !important;
+}
+
+.fab-sm {
+  padding: 16px !important;
+}
+
+.fab-md {
+  padding: 19px 20px !important;
+}
+
+.fab-lg {
+  padding: 22px 24px !important;
 }
 
 .btn > img {
@@ -99,55 +115,55 @@ body {
 }
 
 .btn-primary {
-  background: #3684d1 !important;
-  color: #ffffff !important;
-  border: 1px solid #3684d1 !important;
+  background: var(--secondary-main) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--secondary-main) !important;
 }
 
 .btn-primary:hover {
-  background: #2767b3 !important;
+  background: var(--secondary-dark) !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
-  border: 1px solid #2767b3 !important;
+  border: 1px solid var(--secondary-dark) !important;
 }
 
 .btn-primary:active {
-  background: #1b4c96 !important;
-  border: 1px solid #1b4c96 !important;
+  background: var(--secondary-darkest) !important;
+  border: 1px solid var(--secondary-darkest) !important;
   box-shadow: none !important;
 }
 
 .btn-primary.disabled {
-  background: #c4cdd5 !important;
-  border: 1px solid #c4cdd5 !important;
+  background: var(--grayscale-lighter) !important;
+  border: 1px solid var(--grayscale-lighter) !important;
 }
 
 .btn-danger {
-  background: #fa8c16 !important;
-  color: #ffffff !important;
-  border: 1px solid #fa8c16 !important;
+  background: var(--primary-main) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--primary-main) !important;
 }
 
 .btn-danger:hover {
-  background: #d46b08 !important;
+  background: var(--primary-dark) !important;
   box-shadow: 2px 4px 5px rgba(40, 44, 54, 0.3) !important;
-  border: 1px solid #d46b08 !important;
+  border: 1px solid var(--primary-dark) !important;
 }
 
 .btn-danger:active {
-  border: 1px solid #ad4e00 !important;
-  background: #ad4e00 !important;
+  border: 1px solid var(--primary-darkest) !important;
+  background: var(--primary-darkest) !important;
   box-shadow: none !important;
 }
 
 .btn-danger.disabled {
-  background: #c4cdd5 !important;
-  border: 1px solid #c4cdd5 !important;
+  background: var(--grayscale-lighter) !important;
+  border: 1px solid var(--grayscale-lighter) !important;
 }
 
 .btn-outline-info {
   background: transparent !important;
-  border: 1px solid #2767b3 !important;
-  color: #2767b3 !important;
+  border: 1px solid var(--secondary-dark) !important;
+  color: var(--secondary-dark) !important;
 }
 
 .btn-outline-info:hover {
@@ -162,12 +178,12 @@ body {
 
 .btn-outline-info.disabled {
   background: transparent !important;
-  color: #c4cdd5 !important;
-  border: 1px solid #c4cdd5 !important;
+  color: var(--grayscale-lighter) !important;
+  border: 1px solid var(--grayscale-lighter) !important;
 }
 
 .btn-link {
-  color: #2767b3 !important;
+  color: var(--secondary-dark) !important;
   text-decoration: none !important;
 }
 
@@ -183,7 +199,33 @@ body {
 
 .btn-link.disabled {
   background: transparent !important;
-  color: #c4cdd5 !important;
+  color: var(--grayscale-lighter) !important;
+  border: none !important;
+}
+
+.fab.btn-link {
+  color: var(--secondary-dark) !important;
+  text-decoration: none !important;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(22, 28, 36, 0.3) !important;
+}
+
+.fab.btn-link:hover {
+  background: rgba(39, 103, 179, 0.2) !important;
+  box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(22, 28, 36, 0.3) !important;
+}
+
+.fab.btn-link:active {
+  background: rgba(39, 103, 179, 0.2) !important;
+  /* box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0px 1px 3px rgba(22, 28, 36, 0.3) !important; */
+  box-shadow: none !important;
+}
+
+.fab.btn-link.disabled {
+  background: transparent !important;
+  color: var(--grayscale-lighter) !important;
   border: none !important;
 }
 
@@ -290,4 +332,212 @@ body {
   line-height: 140%;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* Checkbox */
+
+.checkboxContain {
+  position: relative;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkboxContain.disabled {
+  cursor: not-allowed;
+}
+
+.checkbox {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+}
+
+.checkbox > input {
+  position: absolute;
+  opacity: 0;
+  /* cursor: pointer; */
+  display: none;
+  height: 0;
+  width: 0;
+  outline: none;
+  border: none;
+}
+
+.checkbox:hover {
+  background: rgba(22, 28, 36, 0.08);
+  border-radius: 25px;
+}
+
+.checkbox:active {
+  background: rgba(22, 28, 36, 0.12);
+  border-radius: 25px;
+}
+
+.checkbox:hover > .checkmark {
+  border-color: var(--grayscale-darker) !important;
+}
+
+.checkbox:active > .checkmark {
+  border-color: var(--grayscale-main) !important;
+}
+
+.checkbox > input:checked ~ .checkmark {
+  background-color: var(--secondary-dark) !important;
+}
+
+.checkbox > .checkmark > .material-icons-round {
+  display: none;
+  position: absolute;
+  font-size: 13px;
+  color: var(--white);
+}
+
+.checkbox > input:checked ~ .checkbox {
+  background: transparent !important;
+}
+
+.checkbox > input:checked ~ .checkbox:hover {
+  background: rgba(22, 28, 36, 0.1);
+  border-radius: 25px;
+}
+
+.checkbox > input:checked ~ .checkbox:active {
+  background: rgba(22, 28, 36, 0.12);
+  border-radius: 25px;
+}
+
+.checkbox > input:checked ~ .checkmark > .material-icons-round {
+  display: block;
+}
+
+.checkmark {
+  position: relative;
+  z-index: 99;
+  height: 15px;
+  width: 15px;
+  background-color: transparent;
+  border: 1px solid #dadada;
+}
+
+.checkmark > .radioActive {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: none;
+  background-color: var(--secondary-dark) !important;
+}
+
+.checkbox.radio > input:checked ~ .checkmark {
+  background-color: transparent !important;
+  border-color: var(--secondary-dark) !important;
+}
+
+.checkbox.radio > input:checked ~ .checkmark > .radioActive {
+  display: block;
+}
+
+.checkbox.radio > .checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark.disabled {
+  border: 1px solid var(--grayscale-lighter);
+  cursor: not-allowed;
+}
+
+.checkboxContain.disabled > .checkbox {
+  cursor: not-allowed !important;
+}
+
+.checkbox.disabled:hover {
+  background: transparent;
+  border-radius: 25px;
+}
+
+.checkbox.disabled:active {
+  background: transparent;
+  border-radius: 25px;
+}
+
+.checkbox.disabled:hover > .checkmark {
+  border-color: var(--grayscale-lighter) !important;
+}
+
+.checkbox.disabled:active > .checkmark {
+  border-color: var(--grayscale-lighter) !important;
+}
+
+.checkboxContain.medium {
+  width: 48px;
+  height: 48px;
+}
+
+.checkboxContain.medium > .checkbox {
+  width: 40px;
+  height: 40px;
+}
+
+.checkboxContain.medium > .checkbox > .checkmark {
+  width: 18px;
+  height: 18px;
+}
+
+.checkboxContain.medium > .checkbox > .checkmark > .material-icons-round {
+  font-size: 16px;
+}
+
+.checkboxContain.large {
+  width: 52px;
+  height: 52px;
+}
+
+.checkboxContain.large > .checkbox {
+  width: 44px;
+  height: 44px;
+}
+
+.checkboxContain.large > .checkbox > .checkmark {
+  width: 21px;
+  height: 21px;
+}
+
+.checkboxContain.large > .checkbox > .checkmark > .material-icons-round {
+  font-size: 19px;
+}
+
+.checkboxContain.medium > .checkbox.radio > .checkmark {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxContain.medium > .checkbox.radio > .checkmark > .radioActive {
+  width: 10px;
+  height: 10px;
+}
+
+.checkboxContain.large > .checkbox.radio > .checkmark {
+  width: 24px;
+  height: 24px;
+}
+
+.checkboxContain.large > .checkbox.radio > .checkmark > .radioActive {
+  width: 12px;
+  height: 12px;
 }

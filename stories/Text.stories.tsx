@@ -1,10 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { Text } from '../Components/Text/Text';
+import { Text } from '../Components/Atoms/Text/Text';
 
 export default {
-  title: 'Example/Text',
+  title: 'Atom/Text',
   component: Text,
 } as ComponentMeta<typeof Text>;
 

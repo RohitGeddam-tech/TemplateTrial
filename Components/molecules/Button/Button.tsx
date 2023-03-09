@@ -19,12 +19,14 @@ export const Button = ({
   leadingIcon = false,
   trailingIcon = false,
   text = true,
+  handleClick,
 }: ButtonProps) => {
   return (
     <button
       className={`btn ${classType(Type)} ${classSize(size)} `}
       disabled={state === "disabled"}
       style={styles}
+      onClick={()=>handleClick}
     >
       {leadingIcon ? (
         <ButtonArrow
