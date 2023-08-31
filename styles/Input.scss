@@ -1,3 +1,5 @@
+// Input
+
 .input-group {
   border: 1px solid var(--grayscale-dark);
   background-color: transparent;
@@ -299,4 +301,124 @@
       color: var(--grayscale-light);
     }
   }
+}
+
+// Badges
+
+.badges {
+  width: fit-content;
+  min-width: 6px;
+  min-height: 6px;
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  &.loud {
+    background-color: var(--grayscale-darker);
+    color: var(--white);
+    &.info {
+      background-color: var(--secondary-main);
+    }
+    &.success {
+      background-color: var(--success-main);
+    }
+    &.warning {
+      background-color: var(--warning-main);
+    }
+    &.error {
+      background-color: var(--error-main);
+    }
+  }
+  &.subtle {
+    background-color: var(--grayscale-lighter);
+    color: var(--grayscale-darkest);
+    &.info {
+      background-color: var(--secondary-lightest);
+      color: var(--secondary-darkest);
+    }
+    &.success {
+      background-color: var(--success-light);
+      color: var(--success-darkest);
+    }
+    &.warning {
+      background-color: var(--warning-light);
+      color: var(--warning-darkest);
+    }
+    &.error {
+      background-color: var(--error-light);
+      color: var(--error-darkest);
+    }
+  }
+  &.single {
+    padding: 1.5px 5.5px;
+  }
+  &.multi {
+    padding: 0.5px 4px;
+    border-radius: 10px;
+  }
+}
+
+//Switch
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

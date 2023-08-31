@@ -6,6 +6,9 @@ import { useState } from "react";
 import { Fab } from "../Components/molecules/Fab/Fab";
 import { Checkbox } from "../Components/molecules/Checkbox/Checkbox";
 import { Radio } from "../Components/molecules/Radio/Radio";
+import { Badges } from "../Components/molecules/Badges/Badges";
+import Switch from "../Components/molecules/Switch";
+import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -25,7 +28,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Button state="default" Type="ghost" text={true} size="small" />
+      <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
       <Text />
       <span className="material-icons">face</span>
@@ -33,6 +36,9 @@ export default function Home() {
       <span className="material-icons">arrow_forward</span>
       <Checkbox />
       <Radio />
+      <Badges />
+      <Switch />
+      <Snackbar />
       <Input
         adornment={{ value: "suffix", text: "$" }}
         text="mobile"
