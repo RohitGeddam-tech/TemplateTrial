@@ -9,6 +9,8 @@ import { Radio } from "../Components/molecules/Radio/Radio";
 import { Badges } from "../Components/molecules/Badges/Badges";
 import Switch from "../Components/molecules/Switch";
 import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
+import { Chips } from "../Components/molecules/Chips/Chips";
+import { Tabs } from "../Components/molecules/Tabs/Tabs";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -36,9 +38,17 @@ export default function Home() {
       <span className="material-icons">arrow_forward</span>
       <Checkbox />
       <Radio />
+      <Tabs />
       <Badges />
       <Switch />
       <Snackbar />
+      <Snackbar
+        label="hello how do you do welcome to the my world that is heelo world"
+        lines={4}
+        state="info"
+      />
+      <Chips />
+      <Chips label='new' state='default' size='large' active={true} outline={true} />
       <Input
         adornment={{ value: "suffix", text: "$" }}
         text="mobile"

@@ -54,9 +54,11 @@
 }
 
 html,
-body {
+body,
+.root {
   max-width: 100vw;
-  height: 99.8vh;
+  width: 100%;
+  /* height: 99.8vh; */
   overflow-x: hidden;
   display: flex;
   align-items: center;
