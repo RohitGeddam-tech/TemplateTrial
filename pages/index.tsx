@@ -11,6 +11,7 @@ import Switch from "../Components/molecules/Switch";
 import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
 import { Chips } from "../Components/molecules/Chips/Chips";
 import { Tabs } from "../Components/molecules/Tabs/Tabs";
+import { Toggle } from "../Components/molecules/Toggle/Toggle";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -22,6 +23,39 @@ export default function Home() {
     setState("");
   };
   const [state, setState] = useState("");
+
+  const data = [
+    {
+      label: "label",
+      type: "start",
+      size: "medium",
+      state: "default",
+      active: true,
+      text: false,
+      leadingIcon: false,
+      trailingIcon: false,
+    },
+    {
+      label: "label",
+      type: "middle",
+      size: "medium",
+      state: "default",
+      active: false,
+      text: false,
+      leadingIcon: false,
+      trailingIcon: false,
+    },
+    {
+      label: "label",
+      type: "end",
+      size: "medium",
+      state: "default",
+      active: false,
+      text: false,
+      leadingIcon: false,
+      trailingIcon: false,
+    },
+  ];
   return (
     <>
       <Head>
@@ -38,6 +72,27 @@ export default function Home() {
       <span className="material-icons">arrow_forward</span>
       <Checkbox />
       <Radio />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {data.map((doc, ind) => (
+          <Toggle
+            key={ind}
+            label={doc.label}
+            type={doc.type}
+            size={doc.size}
+            state={doc.state}
+            active={doc.active}
+            text={doc.text}
+            leadingIcon={doc.leadingIcon}
+            trailingIcon={doc.trailingIcon}
+          />
+        ))}
+      </div>
       <Tabs />
       <Badges />
       <Switch />
@@ -48,7 +103,13 @@ export default function Home() {
         state="info"
       />
       <Chips />
-      <Chips label='new' state='default' size='large' active={true} outline={true} />
+      <Chips
+        label="new"
+        state="default"
+        size="large"
+        active={true}
+        outline={true}
+      />
       <Input
         adornment={{ value: "suffix", text: "$" }}
         text="mobile"
