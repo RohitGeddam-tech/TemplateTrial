@@ -12,6 +12,7 @@ import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
 import { Chips } from "../Components/molecules/Chips/Chips";
 import { Tabs } from "../Components/molecules/Tabs/Tabs";
 import { Toggle } from "../Components/molecules/Toggle/Toggle";
+import { Dialog } from "../Components/molecules/Dialog/Dialog";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -83,9 +84,21 @@ export default function Home() {
           <Toggle
             key={ind}
             label={doc.label}
-            type={doc.type}
-            size={doc.size}
-            state={doc.state}
+            type={
+              doc.type === "start"
+                ? "start"
+                : doc.type === "end"
+                ? "end"
+                : "middle"
+            }
+            size={
+              doc.size === "medium"
+                ? "medium"
+                : doc.size === "large"
+                ? "large"
+                : "small"
+            }
+            state={doc.state === "default" ? "default" : "disabled"}
             active={doc.active}
             text={doc.text}
             leadingIcon={doc.leadingIcon}
@@ -94,6 +107,7 @@ export default function Home() {
         ))}
       </div>
       <Tabs />
+      <Dialog />
       <Badges />
       <Switch />
       <Snackbar />

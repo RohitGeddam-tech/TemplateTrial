@@ -139,6 +139,51 @@ body,
   border: 1px solid var(--grayscale-lighter) !important;
 }
 
+.btn-error {
+  background: var(--error-main) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--error-main) !important;
+}
+
+.btn-error:hover {
+  background: linear-gradient(
+      0deg,
+      rgba(22, 28, 36, 0.08) 0%,
+      rgba(22, 28, 36, 0.08) 100%
+    ),
+    #d44638 !important;
+  box-shadow: 2px 4px 5px 0px rgba(40, 44, 54, 0.3);
+  border: 1px solid
+      linear-gradient(
+        0deg,
+        rgba(22, 28, 36, 0.08) 0%,
+        rgba(22, 28, 36, 0.08) 100%
+      ),
+    #d44638 !important;
+}
+
+.btn-error:active {
+  border: 1px solid
+      linear-gradient(
+        0deg,
+        rgba(22, 28, 36, 0.12) 0%,
+        rgba(22, 28, 36, 0.12) 100%
+      ),
+    #d44638 !important;
+  background: linear-gradient(
+      0deg,
+      rgba(22, 28, 36, 0.12) 0%,
+      rgba(22, 28, 36, 0.12) 100%
+    ),
+    #d44638 !important;
+  box-shadow: none !important;
+}
+
+.btn-error.disabled {
+  background: var(--grayscale-lighter) !important;
+  border: 1px solid var(--grayscale-lighter) !important;
+}
+
 .btn-danger {
   background: var(--primary-main) !important;
   color: var(--white) !important;

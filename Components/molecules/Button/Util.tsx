@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 export interface ButtonProps {
-  Type?: "primary" | "secondary" | "tertiary" | "ghost";
+  Type?: "primary" | "secondary" | "tertiary" | "ghost" | "danger";
   state?: "disabled" | "default";
   label?: string;
   size?: "small" | "medium" | "large";
@@ -17,6 +17,7 @@ export const buttonOptions = [
   { label: "primary", value: "btn-primary" },
   { label: "tertiary", value: "btn-outline-info" },
   { label: "secondary", value: "btn-danger" },
+  { label: "danger", value: "btn-error" },
 ];
 
 export const buttonSize = [
