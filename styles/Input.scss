@@ -609,7 +609,7 @@ input:checked + .slider:before {
     }
   }
   &:hover {
-    background: 1px solid var(--grayscale-main);
+    background: rgba(22, 28, 36, 0.08);
     .para {
       color: var(--grayscale-main, #161c24);
     }
@@ -1130,6 +1130,93 @@ input:checked + .slider:before {
         position: absolute;
         top: 10px;
         right: 14px;
+        cursor: pointer;
+      }
+      p {
+        max-width: 70%;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .body {
+    padding: 0 16px;
+    min-height: 130px;
+    width: 100%;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .footer {
+    padding: 12px 16px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    &.divider {
+      border-top: 1px solid var(--grayscale-lighter, #c4cdd5);
+    }
+    .content {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 22px;
+    }
+  }
+}
+
+.drawer {
+  // min-width: 100%;
+  width: 100%;
+  max-width: 500px;
+  min-height: 290px;
+  background: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(22, 28, 36, 0.3),
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 3px;
+  position: relative;
+  &.left {
+    min-height: calc(100vh - 0px);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    background-color: white;
+  }
+  &.right {
+    min-height: calc(100vh - 0px);
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 999;
+    background-color: white;
+  }
+  &.bottom {
+    max-width: 1440px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: white;
+  }
+  .header {
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    &.divider {
+      border-bottom: 1px solid var(--grayscale-lighter, #c4cdd5);
+    }
+    .content {
+      padding: 12px 16px;
+      width: 100%;
+      .material-icons-round {
+        font-size: 24px;
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        cursor: pointer;
       }
       p {
         max-width: 70%;

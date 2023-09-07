@@ -13,6 +13,7 @@ import { Chips } from "../Components/molecules/Chips/Chips";
 import { Tabs } from "../Components/molecules/Tabs/Tabs";
 import { Toggle } from "../Components/molecules/Toggle/Toggle";
 import { Dialog } from "../Components/molecules/Dialog/Dialog";
+import { Drawer } from "../Components/molecules/Drawer/Drawer";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -108,6 +109,7 @@ export default function Home() {
       </div>
       <Tabs />
       <Dialog />
+      <Drawer placement="right" />
       <Badges />
       <Switch />
       <Snackbar />
