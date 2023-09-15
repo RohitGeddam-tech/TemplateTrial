@@ -14,6 +14,9 @@ import { Tabs } from "../Components/molecules/Tabs/Tabs";
 import { Toggle } from "../Components/molecules/Toggle/Toggle";
 import { Dialog } from "../Components/molecules/Dialog/Dialog";
 import { Drawer } from "../Components/molecules/Drawer/Drawer";
+import { Search } from "../Components/molecules/Search/Search";
+import { Banner } from "../Components/organism/Banner";
+import Carousel from "../Components/molecules/Carousel";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -66,6 +69,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Carousel slidesToShow={1} arrow={true} dots={true}>
+        <Banner opacity="full" />
+        <Banner />
+        <Banner opacity="no" alignment="left" />
+        <Banner opacity="no" alignment="center" />
+      </Carousel>
       <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
       <Text />
@@ -109,7 +118,8 @@ export default function Home() {
       </div>
       <Tabs />
       <Dialog />
-      <Drawer placement="right" />
+      {/* <Drawer placement="right" /> */}
+      <Search />
       <Badges />
       <Switch />
       <Snackbar />
