@@ -18,6 +18,7 @@ import { Search } from "../Components/molecules/Search/Search";
 import { Banner } from "../Components/organism/Banner";
 import Carousel from "../Components/molecules/Carousel";
 import { Navbar } from "../Components/organism/Navbar";
+import { About } from "../Components/organism/About";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -95,6 +96,11 @@ export default function Home() {
           <Banner opacity="no" alignment="center" />
         </Carousel>
       </div>
+      <About
+        imageAlignment="right"
+        title="TITLE"
+        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
       <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
       <Text />
