@@ -17,6 +17,7 @@ import { Drawer } from "../Components/molecules/Drawer/Drawer";
 import { Search } from "../Components/molecules/Search/Search";
 import { Banner } from "../Components/organism/Banner";
 import Carousel from "../Components/molecules/Carousel";
+import { Navbar } from "../Components/organism/Navbar";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -61,6 +62,22 @@ export default function Home() {
       trailingIcon: false,
     },
   ];
+
+  const menu = [
+    {
+      label: "link",
+      active: false,
+    },
+    {
+      label: "link",
+      active: true,
+    },
+    {
+      label: "link",
+      active: false,
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -69,12 +86,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Carousel slidesToShow={1} arrow={true} dots={true}>
-        <Banner opacity="full" />
-        <Banner />
-        <Banner opacity="no" alignment="left" />
-        <Banner opacity="no" alignment="center" />
-      </Carousel>
+      <Navbar menu={menu} />
+      <div style={{ marginTop: "81px" }}>
+        <Carousel slidesToShow={1} arrow={true} dots={true}>
+          <Banner opacity="full" />
+          <Banner />
+          <Banner opacity="no" alignment="left" />
+          <Banner opacity="no" alignment="center" />
+        </Carousel>
+      </div>
       <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
       <Text />

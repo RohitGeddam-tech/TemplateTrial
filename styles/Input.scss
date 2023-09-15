@@ -1093,6 +1093,8 @@ input:checked + .slider:before {
   }
 }
 
+// Dialog
+
 .dialog {
   // min-width: 100%;
   width: 100%;
@@ -1163,6 +1165,8 @@ input:checked + .slider:before {
     }
   }
 }
+
+//Drawer
 
 .drawer {
   // min-width: 100%;
@@ -1249,6 +1253,8 @@ input:checked + .slider:before {
     }
   }
 }
+
+// Banner
 
 .banner {
   position: relative;
@@ -1373,6 +1379,7 @@ input:checked + .slider:before {
   width: 100%;
 }
 
+// Slider
 .slickPrev {
   position: absolute;
   display: block !important;
@@ -1386,12 +1393,15 @@ input:checked + .slider:before {
   top: -39px;
   right: auto;
   z-index: 9;
+  &::before {
+    content: '' !important;
+  }
   span {
     color: var(--secondary-main);
     cursor: pointer;
   }
   &.disabled {
-    span{
+    span {
       color: var(--grayscale-lightest);
       cursor: not-allowed;
     }
@@ -1411,38 +1421,83 @@ input:checked + .slider:before {
   top: -39px;
   left: auto;
   z-index: 9;
+  &::before {
+    content: '' !important;
+  }
   span {
     color: var(--secondary-main);
     cursor: pointer;
   }
   &.disabled {
-    span{
+    span {
       color: var(--grayscale-lightest);
       cursor: not-allowed;
     }
   }
 }
 
-.slick-dots{
+.slick-dots {
   bottom: 20px !important;
-  li{
-    button{
-      &::before{
+  li {
+    button {
+      &::before {
         font-size: 13px !important;
       }
-      &:hover{
-        &::before{
+      &:hover {
+        &::before {
           color: var(--secondary-main) !important;
           opacity: 1 !important;
         }
       }
     }
-    &.slick-active{
-      button{
-        &::before{
+    &.slick-active {
+      button {
+        &::before {
           color: var(--secondary-main) !important;
           opacity: 1 !important;
         }
+      }
+    }
+  }
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  box-shadow: 0 2px 4px rgba(0,0,0,.15);
+  padding: 16px 0;
+  .container {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding: 0;
+    .logo {
+      img {
+        width: fit-content;
+        max-width: 300px;
+        max-height: 50px;
+        cursor: pointer;
+      }
+    }
+    .menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .btn-link {
+        margin-right: 8px;
+      }
+      .active {
+        .btn-link {
+          font-weight: 700;
+        }
+      }
+      .btn-primary {
+        margin-left: 54px;
       }
     }
   }

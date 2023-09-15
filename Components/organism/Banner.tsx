@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../molecules/Button/Button";
-import Image from "next/image";
+// import Image from "next/image";
 
 interface bannerProps {
   firstButton?: "primary" | "secondary" | "tertiary" | "danger";
