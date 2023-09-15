@@ -2,8 +2,7 @@ import React from "react";
 
 const SliderPrevArrow = (props: any) => {
   const { onClick } = props;
-
-  console.log(props);
+  
   return (
     <button
       type="button"

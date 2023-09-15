@@ -6,7 +6,7 @@ import SliderNextArrow from "./SliderNextArrow";
 import SliderPrevArrow from "./SliderPrevArrow";
 // import { Slider } from "react-slick";
 
-interface carouselProps {
+export interface carouselProps {
   children: any;
   arrow: boolean;
   dots: boolean;

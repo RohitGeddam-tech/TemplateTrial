@@ -19,6 +19,7 @@ import { Banner } from "../Components/organism/Banner";
 import Carousel from "../Components/molecules/Carousel";
 import { Navbar } from "../Components/organism/Navbar";
 import { About } from "../Components/organism/About";
+import { Contact } from "../Components/organism/Contact";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -79,6 +80,44 @@ export default function Home() {
     },
   ];
 
+  const inputBox = [
+    {
+      label: "Name*",
+      type: "text",
+    },
+    {
+      label: "Email*",
+      type: "email",
+    },
+    {
+      label: "Mobile*",
+      type: "number",
+    },
+    {
+      label: "Message",
+      type: "text",
+    },
+  ];
+
+  const details = [
+    {
+      label: "Address",
+      value:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      link: "#",
+    },
+    {
+      label: "Email",
+      value: "email@email.com",
+      link: "#",
+    },
+    {
+      label: "Call",
+      value: "7977250075",
+      link: "#",
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -99,6 +138,12 @@ export default function Home() {
       <About
         imageAlignment="right"
         title="TITLE"
+        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
+      <Contact
+        inputBox={inputBox}
+        details={details}
+        formAlignment="right"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />
       <Button state="default" Type="secondary" text={true} size="small" />

@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "../molecules/Button/Button";
 // import Image from "next/image";
 import { ButtonProps } from "../molecules/Button/Util";
-import Link from "next/link";
 
 interface aboutProps {
   image?: string;
