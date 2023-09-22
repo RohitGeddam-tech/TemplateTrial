@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Button } from "../Components/molecules/Button/Button";
 import { Text } from "../Components/Atoms/Text/Text";
 import Input from "../Components/molecules/Input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fab } from "../Components/molecules/Fab/Fab";
 import { Checkbox } from "../Components/molecules/Checkbox/Checkbox";
 import { Radio } from "../Components/molecules/Radio/Radio";
@@ -20,6 +20,9 @@ import Carousel from "../Components/molecules/Carousel";
 import { Navbar } from "../Components/organism/Navbar";
 import { About } from "../Components/organism/About";
 import { Contact } from "../Components/organism/Contact";
+import axios from "axios";
+import { json } from "stream/consumers";
+import { TitleCard } from "../Components/organism/TitleCard";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -69,14 +72,17 @@ export default function Home() {
     {
       label: "link",
       active: false,
+      link: "#",
     },
     {
       label: "link",
       active: true,
+      link: "#",
     },
     {
       label: "link",
       active: false,
+      link: "#",
     },
   ];
 
@@ -118,6 +124,122 @@ export default function Home() {
     },
   ];
 
+  const cardData = [
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button" },
+      testimonial: { details: "bottom", imageType: "circle" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button" },
+      testimonial: { details: "bottom", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+    {
+      image:
+        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+      title: "Title",
+      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      subtitle: "Subtitle",
+      button: { label: "button",Type:'primary' },
+      testimonial: { details: "top", imageType: "default" },
+    },
+  ];
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = {
+        query: `
+          query{
+            navbar{
+                data{
+                    attributes{
+                        publishedAt
+                      }
+                  }
+              }
+              pageHome{
+                data{
+                 attributes{
+                   body{
+                     __typename
+                     ...on ComponentAtomsCarouselAtom{
+                       banners{
+                         title
+                       }
+                     }
+                     ...on ComponentAtomsTitleCardAtom{
+                       title
+                     }
+                   }
+                 }
+               }
+             }
+        }
+        `,
+      };
+      const response = await axios
+        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+        .then((res) => res);
+      console.log(response.data.data);
+      return response;
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <Head>
@@ -137,6 +259,20 @@ export default function Home() {
       </div>
       <About
         imageAlignment="right"
+        image="https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg"
+        title="TITLE"
+        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
+      <TitleCard
+        carousel={true}
+        carouselProps={{
+          slidesToShow: 1,
+          arrow: true,
+          dots: true,
+          children: [],
+        }}
+        data={cardData}
+        cardType="feature"
         title="TITLE"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />

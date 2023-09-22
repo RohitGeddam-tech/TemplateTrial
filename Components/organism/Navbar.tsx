@@ -7,6 +7,7 @@ import Link from "next/link";
 interface menuProps {
   active: boolean;
   label: string;
+  link: string;
 }
 
 interface navbarProps {
@@ -36,9 +37,13 @@ export const Navbar = ({
         <div className="menu">
           {menu.length > 0 &&
             menu.slice(0, 4).map((doc, ind) => (
-              <div key={ind} className={`${doc.active ? "active" : ""}`}>
+              <Link
+                href={doc.link}
+                key={ind}
+                className={`${doc.active ? "active" : ""}`}
+              >
                 <Button Type="ghost" label={doc.label} size="small" />
-              </div>
+              </Link>
             ))}
           <Button {...button} />
         </div>

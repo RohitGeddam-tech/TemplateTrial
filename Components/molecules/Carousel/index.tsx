@@ -21,7 +21,7 @@ export default function Carousel({
 }: carouselProps) {
   const settings = {
     dots: dots,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: slidesToShow,
     slidesToScroll: 1,
