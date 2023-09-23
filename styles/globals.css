@@ -66,6 +66,10 @@ body,
   font-size: 13.5px;
 }
 
+#__next {
+  width: 100%;
+}
+
 /* Buttons */
 
 .btn {

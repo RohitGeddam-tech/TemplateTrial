@@ -8,7 +8,6 @@ interface featureProps {
 }
 
 export const Feature = ({ features = 3, data = [] }: featureProps) => {
-  // console.log(`${features % 3 === 0}`);
   return (
     <div className={`feature ${features % 4 === 0 ? "small" : ""}`}>
       {data.length > 0 &&

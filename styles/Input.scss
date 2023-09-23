@@ -1378,11 +1378,8 @@ input:checked + .slider:before {
   }
 }
 
-#__next {
-  width: 100%;
-}
-
 // Slider
+
 .slickPrev {
   position: absolute;
   display: block !important;
@@ -1463,6 +1460,8 @@ input:checked + .slider:before {
     }
   }
 }
+
+// Navbar
 
 .navbar {
   width: 100%;
@@ -1617,6 +1616,8 @@ input:checked + .slider:before {
     }
   }
 }
+
+//Titlecard + Cards
 
 .titleCard {
   width: 100%;
@@ -1823,6 +1824,82 @@ input:checked + .slider:before {
         p.para-md {
           text-align: start;
           margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+//Footer
+
+.footer {
+  width: 100%;
+  background-color: var(--white);
+  .container {
+    display: flex;
+    padding: 28px 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1224px;
+    gap: 12px;
+    p.para-md {
+      color: var(--grayscale-darker);
+    }
+    a {
+      text-decoration: none;
+    }
+    .insideFooter {
+      display: flex;
+      // height: 112px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      .links {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+      }
+      .sm {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        width: 50%;
+      }
+      .right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+    }
+    .data {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .links,.info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 12px;
+        max-width: 250px;
+        .para-lg {
+          color: var(--grayscale-main);
+        }
+        .para-sm {
+          color: var(--grayscale-darker);
+        }
+        .sm {
+          display: flex;
+          align-items: center;
+          gap: 24px;
         }
       }
     }

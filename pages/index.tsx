@@ -23,6 +23,7 @@ import { Contact } from "../Components/organism/Contact";
 import axios from "axios";
 import { json } from "stream/consumers";
 import { TitleCard } from "../Components/organism/TitleCard";
+import { Footer } from "../Components/organism/Footer";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -131,7 +132,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
     {
@@ -158,7 +159,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
     {
@@ -167,7 +168,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
     {
@@ -176,7 +177,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
     {
@@ -185,7 +186,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
     {
@@ -194,7 +195,7 @@ export default function Home() {
       title: "Title",
       para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       subtitle: "Subtitle",
-      button: { label: "button",Type:'primary' },
+      button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
   ];
@@ -240,6 +241,44 @@ export default function Home() {
     fetchData();
   }, []);
 
+  const footerLinks = [
+    {
+      label: "link",
+      link: "#",
+    },
+    {
+      label: "link",
+      link: "#",
+    },
+    {
+      label: "link",
+      link: "#",
+    },
+  ];
+
+  const sm = [
+    {
+      image: "/Facebook.png",
+      link: "#",
+    },
+    {
+      image: "/Twitter.png",
+      link: "#",
+    },
+    {
+      image: "/Pinterest.png",
+      link: "#",
+    },
+    {
+      image: "/Instagram.png",
+      link: "#",
+    },
+    {
+      image: "/Google.png",
+      link: "#",
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -281,6 +320,22 @@ export default function Home() {
         details={details}
         formAlignment="right"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
+      <Footer
+        text="© 2018 Froala. All Rights Reserved"
+        links={footerLinks}
+        sm={sm}
+        variant={6}
+        image="https://staging.sugarlogger.com/static/media/Logo.652fce25.svg"
+        complex={{
+          group1: footerLinks,
+          group2: footerLinks,
+          sm: sm,
+          about: {
+            title: "About Us",
+            para: "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
+          },
+        }}
       />
       <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
