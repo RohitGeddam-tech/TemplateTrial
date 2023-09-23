@@ -180,24 +180,24 @@ export default function Home() {
       button: { label: "button", Type: "primary" },
       testimonial: { details: "top", imageType: "default" },
     },
-    {
-      image:
-        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
-      title: "Title",
-      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      subtitle: "Subtitle",
-      button: { label: "button", Type: "primary" },
-      testimonial: { details: "top", imageType: "default" },
-    },
-    {
-      image:
-        "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
-      title: "Title",
-      para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      subtitle: "Subtitle",
-      button: { label: "button", Type: "primary" },
-      testimonial: { details: "top", imageType: "default" },
-    },
+    // {
+    //   image:
+    //     "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+    //   title: "Title",
+    //   para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    //   subtitle: "Subtitle",
+    //   button: { label: "button", Type: "primary" },
+    //   testimonial: { details: "top", imageType: "default" },
+    // },
+    // {
+    //   image:
+    //     "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+    //   title: "Title",
+    //   para: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    //   subtitle: "Subtitle",
+    //   button: { label: "button", Type: "primary" },
+    //   testimonial: { details: "top", imageType: "default" },
+    // },
   ];
 
   useEffect(() => {
@@ -311,7 +311,8 @@ export default function Home() {
           children: [],
         }}
         data={cardData}
-        cardType="feature"
+        cardType="team"
+        view="grid"
         title="TITLE"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />

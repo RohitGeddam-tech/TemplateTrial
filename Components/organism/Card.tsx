@@ -14,7 +14,7 @@ export interface cardProps {
   para?: string;
   subtitle?: string;
   button?: ButtonProps;
-  cardType?: "default" | "images" | "testimonial" | "feature";
+  cardType?: "default" | "images" | "testimonial" | "feature" | 'team';
   testimonial?: testimonialProps;
 }
 

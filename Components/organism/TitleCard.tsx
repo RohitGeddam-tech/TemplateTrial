@@ -2,15 +2,17 @@ import React from "react";
 import Carousel, { carouselProps } from "../molecules/Carousel";
 import Card, { cardProps } from "./Card";
 import { Feature } from "./Feature";
+import { Team } from "./Team";
 
 interface titleCardProps {
   title?: string;
   body?: string;
   carousel?: boolean;
   carouselProps?: carouselProps;
-  cardType?: "default" | "images" | "testimonial" | "feature";
+  cardType?: "default" | "images" | "testimonial" | "feature" | "team";
   data?: Array<cardProps>;
   children?: any;
+  view?: "grid" | "line";
 }
 
 export const TitleCard = ({
@@ -21,13 +23,14 @@ export const TitleCard = ({
   data = [],
   cardType = "testimonial",
   children,
+  view='grid'
 }: titleCardProps) => {
   return (
     <div className={`titleCard`}>
       <div className="container">
         <p className="h4">{title}</p>
         <p className="para-md">{body}</p>
-        {carousel && cardType !== 'feature' ? (
+        {carousel && cardType !== "feature" && cardType !== "team" ? (
           <Carousel
             slidesToShow={carouselProps.slidesToShow}
             arrow={carouselProps.arrow}
@@ -45,7 +48,13 @@ export const TitleCard = ({
             {cardType === "feature" ? (
               <Feature data={data} features={data?.length} />
             ) : (
-              <>{children}</>
+              <>
+                {cardType === "team" ? (
+                  <Team data={data} teams={data?.length} view={view} />
+                ) : (
+                  <>{children}</>
+                )}
+              </>
             )}
           </>
         )}
