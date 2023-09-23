@@ -1,27 +1,27 @@
 import Head from "next/head";
-import { Button } from "../Components/molecules/Button/Button";
-import { Text } from "../Components/Atoms/Text/Text";
-import Input from "../Components/molecules/Input/Input";
+// import { Button } from "../Components/molecules/Button/Button";
+// import { Text } from "../Components/Atoms/Text/Text";
+// import Input from "../Components/molecules/Input/Input";
 import { useEffect, useState } from "react";
-import { Fab } from "../Components/molecules/Fab/Fab";
-import { Checkbox } from "../Components/molecules/Checkbox/Checkbox";
-import { Radio } from "../Components/molecules/Radio/Radio";
-import { Badges } from "../Components/molecules/Badges/Badges";
-import Switch from "../Components/molecules/Switch";
-import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
-import { Chips } from "../Components/molecules/Chips/Chips";
-import { Tabs } from "../Components/molecules/Tabs/Tabs";
-import { Toggle } from "../Components/molecules/Toggle/Toggle";
-import { Dialog } from "../Components/molecules/Dialog/Dialog";
-import { Drawer } from "../Components/molecules/Drawer/Drawer";
-import { Search } from "../Components/molecules/Search/Search";
+// import { Fab } from "../Components/molecules/Fab/Fab";
+// import { Checkbox } from "../Components/molecules/Checkbox/Checkbox";
+// import { Radio } from "../Components/molecules/Radio/Radio";
+// import { Badges } from "../Components/molecules/Badges/Badges";
+// import Switch from "../Components/molecules/Switch";
+// import { Snackbar } from "../Components/molecules/Snackbar/Snackbar";
+// import { Chips } from "../Components/molecules/Chips/Chips";
+// import { Tabs } from "../Components/molecules/Tabs/Tabs";
+// import { Toggle } from "../Components/molecules/Toggle/Toggle";
+// import { Dialog } from "../Components/molecules/Dialog/Dialog";
+// import { Drawer } from "../Components/molecules/Drawer/Drawer";
+// import { Search } from "../Components/molecules/Search/Search";
 import { Banner } from "../Components/organism/Banner";
 import Carousel from "../Components/molecules/Carousel";
 import { Navbar } from "../Components/organism/Navbar";
 import { About } from "../Components/organism/About";
 import { Contact } from "../Components/organism/Contact";
 import axios from "axios";
-import { json } from "stream/consumers";
+// import { json } from "stream/consumers";
 import { TitleCard } from "../Components/organism/TitleCard";
 import { Footer } from "../Components/organism/Footer";
 
@@ -305,6 +305,20 @@ export default function Home() {
       <TitleCard
         carousel={true}
         carouselProps={{
+          slidesToShow: 3,
+          arrow: true,
+          dots: true,
+          children: [],
+        }}
+        data={cardData}
+        cardType="default"
+        view="grid"
+        title="Offers"
+        body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
+      <TitleCard
+        carousel={true}
+        carouselProps={{
           slidesToShow: 1,
           arrow: true,
           dots: true,
@@ -313,7 +327,7 @@ export default function Home() {
         data={cardData}
         cardType="team"
         view="grid"
-        title="TITLE"
+        title="Our Team"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />
       <Contact
@@ -338,7 +352,7 @@ export default function Home() {
           },
         }}
       />
-      <Button state="default" Type="secondary" text={true} size="small" />
+      {/* <Button state="default" Type="secondary" text={true} size="small" />
       <Fab state="default" Type="ghost" size="small" />
       <Text />
       <span className="material-icons">face</span>
@@ -381,7 +395,7 @@ export default function Home() {
       </div>
       <Tabs />
       <Dialog />
-      {/* <Drawer placement="right" /> */}
+      <Drawer placement="right" />
       <Search />
       <Badges />
       <Switch />
@@ -421,7 +435,7 @@ export default function Home() {
         trailingIcon={true}
         handleChange={handleChange}
         handleClear={handleClear}
-      />
+      /> */}
     </>
   );
 }

@@ -1400,7 +1400,7 @@ input:checked + .slider:before {
     color: var(--secondary-main);
     cursor: pointer;
   }
-  &.disabled {
+  &.disabled,&.slick-disabled {
     span {
       color: var(--grayscale-lightest);
       cursor: not-allowed;
@@ -1428,7 +1428,7 @@ input:checked + .slider:before {
     color: var(--secondary-main);
     cursor: pointer;
   }
-  &.disabled {
+  &.disabled,&.slick-disabled {
     span {
       color: var(--grayscale-lightest);
       cursor: not-allowed;
