@@ -31,20 +31,38 @@ export default function Carousel({
     prevArrow: <SliderPrevArrow />,
     responsive: [
       {
-        breakpoint: 750,
+        breakpoint: 1160,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2.5,
           slidesToScroll: 1,
           initialSlide: 1,
           arrows: false,
         },
       },
       {
-        breakpoint: 560,
+        breakpoint: 1080,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 910,
+        settings: {
+          slidesToShow: 1.5,
+          slidesToScroll: 1,
+          initialSlide: 1,
+          arrows: false,
+        },
+      },
+      {
+        breakpoint: 770,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: true,
+          initialSlide: 1,
           arrows: false,
         },
       },

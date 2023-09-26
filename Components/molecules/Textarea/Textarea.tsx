@@ -1,77 +1,46 @@
 import React, { useState } from "react";
-import { InputProps } from "./Utils";
+import { TextareaProps } from "./Utils";
 
-const Input = ({
-  adornmentType,
-  adornmentValue,
-  adornment,
-  text = "text",
-  type = "text",
+const Textarea = ({
   required,
   label = "Text",
   handleChange,
   value,
-  leadingIcon,
-  trailingIcon,
-  leading = "arrow",
-  trailing = "cancel",
   helperText,
   helper,
   helperIcon,
-  size = "small",
   state = "default",
   characterCounter,
   characterTotal,
   characterValue,
   styles = {},
-  handleClear,
-}: InputProps) => {
+}: TextareaProps) => {
   const [isFocus, setIsFocus] = useState(false);
   return (
     <>
       <div
-        className={`input-group ${isFocus ? "inputFocused" : ""} ${size} ${
+        className={`input-group ${isFocus ? "inputFocused" : ""} textarea ${
           (value && value !== "") || state === "filled" ? "filled" : ""
         } ${state || state === "disabled" ? state : ""}`}
         style={styles}
       >
-        {leadingIcon ? (
-          <span className="input-group-text">
-            <span className="material-icons-round">{leading}</span>
-          </span>
-        ) : null}
-        {adornment && adornmentType === "prefix" ? (
-          <span className="input-group-text">{adornmentValue}</span>
-        ) : null}
-        <input
+        <textarea
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          type={type === "number" ? "text" : type}
+          // type={type}
           value={value}
           name={label}
           onChange={handleChange}
-          className={`form-control ${
-            adornmentType === "prefix" || leadingIcon ? "prefixLabel" : ""
-          }`}
+          className={`form-control`}
           required={required}
-          id={type}
+          id={label}
           placeholder={label}
           disabled={state === "disabled"}
         />
-        <label htmlFor={type}>
+        <label htmlFor={label}>
           {label}
           {required ? "*" : ""}
         </label>
-        {adornment && adornmentType === "suffix" ? (
-          <span className="input-group-text">{adornmentValue}</span>
-        ) : null}
-        {trailingIcon ? (
-          <span className="input-group-text">
-            <span className="material-icons-round" onClick={handleClear}>
-              {trailing}
-            </span>
-          </span>
-        ) : null}
       </div>
       <div className="bottomLayer">
         {helper ? (
@@ -105,4 +74,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Textarea;

@@ -24,6 +24,8 @@ import axios from "axios";
 // import { json } from "stream/consumers";
 import { TitleCard } from "../Components/organism/TitleCard";
 import { Footer } from "../Components/organism/Footer";
+// import { Search } from "../Components/molecules/Search/Search";
+// import Textarea from "../Components/molecules/Textarea/Textarea";
 
 export default function Home() {
   const handleChange = (e: any) => {
@@ -89,20 +91,24 @@ export default function Home() {
 
   const inputBox = [
     {
-      label: "Name*",
+      label: "Name",
       type: "text",
+      required: true, 
     },
     {
-      label: "Email*",
+      label: "Email",
       type: "email",
+      required: true,
     },
     {
-      label: "Mobile*",
+      label: "Mobile",
       type: "number",
+      required: true,
     },
     {
       label: "Message",
-      type: "text",
+      type: "textarea",
+      required: false,
     },
   ];
 
@@ -279,6 +285,18 @@ export default function Home() {
     },
   ];
 
+  const dropData = [
+    { title: "Title", desc: "Desc" },
+    { title: "new", desc: "Desc" },
+    { title: "latest", desc: "Desc" },
+    { title: "Title", desc: "Desc" },
+    { title: "new", desc: "Desc" },
+    { title: "latest", desc: "Desc" },
+    { title: "Title", desc: "Desc" },
+    { title: "new", desc: "Desc" },
+    { title: "latest", desc: "Desc" },
+  ];
+
   return (
     <>
       <Head>
@@ -296,6 +314,7 @@ export default function Home() {
           <Banner opacity="no" alignment="center" />
         </Carousel>
       </div>
+      {/* <Search listData={dropData} type="withDropDown" leadingIcon={false} trailingIcon={true} /> */}
       <About
         imageAlignment="right"
         image="https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg"
@@ -340,7 +359,7 @@ export default function Home() {
         text="© 2018 Froala. All Rights Reserved"
         links={footerLinks}
         sm={sm}
-        variant={6}
+        variant={5}
         image="https://staging.sugarlogger.com/static/media/Logo.652fce25.svg"
         complex={{
           group1: footerLinks,
@@ -424,6 +443,12 @@ export default function Home() {
         leadingIcon={true}
         handleChange={handleChange}
         state="success"
+      />
+      <Textarea
+        required={true}
+        value={state}
+        // leadingIcon={true}
+        handleChange={handleChange}
       />
       <Input
         adornment={{ value: "prefix", text: "Rs." }}

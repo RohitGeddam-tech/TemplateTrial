@@ -99,7 +99,7 @@ export const Footer = ({
         ) : variant === 4 ? (
           <div className="insideFooter">
             <div className="left">
-              <div className="links">
+              <div className="links noMobile">
                 {links.length > 0 &&
                   links.map((doc, ind) => (
                     <Link
@@ -111,9 +111,7 @@ export const Footer = ({
                     </Link>
                   ))}
               </div>
-            </div>
-            <div className="right">
-              <div className="sm">
+              <div className="sm onlyMobile">
                 {sm.length > 0 &&
                   sm.map((doc, ind) => (
                     <Link
@@ -127,6 +125,37 @@ export const Footer = ({
                         width={24}
                         height={24}
                       />
+                    </Link>
+                  ))}
+              </div>
+            </div>
+            <div className="right">
+              <div className="sm noMobile">
+                {sm.length > 0 &&
+                  sm.map((doc, ind) => (
+                    <Link
+                      href={doc.link}
+                      key={ind}
+                      // className={`${doc.active ? "active" : ""}`}
+                    >
+                      <Image
+                        src={doc.image}
+                        alt={doc.link}
+                        width={24}
+                        height={24}
+                      />
+                    </Link>
+                  ))}
+              </div>
+              <div className="links onlyMobile">
+                {links.length > 0 &&
+                  links.map((doc, ind) => (
+                    <Link
+                      href={doc.link}
+                      key={ind}
+                      // className={`${doc.active ? "active" : ""}`}
+                    >
+                      <p className="para-md">{doc.label}</p>
                     </Link>
                   ))}
               </div>
@@ -147,6 +176,25 @@ export const Footer = ({
                     />
                   </Link>
                 </div>
+                <div className="links onlyMobile">
+                  <div className="sm">
+                    {sm.length > 0 &&
+                      sm.map((doc, ind) => (
+                        <Link
+                          href={doc.link}
+                          key={ind}
+                          // className={`${doc.active ? "active" : ""}`}
+                        >
+                          <Image
+                            src={doc.image}
+                            alt={doc.link}
+                            width={24}
+                            height={24}
+                          />
+                        </Link>
+                      ))}
+                  </div>
+                </div>
                 <div className="links">
                   {links.length > 0 &&
                     links.map((doc, ind) => (
@@ -160,7 +208,7 @@ export const Footer = ({
                     ))}
                 </div>
               </div>
-              <div className="right">
+              <div className="right noMobile">
                 <div className="sm">
                   {sm.length > 0 &&
                     sm.map((doc, ind) => (
@@ -180,7 +228,9 @@ export const Footer = ({
                 </div>
               </div>
             </div>
-            <p className="para-md" style={{ marginTop: 24 }}>{text}</p>
+            <p className="para-md" style={{ marginTop: 24 }}>
+              {text}
+            </p>
           </>
         ) : (
           <>

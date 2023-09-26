@@ -2,34 +2,42 @@
 //   isError: boolean;
 //   text: string;
 // }
-interface adornmentProps {
-  value: "suffix" | "prefix";
-  text: string;
-}
-interface countProps {
-  value: number | undefined;
-  total: number | undefined;
-}
-interface helperTextProps {
-  value: boolean;
-  text: string;
-  helperIcon: boolean;
-}
+// interface adornmentProps {
+//   value: "suffix" | "prefix";
+//   text: string;
+// }
+// interface countProps {
+//   value: number | undefined;
+//   total: number | undefined;
+// }
+// interface helperTextProps {
+//   value: boolean;
+//   text: string;
+//   helperIcon: boolean;
+// }
 
 export interface InputProps {
-  adornment?: adornmentProps;
+  adornment?: boolean;
+  adornmentType?:"suffix" | "prefix";
+  adornmentValue?:string;
   size?: "small" | "medium" | "large";
   state?: "default" | "disabled" | "filled" | "success" | "warning" | "error";
   required?: boolean;
   trailingIcon?: boolean;
   leadingIcon?: boolean;
-  helperText?: helperTextProps;
+  leading?: string;
+  trailing?: string;
+  helper?: boolean;
+  helperIcon?: boolean;
+  helperText?: string;
   styles?: Object;
   label?: string;
   text?: string;
   type?: string;
   handleChange?: any;
   value?: string;
-  characterCounter?: countProps;
+  characterCounter?: boolean;
+  characterTotal?: number;
+  characterValue?: number;
   handleClear?: any;
 }
