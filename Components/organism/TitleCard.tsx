@@ -19,11 +19,16 @@ export const TitleCard = ({
   title = "Title",
   body = "body",
   carousel = true,
-  carouselProps = { slidesToShow: 1, arrow: true, dots: false, children: [] },
+  carouselProps = {
+    slidesToShow: 1,
+    arrow: true,
+    dots: false,
+    children: [],
+  },
   data = [],
   cardType = "testimonial",
   children,
-  view='grid'
+  view = "grid",
 }: titleCardProps) => {
   return (
     <div className={`titleCard`}>

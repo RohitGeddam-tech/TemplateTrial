@@ -24,6 +24,7 @@ import axios from "axios";
 // import { json } from "stream/consumers";
 import { TitleCard } from "../Components/organism/TitleCard";
 import { Footer } from "../Components/organism/Footer";
+import BannerCarousel from "../Components/molecules/Carousel/BannerCarousel";
 // import { Search } from "../Components/molecules/Search/Search";
 // import Textarea from "../Components/molecules/Textarea/Textarea";
 
@@ -93,7 +94,7 @@ export default function Home() {
     {
       label: "Name",
       type: "text",
-      required: true, 
+      required: true,
     },
     {
       label: "Email",
@@ -285,17 +286,17 @@ export default function Home() {
     },
   ];
 
-  const dropData = [
-    { title: "Title", desc: "Desc" },
-    { title: "new", desc: "Desc" },
-    { title: "latest", desc: "Desc" },
-    { title: "Title", desc: "Desc" },
-    { title: "new", desc: "Desc" },
-    { title: "latest", desc: "Desc" },
-    { title: "Title", desc: "Desc" },
-    { title: "new", desc: "Desc" },
-    { title: "latest", desc: "Desc" },
-  ];
+  // const dropData = [
+  //   { title: "Title", desc: "Desc" },
+  //   { title: "new", desc: "Desc" },
+  //   { title: "latest", desc: "Desc" },
+  //   { title: "Title", desc: "Desc" },
+  //   { title: "new", desc: "Desc" },
+  //   { title: "latest", desc: "Desc" },
+  //   { title: "Title", desc: "Desc" },
+  //   { title: "new", desc: "Desc" },
+  //   { title: "latest", desc: "Desc" },
+  // ];
 
   return (
     <>
@@ -307,12 +308,16 @@ export default function Home() {
       </Head>
       <Navbar menu={menu} />
       <div style={{ marginTop: "81px" }}>
-        <Carousel slidesToShow={1} arrow={true} dots={true}>
+        <BannerCarousel
+          slidesToShow={1}
+          arrow={true}
+          dots={true}
+        >
           <Banner opacity="full" />
           <Banner />
           <Banner opacity="no" alignment="left" />
           <Banner opacity="no" alignment="center" />
-        </Carousel>
+        </BannerCarousel>
       </div>
       {/* <Search listData={dropData} type="withDropDown" leadingIcon={false} trailingIcon={true} /> */}
       <About
@@ -336,16 +341,9 @@ export default function Home() {
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />
       <TitleCard
-        carousel={true}
-        carouselProps={{
-          slidesToShow: 1,
-          arrow: true,
-          dots: true,
-          children: [],
-        }}
         data={cardData}
         cardType="team"
-        view="grid"
+        view="line"
         title="Our Team"
         body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
       />
@@ -359,7 +357,7 @@ export default function Home() {
         text="© 2018 Froala. All Rights Reserved"
         links={footerLinks}
         sm={sm}
-        variant={5}
+        variant={6}
         image="https://staging.sugarlogger.com/static/media/Logo.652fce25.svg"
         complex={{
           group1: footerLinks,

@@ -9,7 +9,7 @@ export interface ButtonProps {
   trailingIcon?: boolean;
   leadingIcon?: boolean;
   text?: boolean;
-  handleClick?: void;
+  handleClick?: () => void;
 }
 
 export const buttonOptions = [
