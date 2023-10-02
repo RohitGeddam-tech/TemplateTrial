@@ -38,19 +38,77 @@
   --btn-weight: 400;
 }
 
+.theme1 {
+  --primary-main: #f9da36;
+  --primary-darkest: #fee76c;
+  --primary-dark: #f3e496;
+  --primary-light: #fff09e;
+  --primary-lightest: #fff4b8;
+
+  --secondary-main: #01b7bd;
+  --secondary-darkest: #25787a;
+  --secondary-dark: #00c1c7;
+  --secondary-light: #00f2fa;
+  --secondary-lightest: #4bf5fb;
+}
+
+.theme2 {
+  --primary-main: #44c089;
+  --primary-darkest: #507a67;
+  --primary-dark: #46c78d;
+  --primary-light: #57fab1;
+  --primary-lightest: #a3fbd3;
+
+  --secondary-main: #785eff;
+  --secondary-darkest: #615c7a;
+  --secondary-dark: #6c5ac7;
+  --secondary-light: #8770fa;
+  --secondary-lightest: #c7bcfb;
+}
+
+/* .theme3 {
+  --primary-main: ;
+  --primary-darkest: ;
+  --primary-dark: ;
+  --primary-light: ;
+  --primary-lightest: ;
+
+  --secondary-main: ;
+  --secondary-darkest: ;
+  --secondary-dark: ;
+  --secondary-light: ;
+  --secondary-lightest: ;
+} */
+
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 } */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"); */
 
 * {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+.theme1 * {
+  font-family: "Roboto", sans-serif !important;
+}
+
+.theme2 * {
+  font-family: "Open Sans", sans-serif !important;
+}
+
+.material-icons-round {
+  font-family: "Material Icons Round" !important;
+}
+
+.material-icons-outlined {
+  font-family: "Material Icons Outlined" !important;
 }
 
 html,
@@ -76,7 +134,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 

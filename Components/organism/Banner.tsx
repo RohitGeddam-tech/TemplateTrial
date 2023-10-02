@@ -10,6 +10,8 @@ interface bannerProps {
   alignment?: "left" | "right" | "center";
   opacity?: "partial" | "full" | "no";
   image?: string;
+  textAlign?: "left" | "right" | "center";
+  bgColor?: string;
 }
 
 export const Banner = ({
@@ -20,6 +22,8 @@ export const Banner = ({
   image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
   alignment = "right",
   opacity = "partial",
+  textAlign,
+  bgColor,
 }: bannerProps) => {
   const buttona =
     firstButton === "tertiary"
@@ -41,7 +45,16 @@ export const Banner = ({
       : { background: `var(--secondary-lightest, #b0e0fa)` };
 
   return (
-    <div className={`banner ${opacity} ${alignment}`}>
+    <div
+      className={`banner ${opacity} ${alignment}`}
+      style={
+        opacity === "no"
+          ? bgColor
+            ? { backgroundColor: `var(${bgColor})` }
+            : { backgroundColor: `var(--primary-main)` }
+          : { backgroundColor: `transparent` }
+      }
+    >
       {opacity !== "no" && (
         <div className="bgImg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -51,10 +64,23 @@ export const Banner = ({
       <div className="container">
         <div className="box">
           <div className="details">
-            <p className="h2">{title}</p>
-            <p className="para-lg">{body}</p>
+            <p
+              className="h2"
+              style={{ textAlign: textAlign ? textAlign : alignment }}
+            >
+              {title}
+            </p>
+            <p
+              className="para-lg"
+              style={{ textAlign: textAlign ? textAlign : alignment }}
+            >
+              {body}
+            </p>
           </div>
-          <div className="content">
+          <div
+            className="content"
+            style={{ justifyContent: textAlign ? textAlign : alignment }}
+          >
             <Button Type={buttona} label={firstButton} size="small" />
             <Button Type={buttonb} label={secondButton} size="small" />
           </div>

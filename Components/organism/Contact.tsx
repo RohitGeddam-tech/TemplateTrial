@@ -19,6 +19,7 @@ interface contactProps {
   }>;
   inputBox?: Array<InputProps>;
   formTitle?: string;
+  bgColor?: string;
 }
 
 export const Contact = ({
@@ -29,6 +30,7 @@ export const Contact = ({
   inputBox = [],
   formAlignment = "left",
   formTitle = "Request a call back",
+  bgColor,
 }: contactProps) => {
   const ContactForm = () => {
     // type === "number"
@@ -46,7 +48,7 @@ export const Contact = ({
           const name = inputBox[i].label || "label";
           val[name] = "";
         }
-        console.log(val);
+        // console.log(val);
         setState(val);
       }
     }, [state]);
@@ -62,7 +64,7 @@ export const Contact = ({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log(state);
+          // console.log(state);
         }}
       >
         <p className="para-md">{formTitle}</p>
@@ -103,7 +105,14 @@ export const Contact = ({
   );
 
   return (
-    <div className={`contact`}>
+    <div
+      className={`contact`}
+      style={
+        bgColor
+          ? { backgroundColor: `var(${bgColor})` }
+          : { backgroundColor: `white` }
+      }
+    >
       <div className="container">
         <div className="left" style={{ width: "50%" }}>
           {formAlignment === "left" ? <ContactForm /> : <ContactDetails />}

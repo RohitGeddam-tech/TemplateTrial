@@ -13,6 +13,7 @@ interface titleCardProps {
   data?: Array<cardProps>;
   children?: any;
   view?: "grid" | "line";
+  bgColor?: string;
 }
 
 export const TitleCard = ({
@@ -29,9 +30,17 @@ export const TitleCard = ({
   cardType = "testimonial",
   children,
   view = "grid",
+  bgColor,
 }: titleCardProps) => {
   return (
-    <div className={`titleCard`}>
+    <div
+      className={`titleCard`}
+      style={
+        bgColor
+          ? { backgroundColor: `var(${bgColor})` }
+          : { backgroundColor: `white` }
+      }
+    >
       <div className="container">
         <p className="h4">{title}</p>
         <p className="para-md">{body}</p>

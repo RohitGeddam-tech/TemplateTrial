@@ -22,13 +22,14 @@ interface complexProps {
   sm?: Array<socialProps>;
 }
 
-interface navbarProps {
+interface footerProps {
   image?: string;
   links?: Array<linksProps>;
   variant?: number;
   sm?: Array<socialProps>;
   complex?: complexProps;
   text?: string;
+  bgColor?: string;
 }
 
 export const Footer = ({
@@ -43,9 +44,17 @@ export const Footer = ({
     about: { title: "Title", para: "Description" },
   },
   text = "description",
-}: navbarProps) => {
+  bgColor,
+}: footerProps) => {
   return (
-    <div className={`footer`}>
+    <div
+      className={`footer`}
+      style={
+        bgColor
+          ? { backgroundColor: `var(${bgColor})` }
+          : { backgroundColor: `white` }
+      }
+    >
       <div className="container">
         {variant === 1 ? (
           <p className="para-md">{text}</p>

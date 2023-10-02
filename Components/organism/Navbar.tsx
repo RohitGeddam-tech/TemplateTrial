@@ -5,7 +5,6 @@ import { ButtonProps } from "../molecules/Button/Util";
 import Link from "next/link";
 
 interface menuProps {
-  active: boolean;
   label: string;
   link: string;
 }
@@ -58,7 +57,12 @@ export const Navbar = ({
               <Link
                 href={doc.link}
                 key={ind}
-                className={`${doc.active ? "active" : ""}`}
+                className={`${
+                  typeof window !== "undefined" &&
+                  window.location.pathname === doc.link
+                    ? "active"
+                    : ""
+                }`}
               >
                 <Button
                   Type="ghost"
@@ -78,7 +82,12 @@ export const Navbar = ({
               <Link
                 href={doc.link}
                 key={ind}
-                className={`${doc.active ? "active" : ""}`}
+                className={`${
+                  typeof window !== "undefined" &&
+                  window.location.pathname === doc.link
+                    ? "active"
+                    : ""
+                }`}
               >
                 <Button
                   Type="ghost"

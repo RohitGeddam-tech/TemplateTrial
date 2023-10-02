@@ -11,7 +11,7 @@ import { ButtonProps, classType, classSize, ButtonArrow } from "./Util";
 //ButtonArrow renders the jsx element containing img
 
 export const Button = ({
-  Type = "danger",
+  Type = "secondary",
   state = "default",
   label = "click here!",
   size = "medium",

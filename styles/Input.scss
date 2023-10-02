@@ -1386,9 +1386,9 @@ input:checked + .slider:before {
       opacity: 0.2;
     }
   }
-  &.no {
-    background: var(--secondary-lightest, #b0e0fa) !important;
-  }
+  // &.no {
+  //   background: var(--secondary-lightest, #b0e0fa) !important;
+  // }
   @media (max-width: 1000px) {
     .container {
       padding: 100px 40px !important;

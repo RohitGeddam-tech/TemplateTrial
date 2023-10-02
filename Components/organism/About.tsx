@@ -12,6 +12,7 @@ interface aboutProps {
   subtitleVisible?: boolean;
   title?: string;
   body?: string;
+  bgColor?: string;
 }
 
 export const About = ({
@@ -23,6 +24,7 @@ export const About = ({
   body = "body",
   buttonVisible = true,
   imageAlignment = "left",
+  bgColor,
 }: aboutProps) => {
   const AboutImage = () => (
     <div className="imgBox">
@@ -45,7 +47,14 @@ export const About = ({
   );
 
   return (
-    <div className={`about`}>
+    <div
+      className={`about`}
+      style={
+        bgColor
+          ? { backgroundColor: `var(${bgColor})` }
+          : { backgroundColor: `white` }
+      }
+    >
       <div className="container">
         <div
           className="left"
