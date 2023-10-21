@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../molecules/Button/Button";
 // import Image from "next/image";
 import { ButtonProps } from "../molecules/Button/Util";
 import Link from "next/link";
+import axios from "axios";
 
 interface menuProps {
-  label: string;
-  link: string;
+  title: string;
+  url: string;
 }
 
 interface navbarProps {
@@ -17,11 +18,56 @@ interface navbarProps {
 
 export const Navbar = ({
   menu = [],
-  button = { label: "button", Type: "primary", size: "small" },
+  button = { cta_title: "button", cta_type: "primary" },
   image = "https://staging.sugarlogger.com/static/media/Logo.652fce25.svg",
 }: navbarProps) => {
   const [open, setOpen] = useState(false);
   const handleClick = () => setOpen(!open);
+
+  const [state, setState] = useState<any>({});
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = {
+        query: `
+        query{
+          navbar{
+            data{
+              attributes{
+                menus{
+                  title,
+                  url
+                },
+                url,
+                button{
+                  title,
+                  cta_action,
+                  type,
+                  icon_type,
+                  icon
+                },
+                logo{
+                  data{
+                    attributes{
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          },
+        }
+        `,
+      };
+      const response = await axios
+        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+        .then((res) => res);
+      // console.log(response.data.data);
+      // return response.data.data;
+      setState({ ...response.data.data.navbar.data.attributes });
+    }
+    fetchData();
+  }, []);
   return (
     <div className={`navbar`}>
       <div className="container">
@@ -42,57 +88,70 @@ export const Navbar = ({
             <Link href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={image}
+                src={
+                  `https://buildercms.aashirwadlab.co.in${state?.logo?.data?.attributes?.url}` ||
+                  image
+                }
                 alt="logo"
                 // onClick={() => (window.location.href = "/")}
-                onClick={handleClick}
+                // onClick={handleClick}
               />
             </Link>
           </div>
-          <Button {...button} />
+          <Button
+            cta_title={state?.button?.title}
+            cta_action={state?.button?.cta_action}
+            cta_type={state?.button?.type}
+            size={"small"}
+          />
         </div>
         <div className="menu">
-          {menu.length > 0 &&
-            menu.slice(0, 4).map((doc, ind) => (
+          {state.menus?.length > 0 &&
+            state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.link}
+                href={doc.url}
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
-                  window.location.pathname === doc.link
+                  window.location.pathname === doc.url
                     ? "active"
                     : ""
                 }`}
               >
                 <Button
-                  Type="ghost"
-                  label={doc.label}
+                  cta_type="ghost"
+                  cta_title={doc.title}
+                  // handleClick={handleClick}
                   size="small"
-                  handleClick={handleClick}
                 />
               </Link>
             ))}
-          <Button {...button} />
+            <Button
+              cta_title={state?.button?.title}
+              cta_action={state?.button?.cta_action}
+              cta_type={state?.button?.type}
+              size={"small"}
+            />
         </div>
       </div>
       {open && (
         <div className="mobileMenu">
-          {menu.length > 0 &&
-            menu.slice(0, 4).map((doc, ind) => (
+          {state.menus?.length > 0 &&
+            state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.link}
+                href={doc.url}
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
-                  window.location.pathname === doc.link
+                  window.location.pathname === doc.url
                     ? "active"
                     : ""
                 }`}
               >
                 <Button
-                  Type="ghost"
+                  cta_type="ghost"
+                  cta_title={doc.title}
                   handleClick={handleClick}
-                  label={doc.label}
                   size="small"
                 />
               </Link>

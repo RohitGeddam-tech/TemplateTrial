@@ -1,20 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Components/organism/Navbar";
 import BannerCarousel from "../Components/molecules/Carousel/BannerCarousel";
 import { Banner } from "../Components/organism/Banner";
-import { TitleCard } from "../Components/organism/TitleCard";
-// import { cardData } from ".";
-import { Contact } from "../Components/organism/Contact";
-import { Footer } from "../Components/organism/Footer";
 import axios from "axios";
-import Carousel from "../Components/molecules/Carousel";
+import { About } from "../Components/organism/About";
 import Card from "../Components/organism/Card";
+import Carousel from "../Components/molecules/Carousel";
+import { Team } from "../Components/organism/Team";
+import { Footer } from "../Components/organism/Footer";
 import { apiQuery } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 
-const Home = () => {
+const Theme1 = () => {
   const inputBox = [
     {
       label: "Name",
@@ -74,39 +74,32 @@ const Home = () => {
       link: "#",
     },
   ];
-
   const [state, setState] = useState<any>([]);
 
   useEffect(() => {
     async function fetchData() {
       const data = {
         query: `
-          query{
-              pageHome{
-                data{
-                 attributes{
-                   components{
-                     __typename
-                     ${apiQuery}
-                   }
-                 }
-               }
-             }
-        }
-        `,
+          query {
+            pageAboutUs {
+              data {
+                attributes {
+                  components {
+                    __typename
+                    ${apiQuery}
+                  }
+                }
+              }
+            }
+          }
+          `,
       };
-      await axios
+      const response = await axios
         .post("https://buildercms.aashirwadlab.co.in/graphql", data)
-        .then((response) => {
-          console.log(
-            response.data.data.pageHome?.data.attributes.components[1]
-          );
-          setState([
-            ...response.data.data.pageHome?.data.attributes.components,
-          ]);
-        })
-        .catch((err) => console.log(err));
+        .then((res) => res);
+      console.log(response.data.data.pageAboutUs?.data.attributes.components);
       // return response.data.data;
+      setState([...response.data.data.pageAboutUs?.data.attributes.components]);
     }
     fetchData();
   }, []);
@@ -119,7 +112,7 @@ const Home = () => {
           url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
         </style>
       </Head>
-      {state.length !== 0 ? (
+      {state.length > 0 ? (
         <>
           <Navbar />
           <div style={{ marginTop: "81px" }}>
@@ -129,12 +122,6 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Contact
-            inputBox={inputBox}
-            // details={details}
-            formAlignment="right"
-            body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
           <Footer
             text="© 2018 Froala. All Rights Reserved"
             bgColor="--primary-lightest"
@@ -160,4 +147,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Theme1;

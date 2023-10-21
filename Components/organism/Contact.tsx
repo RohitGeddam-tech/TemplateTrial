@@ -107,10 +107,9 @@ export const Contact = ({
   return (
     <div
       className={`contact`}
+      id="contact"
       style={
-        bgColor
-          ? { backgroundColor: `var(${bgColor})` }
-          : { backgroundColor: `white` }
+        bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
       }
     >
       <div className="container">

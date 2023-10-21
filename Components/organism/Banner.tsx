@@ -1,10 +1,9 @@
 import React from "react";
 import { Button } from "../molecules/Button/Button";
+import { ButtonProps } from "../molecules/Button/Util";
 // import Image from "next/image";
 
 interface bannerProps {
-  firstButton?: "primary" | "secondary" | "tertiary" | "danger";
-  secondButton?: "primary" | "secondary" | "tertiary" | "danger";
   title?: string;
   body?: string;
   alignment?: "left" | "right" | "center";
@@ -12,11 +11,12 @@ interface bannerProps {
   image?: string;
   textAlign?: "left" | "right" | "center";
   bgColor?: string;
+  description_color?: string;
+  title_color?: string;
+  button?:ButtonProps
 }
 
 export const Banner = ({
-  firstButton = "tertiary",
-  secondButton = "primary",
   title = "TITLE",
   body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
@@ -24,25 +24,10 @@ export const Banner = ({
   opacity = "partial",
   textAlign,
   bgColor,
+  description_color = "#212b36",
+  title_color = "#212b36",
+  button={},
 }: bannerProps) => {
-  const buttona =
-    firstButton === "tertiary"
-      ? "ghost"
-      : firstButton === "secondary"
-      ? "tertiary"
-      : firstButton;
-
-  const buttonb =
-    secondButton === "tertiary"
-      ? "ghost"
-      : secondButton === "secondary"
-      ? "tertiary"
-      : secondButton;
-
-  const bannerStyle =
-    opacity !== "no"
-      ? { backgroundImage: `url(${image})` }
-      : { background: `var(--secondary-lightest, #b0e0fa)` };
 
   return (
     <div
@@ -50,7 +35,7 @@ export const Banner = ({
       style={
         opacity === "no"
           ? bgColor
-            ? { backgroundColor: `var(${bgColor})` }
+            ? { backgroundColor: bgColor }
             : { backgroundColor: `var(--primary-main)` }
           : { backgroundColor: `transparent` }
       }
@@ -66,13 +51,19 @@ export const Banner = ({
           <div className="details">
             <p
               className="h2"
-              style={{ textAlign: textAlign ? textAlign : alignment }}
+              style={{
+                textAlign: textAlign ? textAlign : alignment,
+                color: title_color,
+              }}
             >
               {title}
             </p>
             <p
               className="para-lg"
-              style={{ textAlign: textAlign ? textAlign : alignment }}
+              style={{
+                textAlign: textAlign ? textAlign : alignment,
+                color: description_color,
+              }}
             >
               {body}
             </p>
@@ -81,8 +72,8 @@ export const Banner = ({
             className="content"
             style={{ justifyContent: textAlign ? textAlign : alignment }}
           >
-            <Button Type={buttona} label={firstButton} size="small" />
-            <Button Type={buttonb} label={secondButton} size="small" />
+            <Button {...button} />
+            {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
           </div>
         </div>
       </div>

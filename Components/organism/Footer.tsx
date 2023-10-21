@@ -51,7 +51,7 @@ export const Footer = ({
       className={`footer`}
       style={
         bgColor
-          ? { backgroundColor: `var(${bgColor})` }
+          ? { backgroundColor: bgColor }
           : { backgroundColor: `white` }
       }
     >

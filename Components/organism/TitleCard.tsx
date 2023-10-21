@@ -14,6 +14,8 @@ interface titleCardProps {
   children?: any;
   view?: "grid" | "line";
   bgColor?: string;
+  description_color?: string;
+  title_color?: string;
 }
 
 export const TitleCard = ({
@@ -31,19 +33,21 @@ export const TitleCard = ({
   children,
   view = "grid",
   bgColor,
+  description_color = "#212b36",
+  title_color = "#212b36",
 }: titleCardProps) => {
   return (
     <div
       className={`titleCard`}
       style={
         bgColor
-          ? { backgroundColor: `var(${bgColor})` }
+          ? { backgroundColor: bgColor }
           : { backgroundColor: `white` }
       }
     >
       <div className="container">
-        <p className="h4">{title}</p>
-        <p className="para-md">{body}</p>
+        <p className="h4" style={{color:title_color}}>{title}</p>
+        <p className="para-md" style={{color:description_color}}>{body}</p>
         {carousel && cardType !== "feature" && cardType !== "team" ? (
           <Carousel
             slidesToShow={carouselProps.slidesToShow}
@@ -53,7 +57,23 @@ export const TitleCard = ({
             {data.length > 0 &&
               data.map((doc, ind) => (
                 <div key={ind}>
-                  <Card cardType={cardType} {...doc} />
+                  <Card
+                    cardType={cardType}
+                    button={{
+                      cta_type: doc.cta_type,
+                      cta_icon: doc.cta_icon,
+                      cta_title: doc.cta_title,
+                      cta_action: doc.cta_action,
+                      cta_icon_type: doc.cta_icon_type,
+                      cta_icon_alignment: doc.cta_icon_alignment,
+                    }}
+                    image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                    title={doc.title}
+                    para={doc.description}
+                    subtitle={doc.subtitle}
+                    description_color={description_color}
+                    title_color={title_color}
+                  />
                 </div>
               ))}
           </Carousel>

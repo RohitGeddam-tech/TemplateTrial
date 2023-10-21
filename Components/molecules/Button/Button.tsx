@@ -11,33 +11,28 @@ import { ButtonProps, classType, classSize, ButtonArrow } from "./Util";
 //ButtonArrow renders the jsx element containing img
 
 export const Button = ({
-  Type = "secondary",
-  state = "default",
-  label = "click here!",
-  size = "medium",
-  styles = {},
-  leadingIcon = false,
-  trailingIcon = false,
-  text = true,
-  handleClick,
+  cta_type = "primary",
+  cta_icon = "arrow_forward",
+  cta_title = "title",
+  cta_action = "open",
+  cta_icon_type = "outlined",
+  cta_icon_alignment = "none",
+  size="medium",
+  handleClick = () => {},
 }: ButtonProps) => {
   return (
     <button
-      className={`btn ${classType(Type)} ${classSize(size)} `}
-      disabled={state === "disabled"}
-      style={styles}
-      onClick={()=>handleClick}
+      className={`btn ${classType(cta_type)} ${classSize(size)} `}
+      // disabled={state === "disabled"}
+      // style={styles}
+      onClick={() => handleClick(cta_action)}
     >
-      {leadingIcon ? (
-        <ButtonArrow
-          imgStyle={text ? { marginRight: "10px" } : { marginRight: "5px" }}
-        />
+      {cta_icon_alignment === "leading" ? (
+        <span style={{fontSize:"16px",marginRight:"8px"}} className={`material-icons-${cta_icon_type}`}>{cta_icon}</span>
       ) : null}
-      {text ? `${label}` : null}
-      {trailingIcon ? (
-        <ButtonArrow
-          imgStyle={text ? { marginLeft: "10px" } : { marginLeft: "5px" }}
-        />
+      {cta_title}
+      {cta_icon_alignment === "trailing" ? (
+        <span style={{fontSize:"16px",marginLeft:"8px"}} className={`material-icons-${cta_icon_type}`}>{cta_icon}</span>
       ) : null}
     </button>
   );

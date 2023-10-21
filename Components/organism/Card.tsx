@@ -9,13 +9,16 @@ interface testimonialProps {
 }
 
 export interface cardProps {
-  image: string;
+  description?: string | undefined;
+  image?: string;
   title?: string;
   para?: string;
   subtitle?: string;
   button?: ButtonProps;
-  cardType?: "default" | "images" | "testimonial" | "feature" | 'team';
+  cardType?: "default" | "images" | "testimonial" | "feature" | "team";
   testimonial?: testimonialProps;
+  description_color?: string;
+  title_color?: string;
 }
 
 const Card = ({
@@ -26,6 +29,8 @@ const Card = ({
   subtitle = "subtitle",
   image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
   testimonial = { details: "top", imageType: "circle" },
+  description_color = "#212b36",
+  title_color = "#212b36",
 }: cardProps) => {
   return (
     <>
@@ -38,14 +43,18 @@ const Card = ({
             <div className="info">
               <p
                 className="para-md"
-                style={{ fontWeight: "600", color: "var(--grayscale-main)" }}
+                style={{ fontWeight: "600", color: title_color }}
               >
                 {title}
               </p>
-              <p className="para-md">{subtitle}</p>
+              <p className="para-md" style={{ color: description_color }}>
+                {subtitle}
+              </p>
             </div>
           </div>
-          <p className="para-lg">{para}</p>
+          <p className="para-lg" style={{ color: description_color }}>
+            {para}
+          </p>
         </div>
       ) : cardType === "images" ? (
         <div className="imgGallery">
@@ -54,11 +63,18 @@ const Card = ({
       ) : (
         <div className="card">
           <img src={image} alt="titleImg" />
-          <p className="sub-md" style={{ fontWeight: "600" }}>
+          <p
+            className="sub-md"
+            style={{ fontWeight: "600", color: title_color }}
+          >
             {title}
           </p>
-          <p className="para-lg">{subtitle}</p>
-          <p className="para-sm">{para}</p>
+          <p className="para-lg" style={{ color: description_color }}>
+            {subtitle}
+          </p>
+          <p className="para-sm" style={{ color: description_color }}>
+            {para}
+          </p>
           <Button {...button} />
         </div>
       )}

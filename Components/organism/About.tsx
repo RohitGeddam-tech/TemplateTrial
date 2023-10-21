@@ -13,10 +13,12 @@ interface aboutProps {
   title?: string;
   body?: string;
   bgColor?: string;
+  description_color?: string;
+  title_color?: string;
 }
 
 export const About = ({
-  button = { label: "button", Type: "primary", size: "small" },
+  button = { size: "small", cta_title: "button", cta_type: "primary" },
   image = "https://staging.sugarlogger.com/static/media/Logo.652fce25.svg",
   subtitleVisible = true,
   subtitle = "subtitle",
@@ -25,6 +27,8 @@ export const About = ({
   buttonVisible = true,
   imageAlignment = "left",
   bgColor,
+  description_color = "#212b36",
+  title_color = "#212b36",
 }: aboutProps) => {
   const AboutImage = () => (
     <div className="imgBox">
@@ -40,8 +44,8 @@ export const About = ({
 
   const AboutDetails = () => (
     <div className="details">
-      <p className="h4">{title}</p>
-      <p className="para-md">{body}</p>
+      <p className="h4" style={{color:title_color}}>{title}</p>
+      <p className="para-md" style={{color:description_color}}>{body}</p>
       {buttonVisible && <Button {...button} />}
     </div>
   );
@@ -51,7 +55,7 @@ export const About = ({
       className={`about`}
       style={
         bgColor
-          ? { backgroundColor: `var(${bgColor})` }
+          ? { backgroundColor: bgColor }
           : { backgroundColor: `white` }
       }
     >

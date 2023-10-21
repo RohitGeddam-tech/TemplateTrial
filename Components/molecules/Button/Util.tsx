@@ -1,15 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 
 export interface ButtonProps {
-  Type?: "primary" | "secondary" | "tertiary" | "ghost" | "danger";
-  state?: "disabled" | "default";
-  label?: string;
+  // Type?: "primary" | "secondary" | "tertiary" | "ghost" | "danger";
+  // state?: "disabled" | "default";
+  // label?: string;
   size?: "small" | "medium" | "large";
-  styles?: Object;
-  trailingIcon?: boolean;
-  leadingIcon?: boolean;
-  text?: boolean;
-  handleClick?: () => void;
+  // styles?: Object;
+  // trailingIcon?: boolean;
+  // leadingIcon?: boolean;
+  // text?: boolean;
+  cta_type?: "primary" | "secondary" | "tertiary" | "ghost" | "danger";
+  cta_icon?: string;
+  cta_title?: string;
+  cta_action?: string;
+  cta_icon_type?: string;
+  cta_icon_alignment?: "leading" | "trailing" | "none";
+  handleClick?: (cta_action: string) => void;
 }
 
 export const buttonOptions = [
