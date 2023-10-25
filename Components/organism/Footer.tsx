@@ -1,261 +1,219 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import axios from "axios";
 
-interface linksProps {
-  label: string;
-  link: string;
-}
+export const Footer = () => {
+  const [state, setState] = useState<any>({});
+  const [group, setGroup] = useState<any>({});
+  const [sm, setSm] = useState<any>(null);
 
-interface socialProps {
-  image: string;
-  link: string;
-}
-
-interface complexProps {
-  group1?: Array<linksProps>;
-  group2?: Array<linksProps>;
-  about?: {
-    title: string;
-    para: string;
-  };
-  sm?: Array<socialProps>;
-}
-
-interface footerProps {
-  image?: string;
-  links?: Array<linksProps>;
-  variant?: number;
-  sm?: Array<socialProps>;
-  complex?: complexProps;
-  text?: string;
-  bgColor?: string;
-}
-
-export const Footer = ({
-  links = [],
-  image = "https://staging.sugarlogger.com/static/media/Logo.652fce25.svg",
-  variant = 1,
-  sm = [],
-  complex = {
-    sm: [...sm],
-    group1: [...links],
-    group2: [...links],
-    about: { title: "Title", para: "Description" },
-  },
-  text = "description",
-  bgColor,
-}: footerProps) => {
-  return (
-    <div
-      className={`footer`}
-      style={
-        bgColor
-          ? { backgroundColor: bgColor }
-          : { backgroundColor: `white` }
+  async function fetchData() {
+    const data = {
+      query: `
+      query{
+        navbar{
+          data{
+            attributes{
+              menus{
+                title,
+                url
+              },
+              url,
+              button{
+                title,
+                cta_action,
+                type,
+                icon_type,
+                icon
+              },
+              logo{
+                data{
+                  attributes{
+                    url
+                  }
+                }
+              }
+            }
+          }
+        },
+        footer {
+          data {
+            attributes {
+              footer_type
+              components{
+                __typename
+                ...on ComponentAtomsMenuGroupAtom{
+                  title
+                  menus{
+                    title,
+                    url
+                  }
+                }
+                ...on ComponentComponentSocialMediaComponent{
+                  title
+                  socail_media{
+                    icon
+                    icon_type
+                    title
+                    url
+                  }
+                }
+                ...on ComponentAtomsTitleInfoAtom{
+                  title
+                  description
+                }
+              }
+            }
+          }
+        }
       }
-    >
-      <div className="container">
-        {variant === 1 ? (
-          <p className="para-md">{text}</p>
-        ) : variant === 2 ? (
-          <div className="insideFooter">
-            <div className="links">
-              {links.length > 0 &&
-                links.map((doc, ind) => (
-                  <Link
-                    href={doc.link}
-                    key={ind}
-                    // className={`${doc.active ? "active" : ""}`}
+      `,
+    };
+    const response = await axios
+      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .then((res) => res);
+    // console.log(response.data.data);
+    // return response.data.data;
+    setState({ ...response.data.data.navbar.data.attributes });
+    setGroup({ ...response.data.data.footer.data.attributes });
+  }
+  useEffect(() => {
+    Object.keys(state).length === 0 && fetchData();
+  }, [state]);
+
+  const GroupType = ({ data }: any) => {
+    const info = data.data;
+    switch (info.__typename) {
+      case "ComponentAtomsMenuGroupAtom":
+        return (
+          <div className="links">
+            <p className="para-lg">{info?.title}</p>
+            {info?.menus.map((doc: any, ind: number) => (
+              <Link href={doc.url} key={ind}>
+                <p className="para-sm">{doc.title}</p>
+              </Link>
+            ))}
+          </div>
+        );
+      case "ComponentAtomsTitleInfoAtom":
+        return (
+          <div className="info">
+            <p className="para-lg">{info?.title}</p>
+            <p className="para-sm">{info?.description}</p>
+          </div>
+        );
+      case "ComponentComponentSocialMediaComponent":
+        return (
+          <div className="links">
+            <p className="para-lg">{info?.title}</p>
+            <div className="sm">
+              {info.socail_media?.map((doc: any, ind: number) => (
+                <Link
+                  href={doc.url}
+                  key={ind}
+                  // className={`${doc.active ? "active" : ""}`}
+                >
+                  <span
+                    style={{ fontSize: "24px", marginRight: "8px" }}
+                    className={`material-icons-${doc.icon_type}`}
                   >
-                    <p className="para-md">{doc.label}</p>
-                  </Link>
-                ))}
-            </div>
-            <p className="para-md">{text}</p>
-          </div>
-        ) : variant === 3 ? (
-          <div className="insideFooter">
-            <div className="left">
-              <div className="logo">
-                <Link href="/">
-                  <Image
-                    width={130}
-                    height={60}
-                    src={image}
-                    alt="logo"
-                    // onClick={() => (window.location.href = "/")}
-                  />
+                    {doc.icon}
+                  </span>
                 </Link>
-              </div>
-              <div className="links">
-                {links.length > 0 &&
-                  links.map((doc, ind) => (
-                    <Link
-                      href={doc.link}
-                      key={ind}
-                      // className={`${doc.active ? "active" : ""}`}
-                    >
-                      <p className="para-md">{doc.label}</p>
-                    </Link>
-                  ))}
-              </div>
-            </div>
-            <div className="right">
-              <p className="para-md">{text}</p>
+              ))}
             </div>
           </div>
-        ) : variant === 4 ? (
-          <div className="insideFooter">
-            <div className="left">
-              <div className="links">
-                {links.length > 0 &&
-                  links.map((doc, ind) => (
-                    <Link
-                      href={doc.link}
-                      key={ind}
-                      // className={`${doc.active ? "active" : ""}`}
-                    >
-                      <p className="para-md">{doc.label}</p>
-                    </Link>
-                  ))}
-              </div>
-            </div>
-            <div className="right">
-              <div className="sm">
-                {sm.length > 0 &&
-                  sm.map((doc, ind) => (
-                    <Link
-                      href={doc.link}
-                      key={ind}
-                      // className={`${doc.active ? "active" : ""}`}
-                    >
+        );
+      default:
+        return <></>;
+    }
+  };
+
+  useEffect(() => {
+    group?.components?.length > 0 &&
+      setSm(
+        group.components?.findIndex(
+          (el: any) =>
+            el.__typename === "ComponentComponentSocialMediaComponent"
+        )
+      );
+  }, [group]);
+
+  return (
+    <div className={`footer`} style={{ backgroundColor: `white` }}>
+      {group.components?.length > 0 && sm !== null && (
+        <div className="container">
+          {group.footer_type === "default" ? (
+            <>
+              <div className="insideFooter">
+                <div className="left">
+                  <div className="logo">
+                    <Link href="/">
                       <Image
-                        src={doc.image}
-                        alt={doc.link}
-                        width={24}
-                        height={24}
+                        width={130}
+                        height={60}
+                        src={
+                          `https://buildercms.aashirwadlab.co.in${state?.logo?.data?.attributes?.url}` ||
+                          ""
+                        }
+                        alt="logo"
                       />
                     </Link>
-                  ))}
-              </div>
-            </div>
-          </div>
-        ) : variant === 5 ? (
-          <>
-            <div className="insideFooter">
-              <div className="left">
-                <div className="logo">
-                  <Link href="/">
-                    <Image
-                      width={130}
-                      height={60}
-                      src={image}
-                      alt="logo"
-                      // onClick={() => (window.location.href = "/")}
-                    />
-                  </Link>
+                  </div>
+                  <div className="links">
+                    {state.menus?.length > 0 &&
+                      state.menus?.map((doc: any, ind: number) => (
+                        <Link
+                          href={doc.url}
+                          key={ind}
+                          // className={`${doc.active ? "active" : ""}`}
+                        >
+                          <p className="para-md">{doc.title}</p>
+                        </Link>
+                      ))}
+                  </div>
                 </div>
-                <div className="links">
-                  {links.length > 0 &&
-                    links.map((doc, ind) => (
-                      <Link
-                        href={doc.link}
-                        key={ind}
-                        // className={`${doc.active ? "active" : ""}`}
-                      >
-                        <p className="para-md">{doc.label}</p>
-                      </Link>
-                    ))}
-                </div>
-              </div>
-              <div className="right">
-                <div className="sm">
-                  {sm.length > 0 &&
-                    sm.map((doc, ind) => (
-                      <Link
-                        href={doc.link}
-                        key={ind}
-                        // className={`${doc.active ? "active" : ""}`}
-                      >
-                        <Image
-                          src={doc.image}
-                          alt={doc.link}
-                          width={24}
-                          height={24}
-                        />
-                      </Link>
-                    ))}
+                <div className="right">
+                  <div className="sm">
+                    {group.components[sm]?.socail_media?.length > 0 &&
+                      group.components[sm]?.socail_media?.map(
+                        (doc: any, ind: number) => (
+                          <Link
+                            href={doc.url}
+                            key={ind}
+                            // className={`${doc.active ? "active" : ""}`}
+                          >
+                            <span
+                              style={{
+                                fontSize: "24px",
+                                marginRight: "8px",
+                              }}
+                              className={`material-icons-${doc.icon_type}`}
+                            >
+                              {doc.icon}
+                            </span>
+                          </Link>
+                        )
+                      )}
+                  </div>
                 </div>
               </div>
-            </div>
-            <p className="para-md" style={{ marginTop: 24 }}>
-              {text}
-            </p>
-          </>
-        ) : (
-          <>
-            <div className="data">
-              <div className="links">
-                <p className="para-lg">Group 1</p>
-                {complex.group1 &&
-                  complex.group1.length > 0 &&
-                  complex.group1.map((doc, ind) => (
-                    <Link
-                      href={doc.link}
-                      key={ind}
-                      // className={`${doc.active ? "active" : ""}`}
-                    >
-                      <p className="para-sm">{doc.label}</p>
-                    </Link>
-                  ))}
-              </div>
-              <div className="links">
-                <p className="para-lg">Group 2</p>
-                {complex.group2 &&
-                  complex.group2.length > 0 &&
-                  complex.group2.map((doc, ind) => (
-                    <Link
-                      href={doc.link}
-                      key={ind}
-                      // className={`${doc.active ? "active" : ""}`}
-                    >
-                      <p className="para-sm">{doc.label}</p>
-                    </Link>
-                  ))}
-              </div>
-              <div className="info">
-                <p className="para-lg">{complex.about?.title}</p>
-                <p className="para-sm">{complex.about?.para}</p>
-              </div>
-              <div className="links">
-                <p className="para-lg">Follow Us</p>
-                <div className="sm">
-                  {complex.sm &&
-                    complex.sm.length > 0 &&
-                    complex.sm.map((doc, ind) => (
-                      <Link
-                        href={doc.link}
-                        key={ind}
-                        // className={`${doc.active ? "active" : ""}`}
-                      >
-                        <Image
-                          src={doc.image}
-                          alt={doc.link}
-                          width={24}
-                          height={24}
-                        />
-                      </Link>
-                    ))}
+            </>
+          ) : (
+            <>
+              {group.components.length > 0 && (
+                <div className="data">
+                  <GroupType data={group.components[0]} />
+                  <GroupType data={group.components[1]} />
+                  <GroupType data={group.components[2]} />
+                  <GroupType data={group.components[3]} />
                 </div>
-              </div>
-            </div>
-            <p className="para-md" style={{ marginTop: 24 }}>
-              {text}
-            </p>
-          </>
-        )}
-      </div>
+              )}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

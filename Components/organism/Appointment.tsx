@@ -3,6 +3,8 @@ import { Button } from "../molecules/Button/Button";
 import Input from "../molecules/Input/Input";
 import Textarea from "../molecules/Textarea/Textarea";
 import axios from "axios";
+// import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 export const Appointment = ({ setOpen }: any) => {
   const ContactForm = () => {
@@ -165,7 +167,16 @@ export const Appointment = ({ setOpen }: any) => {
                       handleChange={handleChange}
                       value={doc.value}
                     />
-                  ) : (
+                    ) : doc.name === "booking_time" ? (
+                      <>
+                        {/* <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <DateTimePicker
+                          label="Basic date time picker"
+                          onChange={(value) => console.log(value)}
+                        />
+                      </LocalizationProvider> */}
+                      </>
+                    ) : (
                     <Input
                       required={doc.required}
                       label={doc.label}

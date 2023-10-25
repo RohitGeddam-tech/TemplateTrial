@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../molecules/Button/Button";
 // import Image from "next/image";
 import { ButtonProps } from "../molecules/Button/Util";
-import { InputProps } from "../molecules/Input/Utils";
 import Input from "../molecules/Input/Input";
 import Link from "next/link";
 import Textarea from "../molecules/Textarea/Textarea";
 import axios from "axios";
+// import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 interface contactProps {
   formAlignment?: "left" | "right";
@@ -90,12 +91,28 @@ export const Contact = ({
         const name = state[i].name;
         val[name] = state[i].value;
       }
-      const response = await axios
+      await axios
         .post("https://buildercms.aashirwadlab.co.in/api/contact-uses", {
           data: { ...val, email: val.email_id },
         })
-        .then((res) => res);
-      console.log(response.data.data);
+        .then((res) => {
+          var val: any = [];
+          for (let i = 0; i < state.length; i++) {
+            // const name = state[i].name || "label";
+            // val[name] = "";
+            const value = {
+              required: state[i].required,
+              label: state[i].label,
+              name: state[i].name,
+              value: "",
+            };
+            val[i] = value;
+          }
+          // console.log(val);
+          // console.log(val[val.findIndex((el: any) => el.name === "name")]);
+          setState(val);
+        });
+      // console.log(response.data.data);
     }
 
     useEffect(() => {
@@ -171,6 +188,15 @@ export const Contact = ({
                       handleChange={handleChange}
                       value={doc.value}
                     />
+                  ) : doc.name === "booking_time" ? (
+                    <>
+                      {/* <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <DateTimePicker
+                          label="Basic date time picker"
+                          onChange={(value) => console.log(value)}
+                        />
+                      </LocalizationProvider> */}
+                    </>
                   ) : (
                     <Input
                       required={doc.required}

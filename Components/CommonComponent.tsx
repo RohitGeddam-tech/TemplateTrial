@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import { About } from "./organism/About";
 import Carousel from "./molecules/Carousel";
 import { Team } from "./organism/Team";
 import BannerCarousel from "./molecules/Carousel/BannerCarousel";
 import { Banner } from "./organism/Banner";
 import Card from "./organism/Card";
+import { Appointment } from "./organism/Appointment";
 
 const CommonComponent = (data: any = {}) => {
+  const [open, setOpen] = useState<any>(false);
   //   console.log(data.data.image.data);
   const info = data.data;
   switch (info.__typename) {
@@ -224,11 +226,13 @@ const CommonComponent = (data: any = {}) => {
                       subtitle={doc.subtitle}
                       description_color={info.desciption_color}
                       title_color={info.title_color}
+                      setOpen={setOpen}
                     />
                   </div>
                 ))}
             </Carousel>
           </div>
+          {open && <Appointment setOpen={setOpen} />}
         </div>
       );
     case "ComponentComponentTestimonialsComponent":

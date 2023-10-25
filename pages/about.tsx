@@ -30,7 +30,7 @@ const Theme1 = () => {
     const response = await axios
       .post("https://buildercms.aashirwadlab.co.in/graphql", data)
       .then((res) => res);
-    console.log(response.data.data.pageAboutUs?.data.attributes.components);
+    // console.log(response.data.data.pageAboutUs?.data.attributes.components);
     // return response.data.data;
     setState([...response.data.data.pageAboutUs?.data.attributes.components]);
   }

@@ -20,6 +20,7 @@ export interface cardProps {
   testimonial?: testimonialProps;
   description_color?: string;
   title_color?: string;
+  setOpen?: any;
 }
 
 const Card = ({
@@ -32,8 +33,8 @@ const Card = ({
   testimonial = { details: "top", imageType: "circle" },
   description_color = "#212b36",
   title_color = "#212b36",
+  setOpen,
 }: cardProps) => {
-  const [open,setOpen]=useState<any>(false);
   return (
     <>
       {cardType === "testimonial" ? (
@@ -77,13 +78,14 @@ const Card = ({
           <p className="para-sm" style={{ color: description_color }}>
             {para}
           </p>
-          <Button {...button}
-              handleClick={() => {
-                setOpen(true);
-              }} />
+          <Button
+            {...button}
+            handleClick={() => {
+              setOpen(true);
+            }}
+          />
         </div>
       )}
-      {open && <Appointment setOpen={setOpen} />}
     </>
   );
 };
