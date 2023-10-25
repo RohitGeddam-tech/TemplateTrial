@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../molecules/Button/Button";
 import { ButtonProps } from "../molecules/Button/Util";
+import { Appointment } from "./Appointment";
 // import Image from "next/image";
 
 interface bannerProps {
@@ -13,7 +14,7 @@ interface bannerProps {
   bgColor?: string;
   description_color?: string;
   title_color?: string;
-  button?:ButtonProps
+  button?: ButtonProps;
 }
 
 export const Banner = ({
@@ -26,9 +27,9 @@ export const Banner = ({
   bgColor,
   description_color = "#212b36",
   title_color = "#212b36",
-  button={},
+  button = {},
 }: bannerProps) => {
-
+  const [open,setOpen]=useState<any>(false);
   return (
     <div
       className={`banner ${opacity} ${alignment}`}
@@ -72,11 +73,17 @@ export const Banner = ({
             className="content"
             style={{ justifyContent: textAlign ? textAlign : alignment }}
           >
-            <Button {...button} />
+            <Button
+              {...button}
+              handleClick={() => {
+                setOpen(true);
+              }}
+            />
             {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
           </div>
         </div>
       </div>
+      {open && <Appointment setOpen={setOpen} />}
     </div>
   );
 };

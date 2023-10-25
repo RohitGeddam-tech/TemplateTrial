@@ -4,6 +4,7 @@ import { Button } from "../molecules/Button/Button";
 import { ButtonProps } from "../molecules/Button/Util";
 import Link from "next/link";
 import axios from "axios";
+import { Appointment } from "./Appointment";
 
 interface menuProps {
   title: string;
@@ -17,12 +18,13 @@ interface navbarProps {
 }
 
 export const Navbar = ({
-  menu = [],
-  button = { cta_title: "button", cta_type: "primary" },
   image = "https://staging.sugarlogger.com/static/media/Logo.652fce25.svg",
 }: navbarProps) => {
   const [open, setOpen] = useState(false);
-  const handleClick = () => setOpen(!open);
+  const [formOpen, setFormOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
   const [state, setState] = useState<any>({});
 
@@ -68,7 +70,7 @@ export const Navbar = ({
   useEffect(() => {
     Object.keys(state).length === 0 && fetchData();
   }, [state]);
-  
+
   return (
     <div className={`navbar`}>
       <div className="container">
@@ -103,6 +105,9 @@ export const Navbar = ({
             cta_title={state?.button?.title}
             cta_action={state?.button?.cta_action}
             cta_type={state?.button?.type}
+            handleClick={() => {
+              setFormOpen(true);
+            }}
             size={"small"}
           />
         </div>
@@ -132,6 +137,9 @@ export const Navbar = ({
             cta_action={state?.button?.cta_action}
             cta_type={state?.button?.type}
             size={"small"}
+            handleClick={() => {
+              setFormOpen(true);
+            }}
           />
         </div>
       </div>
@@ -159,6 +167,7 @@ export const Navbar = ({
             ))}
         </div>
       )}
+      {formOpen && <Appointment setOpen={setFormOpen} />}
     </div>
   );
 };

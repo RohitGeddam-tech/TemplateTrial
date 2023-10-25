@@ -6,7 +6,6 @@ import { Team } from "./organism/Team";
 import BannerCarousel from "./molecules/Carousel/BannerCarousel";
 import { Banner } from "./organism/Banner";
 import Card from "./organism/Card";
-import { Contact } from "./organism/Contact";
 
 const CommonComponent = (data: any = {}) => {
   //   console.log(data.data.image.data);
@@ -157,7 +156,7 @@ const CommonComponent = (data: any = {}) => {
                   alignment={doc.content_alignment}
                   key={ind}
                   image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
-                  bgColor={doc.background_color}
+                  bgColor={doc.bgColor}
                   description_color={doc.description_color}
                   title_color={doc.title_color}
                   button={{
@@ -289,18 +288,6 @@ const CommonComponent = (data: any = {}) => {
             </Carousel>
           </div>
         </div>
-      );
-    case "ComponentComponentContactUsComponenet":
-      return (
-        <Contact
-          formAlignment={info.component_alignment}
-          body={info.desciption}
-          title={info.title}
-          details={info.contact_details}
-          bgColor={info.background_color}
-          description_color={info.desciption_color}
-          title_color={info.title_color}
-        />
       );
     default:
       return <></>;

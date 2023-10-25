@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../molecules/Button/Button";
 import { ButtonProps } from "../molecules/Button/Util";
+import { Appointment } from "./Appointment";
 
 interface testimonialProps {
   details: "top" | "bottom";
@@ -32,6 +33,7 @@ const Card = ({
   description_color = "#212b36",
   title_color = "#212b36",
 }: cardProps) => {
+  const [open,setOpen]=useState<any>(false);
   return (
     <>
       {cardType === "testimonial" ? (
@@ -75,9 +77,13 @@ const Card = ({
           <p className="para-sm" style={{ color: description_color }}>
             {para}
           </p>
-          <Button {...button} />
+          <Button {...button}
+              handleClick={() => {
+                setOpen(true);
+              }} />
         </div>
       )}
+      {open && <Appointment setOpen={setOpen} />}
     </>
   );
 };

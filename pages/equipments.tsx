@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
@@ -14,10 +15,10 @@ const Theme1 = () => {
     const data = {
       query: `
         query {
-          pageBranch{
-            data{
-              attributes{
-                components{
+          pageEquipment {
+            data {
+              attributes {
+                components {
                   __typename
                   ${apiQuery}
                 }
@@ -30,14 +31,14 @@ const Theme1 = () => {
     const response = await axios
       .post("https://buildercms.aashirwadlab.co.in/graphql", data)
       .then((res) => res);
-    console.log(response.data.data.pageBranch?.data.attributes.components);
+    // console.log(response.data.data.pageEquipment?.data.attributes.components);
     // return response.data.data;
-    setState([...response.data.data.pageBranch?.data.attributes.components]);
+    setState([...response.data.data.pageEquipment?.data.attributes.components]);
   }
-
   useEffect(() => {
     state.length === 0 && fetchData();
   }, [state]);
+
   return (
     <div className="theme1">
       <Head>
