@@ -26,48 +26,49 @@ export const Navbar = ({
 
   const [state, setState] = useState<any>({});
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = {
-        query: `
-        query{
-          navbar{
-            data{
-              attributes{
-                menus{
-                  title,
-                  url
-                },
-                url,
-                button{
-                  title,
-                  cta_action,
-                  type,
-                  icon_type,
-                  icon
-                },
-                logo{
-                  data{
-                    attributes{
-                      url
-                    }
+  async function fetchData() {
+    const data = {
+      query: `
+      query{
+        navbar{
+          data{
+            attributes{
+              menus{
+                title,
+                url
+              },
+              url,
+              button{
+                title,
+                cta_action,
+                type,
+                icon_type,
+                icon
+              },
+              logo{
+                data{
+                  attributes{
+                    url
                   }
                 }
               }
             }
-          },
-        }
-        `,
-      };
-      const response = await axios
-        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
-        .then((res) => res);
-      // console.log(response.data.data);
-      // return response.data.data;
-      setState({ ...response.data.data.navbar.data.attributes });
-    }
-    fetchData();
-  }, []);
+          }
+        },
+      }
+      `,
+    };
+    const response = await axios
+      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .then((res) => res);
+    // console.log(response.data.data);
+    // return response.data.data;
+    setState({ ...response.data.data.navbar.data.attributes });
+  }
+  useEffect(() => {
+    Object.keys(state).length === 0 && fetchData();
+  }, [state]);
+  
   return (
     <div className={`navbar`}>
       <div className="container">
@@ -126,12 +127,12 @@ export const Navbar = ({
                 />
               </Link>
             ))}
-            <Button
-              cta_title={state?.button?.title}
-              cta_action={state?.button?.cta_action}
-              cta_type={state?.button?.type}
-              size={"small"}
-            />
+          <Button
+            cta_title={state?.button?.title}
+            cta_action={state?.button?.cta_action}
+            cta_type={state?.button?.type}
+            size={"small"}
+          />
         </div>
       </div>
       {open && (

@@ -29,7 +29,7 @@ const Textarea = ({
           onBlur={() => setIsFocus(false)}
           // type={type}
           value={value}
-          name={label}
+          name={"message"}
           onChange={handleChange}
           className={`form-control`}
           required={required}

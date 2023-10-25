@@ -31,6 +31,7 @@ export interface InputProps {
   helperIcon?: boolean;
   helperText?: string;
   styles?: Object;
+  name?: string;
   label?: string;
   text?: string;
   type?: string;

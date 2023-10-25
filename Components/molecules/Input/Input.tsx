@@ -9,6 +9,7 @@ const Input = ({
   type = "text",
   required,
   label = "Text",
+  name = "text",
   handleChange,
   value,
   leadingIcon,
@@ -46,9 +47,9 @@ const Input = ({
         <input
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          type={type === "number" ? "text" : type}
+          type={"text"}
           value={value}
-          name={label}
+          name={name}
           onChange={handleChange}
           className={`form-control ${
             adornmentType === "prefix" || leadingIcon ? "prefixLabel" : ""

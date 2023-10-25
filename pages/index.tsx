@@ -76,40 +76,35 @@ const Home = () => {
   ];
 
   const [state, setState] = useState<any>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = {
-        query: `
-          query{
-              pageHome{
-                data{
-                 attributes{
-                   components{
-                     __typename
-                     ${apiQuery}
-                   }
+  async function fetchData() {
+    const data = {
+      query: `
+        query{
+            pageHome{
+              data{
+               attributes{
+                 components{
+                   __typename
+                   ${apiQuery}
                  }
                }
              }
-        }
-        `,
-      };
-      await axios
-        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
-        .then((response) => {
-          console.log(
-            response.data.data.pageHome?.data.attributes.components[1]
-          );
-          setState([
-            ...response.data.data.pageHome?.data.attributes.components,
-          ]);
-        })
-        .catch((err) => console.log(err));
-      // return response.data.data;
-    }
-    fetchData();
-  }, []);
+           }
+      }
+      `,
+    };
+    await axios
+      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .then((response) => {
+        // console.log(response.data.data.pageHome?.data.attributes.components[1]);
+        setState([...response.data.data.pageHome?.data.attributes.components]);
+      })
+      .catch((err) => console.log(err));
+    // return response.data.data;
+  }
+  useEffect(() => {
+    state.length === 0 && fetchData();
+  }, [state]);
 
   return (
     <div className="theme1">
@@ -129,12 +124,6 @@ const Home = () => {
               </div>
             ))}
           </div>
-          <Contact
-            inputBox={inputBox}
-            // details={details}
-            formAlignment="right"
-            body="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          />
           <Footer
             text="© 2018 Froala. All Rights Reserved"
             bgColor="--primary-lightest"

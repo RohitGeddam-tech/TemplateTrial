@@ -72,33 +72,34 @@ const Theme1 = () => {
   ];
   const [state, setState] = useState<any>([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = {
-        query: `
-          query {
-            pageBranch{
-              data{
-                attributes{
-                  components{
-                    __typename
-                    ${apiQuery}
-                  }
+  async function fetchData() {
+    const data = {
+      query: `
+        query {
+          pageBranch{
+            data{
+              attributes{
+                components{
+                  __typename
+                  ${apiQuery}
                 }
               }
             }
           }
-          `,
-      };
-      const response = await axios
-        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
-        .then((res) => res);
-      console.log(response.data.data.pageBranch?.data.attributes.components);
-      // return response.data.data;
-      setState([...response.data.data.pageBranch?.data.attributes.components]);
-    }
-    fetchData();
-  }, []);
+        }
+        `,
+    };
+    const response = await axios
+      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .then((res) => res);
+    console.log(response.data.data.pageBranch?.data.attributes.components);
+    // return response.data.data;
+    setState([...response.data.data.pageBranch?.data.attributes.components]);
+  }
+
+  useEffect(() => {
+    state.length === 0 && fetchData();
+  }, [state]);
   return (
     <div className="theme1">
       <Head>

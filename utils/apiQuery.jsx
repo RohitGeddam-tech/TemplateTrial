@@ -134,4 +134,21 @@ export const apiQuery = `
  }
  background_color
 },
+... on ComponentComponentContactUsComponenet {
+  title
+  title_color
+  desciption
+  desciption_color
+  background_color
+  component_alignment
+  contact_details {
+    title
+    title_color
+    type
+    icon
+    icon_type
+    icon_color
+    value
+  }
+}
 `;

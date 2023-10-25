@@ -38,6 +38,7 @@
     line-height: 140% !important;
     padding: 0 8px !important;
     padding-left: 0 !important;
+    z-index: 9;
     &:focus ~ label,
     &:not(:placeholder-shown) ~ label {
       opacity: 1 !important;
@@ -82,6 +83,7 @@
     padding: 0 !important;
     position: absolute;
     left: 16px !important;
+    z-index: 8;
   }
 
   &.textarea {
