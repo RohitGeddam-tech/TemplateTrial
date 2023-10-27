@@ -83,7 +83,7 @@ export const Footer = () => {
   }, [state]);
 
   const GroupType = ({ data }: any) => {
-    const info = data.data;
+    const info = data;
     switch (info.__typename) {
       case "ComponentAtomsMenuGroupAtom":
         return (
@@ -199,6 +199,7 @@ export const Footer = () => {
                   </div>
                 </div>
               </div>
+              <p className="para-md" style={{ marginTop: 24 }}>© Sugarlogger Technologies Pvt. Ltd.</p>
             </>
           ) : (
             <>
@@ -210,6 +211,7 @@ export const Footer = () => {
                   <GroupType data={group.components[3]} />
                 </div>
               )}
+              <p className="para-md" style={{ marginTop: 24 }}>© Sugarlogger Technologies Pvt. Ltd.</p>
             </>
           )}
         </div>
