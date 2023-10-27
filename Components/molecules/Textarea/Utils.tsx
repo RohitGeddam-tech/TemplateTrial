@@ -7,6 +7,7 @@ export interface TextareaProps {
   styles?: Object;
   label?: string;
   handleChange?: any;
+  handleBlur?: any;
   value?: string;
   characterCounter?: boolean;
   characterTotal?: number;

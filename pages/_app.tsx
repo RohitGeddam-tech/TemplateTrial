@@ -3,6 +3,8 @@ import Head from "next/head";
 import "../styles/globals.css";
 import "../styles/Input.scss";
 import type { AppProps } from "next/app";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -30,7 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
           rel="stylesheet"
         />
       </Head>
-      <Component {...pageProps} />
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Component {...pageProps} />
+      </MuiPickersUtilsProvider>
     </>
   );
 }

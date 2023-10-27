@@ -10,6 +10,14 @@ export const apiQuery = `
           }
         }
       },
+      mobile_image {
+                data {
+                  attributes {
+                    url
+                    alternativeText
+                  }
+                }
+              },
       body,
       desciption_color,
       title_color,

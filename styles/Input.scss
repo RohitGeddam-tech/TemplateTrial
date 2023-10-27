@@ -1279,6 +1279,7 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     width: 100%;
+    height: 520px;
     .box {
       display: flex;
       width: 100%;
@@ -2332,6 +2333,18 @@ input:checked + .slider:before {
     padding-bottom: 24px !important;
     border-radius: 10px;
     position: relative;
+    .h4 {
+      color: black;
+      // margin-bottom: 16px;
+      width: 100%;
+      text-align: left;
+      .material-icons-outlined {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        cursor: pointer;
+      }
+    }
     form {
       gap: 24px;
       width: 100%;
@@ -2340,22 +2353,53 @@ input:checked + .slider:before {
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      .h4 {
-        color: black;
-        // margin-bottom: 16px;
-        width: 100%;
-        text-align: left;
-        .material-icons-outlined{
-          position: absolute;
-          top: 14px;
-          right: 14px;
-          cursor: pointer;
-        }
-      }
       .input-group {
         width: 100%;
         max-width: 440px;
       }
     }
+  }
+}
+
+.MuiPickersModal-dialogRootWider {
+  min-width: 330px !important;
+}
+
+.MuiDialog-root {
+  z-index: 99999 !important;
+}
+.MuiFormControl-root {
+  width: 100%;
+  .MuiFormLabel-root, input {
+    color: var(--grayscale-dark) !important;
+    // height: 22px !important;
+    border: none !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 70% !important;
+  }
+  fieldset {
+    border: 1px solid var(--grayscale-dark) !important;
+    background-color: transparent !important;
+    width: 100% !important;
+    // max-width: 218px;
+    padding: 12px !important;
+    border-radius: 5px !important;
+    top: 0 !important;
+  }
+  .MuiOutlinedInput-input{
+    padding: 14.5px 14px;
+  }
+  .MuiInputLabel-outlined.MuiInputLabel-shrink{
+    transform: translate(10px, -4px) scale(0.75) !important;
+    background-color: white;
+    color: var(--grayscale-darkest) !important;
+    padding: 0 5px !important;
+  }
+  input:not([value='']){
+    color: var(--grayscale-darkest) !important;
+  }
+  input:not([value='']) ~ fieldset{
+    border-color: var(--grayscale-darkest) !important;
   }
 }

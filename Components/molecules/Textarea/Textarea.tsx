@@ -14,6 +14,7 @@ const Textarea = ({
   characterTotal,
   characterValue,
   styles = {},
+  handleBlur,
 }: TextareaProps) => {
   const [isFocus, setIsFocus] = useState(false);
   return (
@@ -21,12 +22,17 @@ const Textarea = ({
       <div
         className={`input-group ${isFocus ? "inputFocused" : ""} textarea ${
           (value && value !== "") || state === "filled" ? "filled" : ""
-        } ${state || state === "disabled" ? state : ""}`}
+        } ${state || state === "disabled" ? state : ""} ${
+          helperText !== "" ? "error" : ""
+        }`}
         style={styles}
       >
         <textarea
           onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
+          onBlur={(e) => {
+            setIsFocus(false);
+            handleBlur(e);
+          }}
           // type={type}
           value={value}
           name={"message"}
@@ -43,7 +49,7 @@ const Textarea = ({
         </label>
       </div>
       <div className="bottomLayer">
-        {helper ? (
+        {helperText !== "" ? (
           <p
             className={`inputFeedback ${
               (state && value && value !== "") || state === "disabled"

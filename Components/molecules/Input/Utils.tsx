@@ -41,4 +41,5 @@ export interface InputProps {
   characterTotal?: number;
   characterValue?: number;
   handleClear?: any;
+  handleBlur?:any;
 }

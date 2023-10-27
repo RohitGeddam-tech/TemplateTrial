@@ -5,6 +5,7 @@ const Input = ({
   adornmentType,
   adornmentValue,
   adornment,
+  handleBlur,
   text = "text",
   type = "text",
   required,
@@ -33,7 +34,7 @@ const Input = ({
       <div
         className={`input-group ${isFocus ? "inputFocused" : ""} ${size} ${
           (value && value !== "") || state === "filled" ? "filled" : ""
-        } ${state || state === "disabled" ? state : ""}`}
+        } ${state || state === "disabled" ? state : ""} ${helperText !== "" ? "error" : ""}`}
         style={styles}
       >
         {leadingIcon ? (
@@ -46,7 +47,7 @@ const Input = ({
         ) : null}
         <input
           onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
+          onBlur={(e) => {setIsFocus(false); handleBlur(e);}}
           type={"text"}
           value={value}
           name={name}
@@ -75,7 +76,7 @@ const Input = ({
         ) : null}
       </div>
       <div className="bottomLayer">
-        {helper ? (
+        {helperText !== "" ? (
           <p
             className={`inputFeedback ${
               (state && value && value !== "") || state === "disabled"

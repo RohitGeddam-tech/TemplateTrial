@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { Button } from "../molecules/Button/Button";
 import { ButtonProps } from "../molecules/Button/Util";
 import { Appointment } from "./Appointment";
 // import Image from "next/image";
+import useWindowSize from "../../utils/useWindowSize";
 
 interface bannerProps {
   title?: string;
@@ -10,6 +12,7 @@ interface bannerProps {
   alignment?: "left" | "right" | "center";
   opacity?: "partial" | "full" | "no";
   image?: string;
+  mobImage?: string;
   textAlign?: "left" | "right" | "center";
   bgColor?: string;
   description_color?: string;
@@ -21,6 +24,7 @@ export const Banner = ({
   title = "TITLE",
   body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+  mobImage = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
   alignment = "right",
   opacity = "partial",
   textAlign,
@@ -29,7 +33,8 @@ export const Banner = ({
   title_color = "#212b36",
   button = {},
 }: bannerProps) => {
-  const [open,setOpen]=useState<any>(false);
+  const [open, setOpen] = useState<any>(false);
+  const [width] = useWindowSize();
   return (
     <div
       className={`banner ${opacity} ${alignment}`}
@@ -43,8 +48,11 @@ export const Banner = ({
     >
       {opacity !== "no" && (
         <div className="bgImg">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} alt="background" />
+          {width <= 768 ? (
+            <img src={mobImage} alt="background" />
+          ) : (
+            <img src={image} alt="background" />
+          )}
         </div>
       )}
       <div className="container">

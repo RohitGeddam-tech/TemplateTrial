@@ -6,6 +6,8 @@ import Input from "../molecules/Input/Input";
 import Link from "next/link";
 import Textarea from "../molecules/Textarea/Textarea";
 import axios from "axios";
+import moment from "moment";
+import { KeyboardDateTimePicker } from "@material-ui/pickers";
 // import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
@@ -43,6 +45,7 @@ export const Contact = ({
   const ContactForm = () => {
     const [state, setState] = useState<any>([]);
     const [formInfo, setFormInfo] = useState<any>({});
+    const [success, setSuccess] = useState<any>(false);
 
     async function fetchData() {
       const data = {
@@ -96,6 +99,7 @@ export const Contact = ({
           data: { ...val, email: val.email_id },
         })
         .then((res) => {
+          setSuccess(true);
           var val: any = [];
           for (let i = 0; i < state.length; i++) {
             // const name = state[i].name || "label";
@@ -105,13 +109,15 @@ export const Contact = ({
               label: state[i].label,
               name: state[i].name,
               value: "",
+              error: "",
             };
             val[i] = value;
           }
           // console.log(val);
           // console.log(val[val.findIndex((el: any) => el.name === "name")]);
           setState(val);
-        });
+        })
+        .catch((err) => console.log(err));
       // console.log(response.data.data);
     }
 
@@ -131,6 +137,7 @@ export const Contact = ({
             label: inputBox[i].label,
             name: inputBox[i].name,
             value: "",
+            error: "",
           };
           val[i] = value;
         }
@@ -167,6 +174,48 @@ export const Contact = ({
       setState(data);
     };
 
+    const handleBlur = (e: any) => {
+      var data: any = [...state];
+      var name = e.target.name;
+      var indVal = data.findIndex((el: any) => el.name === name);
+      if (
+        name !== "message" &&
+        name !== "mobile_number" &&
+        e.target.value === "" &&
+        data[indVal].required
+      ) {
+        data[indVal] = {
+          ...data[indVal],
+          error: `please enter a valid ${data[indVal].label}`,
+        };
+      } else {
+        data[indVal] = { ...data[indVal], error: `` };
+      }
+      if (name === "mobile_number" && data[indVal].required) {
+        if (e.target.value.length < 10 || e.target.value === "") {
+          // data[name] = e.target.value;
+          data[indVal] = {
+            ...data[indVal],
+            error: "Please enter a valid mobile no.",
+          };
+        } else {
+          data[indVal] = { ...data[indVal], error: `` };
+        }
+      }
+      if (name === "message" && data[indVal].required) {
+        if (e.target.value.length <= 20 || e.target.value === "") {
+          data[indVal] = {
+            ...data[indVal],
+            error: "Minimum 20 words are required",
+          };
+        } else {
+          data[indVal] = { ...data[indVal], error: `` };
+        }
+      }
+      // console.log(data);
+      setState(data);
+    };
+
     return (
       <form
         onSubmit={(e) => {
@@ -187,15 +236,53 @@ export const Contact = ({
                       required={doc.required}
                       handleChange={handleChange}
                       value={doc.value}
+                      handleBlur={handleBlur}
+                      helperText={doc.error}
                     />
                   ) : doc.name === "booking_time" ? (
                     <>
-                      {/* <LocalizationProvider dateAdapter={AdapterMoment}>
-                        <DateTimePicker
-                          label="Basic date time picker"
-                          onChange={(value) => console.log(value)}
-                        />
-                      </LocalizationProvider> */}
+                      <KeyboardDateTimePicker
+                        className="mui-date-picker"
+                        label={`${doc.label}${doc.required ? "*" : ""}`}
+                        // required={doc.required}
+                        inputVariant="outlined"
+                        ampm={true}
+                        value={doc.value || null}
+                        minDate={new Date()}
+                        maxDate={moment().add(1, "months").format("YYYY-MM-DD")}
+                        onChange={(date) => {
+                          var data = [...state];
+                          var indVal = data.findIndex(
+                            (el: any) => el.name === "booking_time"
+                          );
+                          data[indVal] = {
+                            ...data[indVal],
+                            value: date,
+                          };
+                          setState(data);
+                        }}
+                        error={doc.required && doc.error !== "" ? true : false}
+                        helperText={
+                          doc.required && doc.error !== "" && doc.error
+                        }
+                        format="dd-MM-yyyy hh:mm a"
+                        autoOk={true}
+                        hideTabs={true}
+                        onBlur={(e) => {
+                          var data = [...state];
+                          var indVal = data.findIndex(
+                            (el: any) => el.name === "booking_time"
+                          );
+                          console.log(e);
+                          if (e.target.value === "") {
+                            data[indVal] = {
+                              ...data[indVal],
+                              error: `please enter a valid date`,
+                            };
+                          }
+                          setState(data);
+                        }}
+                      />
                     </>
                   ) : (
                     <Input
@@ -204,6 +291,8 @@ export const Contact = ({
                       name={doc.name}
                       handleChange={handleChange}
                       value={doc.value}
+                      handleBlur={handleBlur}
+                      helperText={doc.error}
                     />
                   )}
                 </div>
@@ -216,6 +305,35 @@ export const Contact = ({
               cta_type={formInfo.buttons[0].type}
             />
           </>
+        )}
+        {success && (
+          <div className={`appointment`} style={{ backgroundColor: `white` }}>
+            <div className="container">
+              <p className="h4" style={{ padding: "18px" }}>
+                Your message has been successfully received.
+                <span
+                  className="material-icons-outlined"
+                  onClick={() => {
+                    setSuccess(false);
+                    var val: any = [];
+                    for (let i = 0; i < state.length; i++) {
+                      const value = {
+                        required: state[i].required,
+                        label: state[i].label,
+                        name: state[i].name,
+                        value: "",
+                        error: "",
+                      };
+                      val[i] = value;
+                    }
+                    setState(val);
+                  }}
+                >
+                  close
+                </span>
+              </p>
+            </div>
+          </div>
         )}
       </form>
     );

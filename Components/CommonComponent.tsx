@@ -7,6 +7,7 @@ import BannerCarousel from "./molecules/Carousel/BannerCarousel";
 import { Banner } from "./organism/Banner";
 import Card from "./organism/Card";
 import { Appointment } from "./organism/Appointment";
+import { Contact } from "./organism/Contact";
 
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
@@ -65,7 +66,7 @@ const CommonComponent = (data: any = {}) => {
               {info.desciption}
             </p>
             <Carousel
-              slidesToShow={2.7}
+              slidesToShow={3}
               arrow={info.carousel_type === "arrows"}
               dots={info.carousel_type === "dots"}
             >
@@ -132,6 +133,7 @@ const CommonComponent = (data: any = {}) => {
                     textAlign={doc.content_alignment}
                     key={ind}
                     image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                    mobImage={`https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`}
                     bgColor={doc.bgColor}
                     description_color={doc.desciption_color}
                     title_color={doc.title_color}
@@ -158,6 +160,7 @@ const CommonComponent = (data: any = {}) => {
                   alignment={doc.content_alignment}
                   key={ind}
                   image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                  mobImage={`https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`}
                   bgColor={doc.bgColor}
                   description_color={doc.description_color}
                   title_color={doc.title_color}
@@ -203,7 +206,7 @@ const CommonComponent = (data: any = {}) => {
               {info.desciption}
             </p>
             <Carousel
-              slidesToShow={2.7}
+              slidesToShow={3}
               arrow={info.carousel_type === "arrows"}
               dots={info.carousel_type === "dots"}
             >
@@ -263,7 +266,7 @@ const CommonComponent = (data: any = {}) => {
               {info.desciption}
             </p>
             <Carousel
-              slidesToShow={2.7}
+              slidesToShow={3}
               arrow={info.carousel_type === "arrows"}
               dots={info.carousel_type === "dots"}
             >
@@ -292,6 +295,18 @@ const CommonComponent = (data: any = {}) => {
             </Carousel>
           </div>
         </div>
+      );
+    case "ComponentComponentContactUsComponenet":
+      return (
+        <Contact
+          description_color={info.desciption_color}
+          title_color={info.title_color}
+          title={info.title}
+          body={info.desciption}
+          details={info.contact_details}
+          bgColor={info.background_color}
+          formAlignment={info.component_alignment}
+        />
       );
     default:
       return <></>;
