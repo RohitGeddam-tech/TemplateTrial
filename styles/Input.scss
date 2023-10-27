@@ -2370,7 +2370,8 @@ input:checked + .slider:before {
 }
 .MuiFormControl-root {
   width: 100%;
-  .MuiFormLabel-root, input {
+  .MuiFormLabel-root,
+  input {
     color: var(--grayscale-dark) !important;
     // height: 22px !important;
     border: none !important;
@@ -2387,19 +2388,36 @@ input:checked + .slider:before {
     border-radius: 5px !important;
     top: 0 !important;
   }
-  .MuiOutlinedInput-input{
+  .MuiOutlinedInput-input {
     padding: 14.5px 14px;
   }
-  .MuiInputLabel-outlined.MuiInputLabel-shrink{
+  .MuiInputLabel-outlined.MuiInputLabel-shrink {
     transform: translate(10px, -4px) scale(0.75) !important;
     background-color: white;
     color: var(--grayscale-darkest) !important;
     padding: 0 5px !important;
   }
-  input:not([value='']){
+  input:not([value=""]) {
     color: var(--grayscale-darkest) !important;
   }
-  input:not([value='']) ~ fieldset{
+  input:not([value=""]) ~ fieldset {
     border-color: var(--grayscale-darkest) !important;
+  }
+  .MuiFormHelperText-root.Mui-error {
+    font-weight: 400 !important;
+    font-size: 12px !important;
+    line-height: 140% !important;
+    text-transform: capitalize !important;
+    color: var(--grayscale-dark) !important;
+    margin: 0 !important;
+    padding-top: 5px !important;
+  }
+  .Mui-error {
+    &.MuiInputLabel-outlined{
+      color: var(--error-main) !important;
+    }
+    fieldset {
+      border: 1px solid var(--error-main) !important;
+    }
   }
 }

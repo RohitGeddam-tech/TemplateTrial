@@ -258,6 +258,7 @@ export const Contact = ({
                           data[indVal] = {
                             ...data[indVal],
                             value: date,
+                            error: "",
                           };
                           setState(data);
                         }}
@@ -278,6 +279,11 @@ export const Contact = ({
                             data[indVal] = {
                               ...data[indVal],
                               error: `please enter a valid date`,
+                            };
+                          } else {
+                            data[indVal] = {
+                              ...data[indVal],
+                              error: ``,
                             };
                           }
                           setState(data);

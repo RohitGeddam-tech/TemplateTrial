@@ -272,6 +272,7 @@ export const Appointment = ({ setOpen }: any) => {
                                   data[indVal] = {
                                     ...data[indVal],
                                     value: date,
+                                    error: "",
                                   };
                                   setState(data);
                                 }}
@@ -286,16 +287,21 @@ export const Appointment = ({ setOpen }: any) => {
                                 format="dd-MM-yyyy hh:mm a"
                                 autoOk={true}
                                 hideTabs={true}
-                                onBlur={(e)=>{
+                                onBlur={(e) => {
                                   var data = [...state];
                                   var indVal = data.findIndex(
                                     (el: any) => el.name === "booking_time"
                                   );
                                   console.log(e);
-                                  if(e.target.value === ""){
+                                  if (e.target.value === "") {
                                     data[indVal] = {
                                       ...data[indVal],
                                       error: `please enter a valid date`,
+                                    };
+                                  } else {
+                                    data[indVal] = {
+                                      ...data[indVal],
+                                      error: ``,
                                     };
                                   }
                                   setState(data);
