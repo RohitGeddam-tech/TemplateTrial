@@ -34,7 +34,7 @@ required.args = {
 
 export const adornment = Template.bind({});
 adornment.args = {
-  adornment: { value: "prefix", text: "Rs." },
+  adornment: true,
 };
 
 //trailingIcon
@@ -83,12 +83,12 @@ type.args = {
 
 export const helperText = Template.bind({});
 helperText.args = {
-  helperText: { value: true, text: "please fill the info.", helperIcon:true },
+  helperText: "please fill the info.",
 };
 
 // characterCounter
 
 export const characterCounter = Template.bind({});
 characterCounter.args = {
-  characterCounter: { value: 2, total: 100 },
+  characterCounter: true,
 };

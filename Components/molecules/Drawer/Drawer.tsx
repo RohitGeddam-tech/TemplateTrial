@@ -56,8 +56,8 @@ export const Drawer = ({
       </div>
       <div className={`footer ${footerDivider ? "divider" : ""}`}>
         <div className="content">
-          <Button Type={buttona} label={firstButton} size="small" />
-          <Button Type={buttonb} label={secondButton} size="small" />
+          <Button cta_type={buttona} cta_title={firstButton} size="small" />
+          <Button cta_type={buttonb} cta_title={secondButton} size="small" />
         </div>
       </div>
     </div>

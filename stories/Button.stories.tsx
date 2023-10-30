@@ -22,15 +22,7 @@ Size.args = {
 
 export const label = Template.bind({});
 label.args = {
-  label: "Proceed",
-};
-
-//styles
-
-export const styles = Template.bind({});
-// styles.storyName = "custom styles";
-styles.args = {
-  styles: { fontSize: "32px" },
+  cta_title: "Proceed",
 };
 
 //type
@@ -38,37 +30,21 @@ styles.args = {
 export const type = Template.bind({});
 type.storyName = "Types";
 type.args = {
-  Type: "primary",
+  cta_type: "primary",
 };
 
 //state
 
-export const state = Template.bind({});
-// state.storyName = "You can add custom state here";
-state.args = {
-  state: "disabled",
-};
+// export const state = Template.bind({});
+// // state.storyName = "You can add custom state here";
+// state.args = {
+//   state: "disabled",
+// };
 
-//trailingIcon
+//iconAlignment
 
-export const trailingIcon = Template.bind({});
-trailingIcon.storyName = "Trailing Icon";
-trailingIcon.args = {
-  trailingIcon: true,
-};
-
-//leadingIcon
-
-export const leadingIcon = Template.bind({});
-leadingIcon.storyName = "leading Icon";
-leadingIcon.args = {
-  leadingIcon: true,
-};
-
-//text
-
-export const text = Template.bind({});
-text.storyName = "text";
-text.args = {
-  text: true,
+export const iconAlignment = Template.bind({});
+iconAlignment.storyName = "Trailing Icon";
+iconAlignment.args = {
+  cta_icon_alignment: "trailing",
 };

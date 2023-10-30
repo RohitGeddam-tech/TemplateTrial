@@ -48,7 +48,7 @@ export const Banner = ({
     >
       {opacity !== "no" && (
         <div className="bgImg">
-          {width <= 768 ? (
+          {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
             <img src={mobImage} alt="background" />
           ) : (
             <img src={image} alt="background" />

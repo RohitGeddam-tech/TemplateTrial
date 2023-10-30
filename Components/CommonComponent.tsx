@@ -132,8 +132,16 @@ const CommonComponent = (data: any = {}) => {
                     body={doc.body}
                     textAlign={doc.content_alignment}
                     key={ind}
-                    image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
-                    mobImage={`https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`}
+                    image={
+                      doc.image?.data?.attributes?.url
+                        ? `https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`
+                        : ""
+                    }
+                    mobImage={
+                      doc.mobile_image?.data?.attributes?.url
+                        ? `https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`
+                        : ""
+                    }
                     bgColor={doc.bgColor}
                     description_color={doc.desciption_color}
                     title_color={doc.title_color}
@@ -159,8 +167,16 @@ const CommonComponent = (data: any = {}) => {
                   textAlign={doc.content_alignment}
                   alignment={doc.content_alignment}
                   key={ind}
-                  image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
-                  mobImage={`https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`}
+                  image={
+                    doc.image?.data?.attributes?.url
+                      ? `https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`
+                      : ""
+                  }
+                  mobImage={
+                    doc.mobile_image?.data?.attributes?.url
+                      ? `https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`
+                      : ""
+                  }
                   bgColor={doc.bgColor}
                   description_color={doc.description_color}
                   title_color={doc.title_color}

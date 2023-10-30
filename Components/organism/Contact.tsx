@@ -365,7 +365,7 @@ export const Contact = ({
       </p>
       {details.length > 0 &&
         details.map((doc, ind) => (
-          <>
+          <div key={ind}>
             {doc.type === "address" ? (
               <div key={ind} className="data">
                 <p className="para-lg">
@@ -401,7 +401,7 @@ export const Contact = ({
                 <p className="para-md">{doc.value}</p>
               </Link>
             )}
-          </>
+          </div>
         ))}
     </div>
   );

@@ -59,15 +59,15 @@ export const TitleCard = ({
                 <div key={ind}>
                   <Card
                     cardType={cardType}
-                    button={{
-                      cta_type: doc.cta_type,
-                      cta_icon: doc.cta_icon,
-                      cta_title: doc.cta_title,
-                      cta_action: doc.cta_action,
-                      cta_icon_type: doc.cta_icon_type,
-                      cta_icon_alignment: doc.cta_icon_alignment,
-                    }}
-                    image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                    // button={{
+                    //   cta_type: doc.cta_type,
+                    //   cta_icon: doc.cta_icon,
+                    //   cta_title: doc.cta_title,
+                    //   cta_action: doc.cta_action,
+                    //   cta_icon_type: doc.cta_icon_type,
+                    //   cta_icon_alignment: doc.cta_icon_alignment,
+                    // }}
+                    // image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
                     title={doc.title}
                     para={doc.description}
                     subtitle={doc.subtitle}
