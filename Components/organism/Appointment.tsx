@@ -43,7 +43,7 @@ export const Appointment = ({ setOpen }: any) => {
     `,
     };
     const response = await axios
-      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
     if (response?.status === 200) {
       setLoad(true);
@@ -64,7 +64,7 @@ export const Appointment = ({ setOpen }: any) => {
       val[name] = state[i].value;
     }
     await axios
-      .post("https://buildercms.aashirwadlab.co.in/api/appointment-bookings", {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/appointment-bookings`, {
         data: { ...val, email: val.email_id },
       })
       .then((res) => {

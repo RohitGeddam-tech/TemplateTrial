@@ -45,6 +45,7 @@ export const apiQuery = `
     title,
     title_color,
     background_color,
+    serviceAlignment:text_allignment,
     carousel_type,
     cards{
       title,
@@ -69,6 +70,7 @@ export const apiQuery = `
     desciption_color,
     title,
     title_color,
+    testAlignment:text_allignment,
     background_color,
     cards{
       title,
@@ -112,6 +114,7 @@ export const apiQuery = `
     desciption
     desciption_color
     background_color
+    galleryAlignment:text_allignment
     images {
       image_alt_text
       image {
@@ -128,6 +131,8 @@ export const apiQuery = `
  title_color
  desciption
  desciption_color
+ teamAlignment:text_allignment
+ view:content_alignment,
  cards{
    name
    desciption
@@ -141,6 +146,27 @@ export const apiQuery = `
    }
  }
  background_color
+},
+...on ComponentComponentFeatureComponent{
+  title
+  title_color
+  featureAlignment:text_allignment
+  description
+  description_color
+  background_color
+  content_alignment
+  cards{
+    description
+    title
+    sub_title
+    image{
+      data{
+        attributes{
+          url
+        }
+      }
+    }
+  }
 },
 ... on ComponentComponentContactUsComponenet {
   title
@@ -160,3 +186,12 @@ export const apiQuery = `
   }
 }
 `;
+
+export const seo = `seo{
+  title
+  meta{
+    content
+    type
+    type_value
+  }
+}`;

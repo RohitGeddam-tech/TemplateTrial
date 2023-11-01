@@ -8,6 +8,7 @@ import { Banner } from "./organism/Banner";
 import Card from "./organism/Card";
 import { Appointment } from "./organism/Appointment";
 import { Contact } from "./organism/Contact";
+import { Feature } from "./organism/Feature";
 
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
@@ -19,7 +20,7 @@ const CommonComponent = (data: any = {}) => {
         <About
           title={info.title}
           body={info.desciption}
-          image={`https://buildercms.aashirwadlab.co.in${info.image?.data?.attributes?.url}`}
+          image={`${process.env.NEXT_PUBLIC_API_URL}${info.image?.data?.attributes?.url}`}
           bgColor={info.background_color}
           description_color={info.desciption_color}
           title_color={info.title_color}
@@ -53,6 +54,7 @@ const CommonComponent = (data: any = {}) => {
               className="h4"
               style={{
                 color: info.title_color,
+                textAlign: info.galleryAlignment,
               }}
             >
               {info.title}
@@ -61,6 +63,7 @@ const CommonComponent = (data: any = {}) => {
               className="para-md"
               style={{
                 color: info.desciption_color,
+                textAlign: info.galleryAlignment,
               }}
             >
               {info.desciption}
@@ -74,7 +77,7 @@ const CommonComponent = (data: any = {}) => {
                 info.images.map((doc: any, ind: number) => (
                   <div className="imgGallery" key={ind}>
                     <img
-                      src={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                       alt={doc.image_alt_text}
                     />
                   </div>
@@ -98,6 +101,7 @@ const CommonComponent = (data: any = {}) => {
               className="h4"
               style={{
                 color: info.title_color,
+                textAlign: info.teamAlignment,
               }}
             >
               {info.title}
@@ -106,6 +110,7 @@ const CommonComponent = (data: any = {}) => {
               className="para-md"
               style={{
                 color: info.desciption_color,
+                textAlign: info.teamAlignment,
               }}
             >
               {info.desciption}
@@ -113,7 +118,7 @@ const CommonComponent = (data: any = {}) => {
             <Team
               data={info.cards}
               teams={info.cards?.length}
-              view={"grid"}
+              view={info.view === "grid_view" ? "grid" : "line"}
               description_color={info.desciption_color}
               title_color={info.title_color}
             />
@@ -134,12 +139,12 @@ const CommonComponent = (data: any = {}) => {
                     key={ind}
                     image={
                       doc.image?.data?.attributes?.url
-                        ? `https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`
+                        ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
                         : ""
                     }
                     mobImage={
                       doc.mobile_image?.data?.attributes?.url
-                        ? `https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`
+                        ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
                         : ""
                     }
                     bgColor={doc.bgColor}
@@ -169,12 +174,12 @@ const CommonComponent = (data: any = {}) => {
                   key={ind}
                   image={
                     doc.image?.data?.attributes?.url
-                      ? `https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`
+                      ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
                       : ""
                   }
                   mobImage={
                     doc.mobile_image?.data?.attributes?.url
-                      ? `https://buildercms.aashirwadlab.co.in${doc.mobile_image?.data?.attributes?.url}`
+                      ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
                       : ""
                   }
                   bgColor={doc.bgColor}
@@ -209,6 +214,7 @@ const CommonComponent = (data: any = {}) => {
               className="h4"
               style={{
                 color: info.title_color,
+                textAlign: info.serviceAlignment,
               }}
             >
               {info.title}
@@ -217,6 +223,7 @@ const CommonComponent = (data: any = {}) => {
               className="para-md"
               style={{
                 color: info.desciption_color,
+                textAlign: info.serviceAlignment,
               }}
             >
               {info.desciption}
@@ -239,7 +246,7 @@ const CommonComponent = (data: any = {}) => {
                         cta_icon_type: doc.cta_icon_type,
                         cta_icon_alignment: doc.cta_icon_alignment,
                       }}
-                      image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                      image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                       title={doc.title}
                       para={doc.desciption}
                       subtitle={doc.subtitle}
@@ -269,6 +276,7 @@ const CommonComponent = (data: any = {}) => {
               className="h4"
               style={{
                 color: info.title_color,
+                textAlign: info.testAlignment,
               }}
             >
               {info.title}
@@ -277,6 +285,7 @@ const CommonComponent = (data: any = {}) => {
               className="para-md"
               style={{
                 color: info.desciption_color,
+                textAlign: info.testAlignment,
               }}
             >
               {info.desciption}
@@ -299,7 +308,7 @@ const CommonComponent = (data: any = {}) => {
                         cta_icon_type: doc.cta_icon_type,
                         cta_icon_alignment: doc.cta_icon_alignment,
                       }}
-                      image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                      image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                       title={doc.title}
                       para={doc.desciption}
                       subtitle={doc.subtitle}
@@ -323,6 +332,45 @@ const CommonComponent = (data: any = {}) => {
           bgColor={info.background_color}
           formAlignment={info.component_alignment}
         />
+      );
+    case "ComponentComponentFeatureComponent":
+      return (
+        <div
+          className={`titleCard`}
+          style={
+            info.background_color
+              ? { backgroundColor: info.background_color }
+              : { backgroundColor: `white` }
+          }
+        >
+          <div className="container">
+            <p
+              className="h4"
+              style={{
+                color: info.title_color,
+                textAlign: info.featureAlignment,
+              }}
+            >
+              {info.title}
+            </p>
+            <p
+              className="para-md"
+              style={{
+                color: info.description_color,
+                textAlign: info.featureAlignment,
+              }}
+            >
+              {info.description}
+            </p>
+            <Feature
+              data={info.cards}
+              features={info.cards?.length}
+              alignment={info.content_alignment}
+              description_color={info.description_color}
+              title_color={info.title_color}
+            />
+          </div>
+        </div>
       );
     default:
       return <></>;

@@ -61,7 +61,7 @@ export const Navbar = ({
       `,
     };
     const response = await axios
-      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
     // console.log(response.data.data);
     // return response.data.data;
@@ -92,7 +92,7 @@ export const Navbar = ({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={
-                  `https://buildercms.aashirwadlab.co.in${state?.logo?.data?.attributes?.url}` ||
+                  `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                   image
                 }
                 alt="logo"

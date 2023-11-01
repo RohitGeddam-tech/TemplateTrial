@@ -1,0 +1,53 @@
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+
+const ConfigData = () => {
+  const [data, setData] = useState([]);
+  const [load, setLoad] = useState(false);
+  const [font, setFont] = useState("Roboto");
+  const [theme, setTheme] = useState("theme1");
+
+  async function fetchData() {
+    const data = {
+      query: `
+            query {
+                configs{
+                    data{
+                      attributes{
+                        name
+                        value
+                      }
+                    }
+                  }
+            }
+            `,
+    };
+    await axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
+      .then((response) => {
+        if (response?.status === 200) {
+          setLoad(true);
+          setData([...response.data.data.configs?.data]);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+  useEffect(() => {
+    !load && fetchData();
+  }, [load]);
+
+  useEffect(() => {
+    if (data?.length > 0) {
+      const fontValue = data.filter((el) => el.attributes.name === "font")[0].attributes.value;
+      const themeValue = data.filter((el) => el.attributes.name === "theme")[0].attributes.value;
+
+      fontValue && setFont(fontValue);
+      themeValue && setTheme(themeValue);
+    }
+  }, [data]);
+
+  return [font, theme];
+};
+
+export { ConfigData };

@@ -71,7 +71,7 @@ export const Footer = () => {
       `,
     };
     const response = await axios
-      .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
     // console.log(response.data.data);
     // return response.data.data;
@@ -154,7 +154,7 @@ export const Footer = () => {
                         width={130}
                         height={60}
                         src={
-                          `https://buildercms.aashirwadlab.co.in${state?.logo?.data?.attributes?.url}` ||
+                          `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
                         alt="logo"

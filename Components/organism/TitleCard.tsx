@@ -67,7 +67,7 @@ export const TitleCard = ({
                     //   cta_icon_type: doc.cta_icon_type,
                     //   cta_icon_alignment: doc.cta_icon_alignment,
                     // }}
-                    // image={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+                    // image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                     title={doc.title}
                     para={doc.description}
                     subtitle={doc.subtitle}

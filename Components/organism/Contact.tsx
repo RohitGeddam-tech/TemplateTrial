@@ -76,7 +76,7 @@ export const Contact = ({
       `,
       };
       const response = await axios
-        .post("https://buildercms.aashirwadlab.co.in/graphql", data)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
         .then((res) => res);
       // console.log(response.data.data);
       // return response.data.data;
@@ -95,7 +95,7 @@ export const Contact = ({
         val[name] = state[i].value;
       }
       await axios
-        .post("https://buildercms.aashirwadlab.co.in/api/contact-uses", {
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/api/contact-uses`, {
           data: { ...val, email: val.email_id },
         })
         .then((res) => {

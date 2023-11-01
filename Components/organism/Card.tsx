@@ -11,7 +11,7 @@ interface testimonialProps {
 
 export interface cardProps {
   description?: string | undefined;
-  image?: string;
+  image?: any;
   title?: string;
   para?: string;
   subtitle?: string;

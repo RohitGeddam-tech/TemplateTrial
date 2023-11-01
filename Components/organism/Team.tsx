@@ -23,7 +23,7 @@ export const Team = ({
         data.map((doc: any, ind: number) => (
           <div className={`shrink ${teams > 5 ? "lower" : ""}`} key={ind}>
             <img
-              src={`https://buildercms.aashirwadlab.co.in${doc.image?.data?.attributes?.url}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
               alt="titleImg"
             />
             <div className="detail">
