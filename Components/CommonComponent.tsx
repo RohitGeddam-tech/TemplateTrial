@@ -151,6 +151,7 @@ const CommonComponent = (data: any = {}) => {
                     description_color={doc.desciption_color}
                     title_color={doc.title_color}
                     alignment={doc.content_alignment}
+                    opacity={doc.image_opacity}
                     button={{
                       cta_type: doc.cta_type,
                       cta_icon: doc.cta_icon,
@@ -171,6 +172,7 @@ const CommonComponent = (data: any = {}) => {
                   body={doc.body}
                   textAlign={doc.content_alignment}
                   alignment={doc.content_alignment}
+                  opacity={doc.image_opacity}
                   key={ind}
                   image={
                     doc.image?.data?.attributes?.url

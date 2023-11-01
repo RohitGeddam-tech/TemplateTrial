@@ -21,6 +21,7 @@ export const apiQuery = `
       body,
       desciption_color,
       title_color,
+      image_opacity,
       cta_type,
       cta_icon,
       cta_title,
