@@ -12,7 +12,7 @@ const Home = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>([]);
-  console.log(process.env.NEXT_PUBLIC_API_URL)
+  // console.log(process.env.NEXT_PUBLIC_API_URL)
   async function fetchData() {
     const data = {
       query: `
