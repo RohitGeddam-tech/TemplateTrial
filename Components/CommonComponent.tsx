@@ -294,8 +294,8 @@ const CommonComponent = (data: any = {}) => {
             </p>
             <Carousel
               slidesToShow={3}
-              arrow={info.carousel_type === "arrows"}
-              dots={info.carousel_type === "dots"}
+              arrow={info.type_caroursel === "arrows"}
+              dots={info.type_caroursel === "dots"}
             >
               {info.cards.length > 0 &&
                 info.cards.map((doc: any, ind: number) => (
