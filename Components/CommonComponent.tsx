@@ -185,7 +185,7 @@ const CommonComponent = (data: any = {}) => {
                       : ""
                   }
                   bgColor={doc.bgColor}
-                  description_color={doc.description_color}
+                  description_color={doc.desciption_color}
                   title_color={doc.title_color}
                   button={{
                     cta_type: doc.cta_type,

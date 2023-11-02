@@ -2424,3 +2424,11 @@ input:checked + .slider:before {
     }
   }
 }
+
+.slick-slide{
+  div{
+    &:first-child{
+      width: 95% !important;
+    }
+  }
+}
