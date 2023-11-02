@@ -51,13 +51,22 @@ const Home = () => {
   }, [load]);
 
   const [font, theme] = ConfigData();
+  // console.log(font);
   return (
     <div className={theme}>
       <Head>
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=${font}&display=swap`}
+          rel="stylesheet"
+        />
         <style>
-          @import url('https://fonts.googleapis.com/css?family={font}
-          :wght@400;700&display=swap');
-        </style>
+{`*{
+  font-family:${font}, sans-serif;
+}`}
+
+        </style> */}
         {load && Object.keys(seoData).length > 0 && (
           <>
             <div>hello</div>

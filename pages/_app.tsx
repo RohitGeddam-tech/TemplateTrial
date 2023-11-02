@@ -31,6 +31,20 @@ export default function App({ Component, pageProps }: AppProps) {
           href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap`}
+          rel="stylesheet"
+        />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap`}
+          rel="stylesheet"
+        />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap`}
+          rel="stylesheet"
+        />
       </Head>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Component {...pageProps} />

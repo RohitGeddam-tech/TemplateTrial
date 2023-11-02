@@ -55,10 +55,10 @@ const Theme1 = () => {
   return (
     <div className={theme}>
       <Head>
-        <style>
+        {/* <style>
           @import url('https://fonts.googleapis.com/css?family={font}
           :wght@400;700&display=swap');
-        </style>
+        </style> */}
         {load && Object.keys(seoData).length > 0 && (
           <>
           <div>hello</div>
