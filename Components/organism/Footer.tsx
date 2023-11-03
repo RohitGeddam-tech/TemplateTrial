@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
+import facebook from "./facebook.svg";
+import xTwitter from "./x-twitter.svg";
+import youtube from "./youtube.svg";
+import telegram from "./telegram.svg";
+import instagram from "./instagram.svg";
+import whatsapp from "./whatsapp.svg";
 
 export const Footer = () => {
   const [state, setState] = useState<any>({});
@@ -114,12 +120,50 @@ export const Footer = () => {
                   key={ind}
                   // className={`${doc.active ? "active" : ""}`}
                 >
-                  <span
+                  {/* <span
                     style={{ fontSize: "24px", marginRight: "8px" }}
                     className={`material-icons-${doc.icon_type}`}
                   >
                     {doc.icon}
-                  </span>
+                  </span> */}
+                  {doc.icon === "facebook" ? (
+                    <Image
+                      src={facebook}
+                      alt="facebook"
+                      width={24}
+                      height={24}
+                    />
+                  ) : doc.icon === "twitter" ? (
+                    <Image
+                      src={xTwitter}
+                      alt="twitter"
+                      width={24}
+                      height={24}
+                    />
+                  ) : doc.icon === "youtube" ? (
+                    <Image src={youtube} alt="youtube" width={24} height={24} />
+                  ) : doc.icon === "instagram" ? (
+                    <Image
+                      src={instagram}
+                      alt="instagram"
+                      width={24}
+                      height={24}
+                    />
+                  ) : doc.icon === "telegram" ? (
+                    <Image
+                      src={telegram}
+                      alt="telegram"
+                      width={24}
+                      height={24}
+                    />
+                  ) : (
+                    <Image
+                      src={whatsapp}
+                      alt="whatsapp"
+                      width={24}
+                      height={24}
+                    />
+                  )}
                 </Link>
               ))}
             </div>
@@ -184,7 +228,7 @@ export const Footer = () => {
                             key={ind}
                             // className={`${doc.active ? "active" : ""}`}
                           >
-                            <span
+                            {/* <span
                               style={{
                                 fontSize: "24px",
                                 marginRight: "8px",
@@ -192,14 +236,59 @@ export const Footer = () => {
                               className={`material-icons-${doc.icon_type}`}
                             >
                               {doc.icon}
-                            </span>
+                            </span> */}
+                            {doc.icon === "facebook" ? (
+                              <Image
+                                src={facebook}
+                                alt="facebook"
+                                width={24}
+                                height={24}
+                              />
+                            ) : doc.icon === "twitter" ? (
+                              <Image
+                                src={xTwitter}
+                                alt="twitter"
+                                width={24}
+                                height={24}
+                              />
+                            ) : doc.icon === "youtube" ? (
+                              <Image
+                                src={youtube}
+                                alt="youtube"
+                                width={24}
+                                height={24}
+                              />
+                            ) : doc.icon === "instagram" ? (
+                              <Image
+                                src={instagram}
+                                alt="instagram"
+                                width={24}
+                                height={24}
+                              />
+                            ) : doc.icon === "telegram" ? (
+                              <Image
+                                src={telegram}
+                                alt="telegram"
+                                width={24}
+                                height={24}
+                              />
+                            ) : (
+                              <Image
+                                src={whatsapp}
+                                alt="whatsapp"
+                                width={24}
+                                height={24}
+                              />
+                            )}
                           </Link>
                         )
                       )}
                   </div>
                 </div>
               </div>
-              <p className="para-md" style={{ marginTop: 24 }}>© Sugarlogger Technologies Pvt. Ltd.</p>
+              <p className="para-md" style={{ marginTop: 24 }}>
+                © Sugarlogger Technologies Pvt. Ltd.
+              </p>
             </>
           ) : (
             <>
@@ -211,7 +300,9 @@ export const Footer = () => {
                   <GroupType data={group.components[3]} />
                 </div>
               )}
-              <p className="para-md" style={{ marginTop: 24 }}>© Sugarlogger Technologies Pvt. Ltd.</p>
+              <p className="para-md" style={{ marginTop: 24 }}>
+                © Sugarlogger Technologies Pvt. Ltd.
+              </p>
             </>
           )}
         </div>

@@ -11,7 +11,7 @@ import { ConfigData } from "../utils/resource";
 const Home = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
-  const [seoData, setSeoData] = useState<any>([]);
+  const [seoData, setSeoData] = useState<any>({});
   // console.log(process.env.NEXT_PUBLIC_API_URL)
   async function fetchData() {
     const data = {
@@ -40,7 +40,7 @@ const Home = () => {
           setState([
             ...response.data.data.pageHome?.data.attributes.components,
           ]);
-          setSeoData([...response.data.data.pageHome?.data.attributes.seo]);
+          setSeoData({...response.data.data.pageHome?.data.attributes.seo});
         }
       })
       .catch((err) => console.log(err));

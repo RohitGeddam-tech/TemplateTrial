@@ -12,7 +12,7 @@ import { ConfigData } from "../utils/resource";
 const Theme1 = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
-  const [seoData, setSeoData] = useState<any>([]);
+  const [seoData, setSeoData] = useState<any>({});
 
   async function fetchData() {
     const data = {
@@ -40,9 +40,9 @@ const Theme1 = () => {
           setState([
             ...response.data.data.pageContactUs?.data.attributes.components,
           ]);
-          setSeoData([
+          setSeoData({
             ...response.data.data.pageContactUs?.data.attributes.seo,
-          ]);
+          });
         }
       })
       .catch((err) => console.log(err));

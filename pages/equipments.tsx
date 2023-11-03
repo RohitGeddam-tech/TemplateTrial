@@ -11,7 +11,7 @@ import { ConfigData } from "../utils/resource";
 
 const Theme1 = () => {
   const [state, setState] = useState<any>([]);
-  const [seoData, setSeoData] = useState<any>([]);
+  const [seoData, setSeoData] = useState<any>({});
   const [load, setLoad] = useState<any>(false);
 
   async function fetchData() {
@@ -38,7 +38,7 @@ const Theme1 = () => {
         if (response?.status === 200) {
           setLoad(true);
           setState([...response.data.data.pageEquipment?.data.attributes.components]);
-          setSeoData([...response.data.data.pageEquipment?.data.attributes.seo]);
+          setSeoData({...response.data.data.pageEquipment?.data.attributes.seo});
         }})
         .catch((err) => console.log(err));;
     // console.log(response.data.data.pageEquipment?.data.attributes.components);
