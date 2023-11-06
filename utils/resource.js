@@ -39,7 +39,7 @@ const ConfigData = () => {
 
   useEffect(() => {
     if (data?.length > 0) {
-      console.log(data?.filter((el) => el.attributes.name === "theme")[0].attributes.value);
+      // console.log(data?.filter((el) => el.attributes.name === "theme")[0].attributes.value);
       // const fontValue = data?.filter((el) => el.attributes.name === "font")[0].attributes.value;
       const themeValue = data?.filter((el) => el.attributes.name === "theme")[0].attributes.value;
 

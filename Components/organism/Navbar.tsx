@@ -115,7 +115,12 @@ export const Navbar = ({
           {state.menus?.length > 0 &&
             state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.url}
+                href={doc.url !== '/' ? {
+                  pathname: "/[slug]",
+                  query: { slug: doc.url.replace("/", "") },
+                } : {
+                  pathname: "/",
+                }}
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
@@ -127,7 +132,9 @@ export const Navbar = ({
                 <Button
                   cta_type="ghost"
                   cta_title={doc.title}
-                  // handleClick={handleClick}
+                  // handleClick={() => {
+                  //   window.location.href = `/${doc.url}`;
+                  // }}
                   size="small"
                 />
               </Link>
@@ -148,7 +155,12 @@ export const Navbar = ({
           {state.menus?.length > 0 &&
             state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.url}
+                href={doc.url !== '/' ? {
+                  pathname: "/[slug]",
+                  query: { slug: doc.url.replace("/", "") },
+                } : {
+                  pathname: "/",
+                }}
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
