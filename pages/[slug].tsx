@@ -48,7 +48,10 @@ export default function Page() {
           });
         }
       })
-      .catch((err) => console.log(err, "error"));
+      .catch((err) => {
+        console.log(err, "error");
+        setLoad(true);
+      });
   }
   useEffect(() => {
     // if (router.isReady) {
