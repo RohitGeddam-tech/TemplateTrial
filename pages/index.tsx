@@ -41,7 +41,7 @@ const Home = () => {
           setState([
             ...response.data.data.pages?.data[0].attributes.components,
           ]);
-          setSeoData({...response.data.data.pages?.data[0].attributes.seo});
+          setSeoData({ ...response.data.data.pages?.data[0].attributes.seo });
         }
       })
       .catch((err) => console.log(err));
@@ -98,16 +98,16 @@ const Home = () => {
               <Footer />
             </>
           ) : (
-            <div className="loading">Work In Progress</div>
+            <div className="loading">
+              <p className="h3">Work In Progress</p>
+              <Link href="/" className="h5" style={{ color: "blue" }}>
+                Click here to go back
+              </Link>
+            </div>
           )}
         </>
       ) : (
-        <div className="loading">
-          <p className="h3">Work In Progress</p>
-          <Link href="/" className="h5" style={{color:"blue"}}>
-            Click here to go back
-          </Link>
-        </div>
+        <div className="loading">Loading...</div>
       )}
     </div>
   );
