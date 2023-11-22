@@ -7,6 +7,7 @@ import axios from "axios";
 import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
+import Link from "next/link";
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
@@ -16,20 +17,20 @@ const Home = () => {
   async function fetchData() {
     const data = {
       query: `
-        query{
-            pageHome{
-              data{
-               attributes{
+      query{
+        pages(filters: { slug: { eq: null }} ){
+            data {
+              attributes {
                 ${seo}
-                 components{
-                   __typename
-                   ${apiQuery}
-                 }
-               }
-             }
-           }
-      }
-      `,
+                components {
+                  __typename
+                  ${apiQuery}
+                }
+              }
+            }
+          }
+        }
+        `,
     };
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
@@ -38,9 +39,9 @@ const Home = () => {
         if (response?.status === 200) {
           setLoad(true);
           setState([
-            ...response.data.data.pageHome?.data.attributes.components,
+            ...response.data.data.pages?.data[0].attributes.components,
           ]);
-          setSeoData({...response.data.data.pageHome?.data.attributes.seo});
+          setSeoData({...response.data.data.pages?.data[0].attributes.seo});
         }
       })
       .catch((err) => console.log(err));
@@ -101,7 +102,12 @@ const Home = () => {
           )}
         </>
       ) : (
-        <div className="loading">Loading...</div>
+        <div className="loading">
+          <p className="h3">Work In Progress</p>
+          <Link href="/" className="h5" style={{color:"blue"}}>
+            Click here to go back
+          </Link>
+        </div>
       )}
     </div>
   );

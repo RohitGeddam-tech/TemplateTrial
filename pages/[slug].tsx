@@ -7,6 +7,7 @@ import { Footer } from "../Components/organism/Footer";
 import { apiQuery, seo } from "../utils/apiQuery";
 import { ConfigData } from "../utils/resource";
 import CommonComponent from "../Components/CommonComponent";
+import Link from "next/link";
 
 export default function Page() {
   const router = useRouter();
@@ -14,13 +15,13 @@ export default function Page() {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
-  const [slugName, setSlugName] = useState<any>("");
+  // const [slugName, setSlugName] = useState<any>("");
 
   async function fetchData(pageName: any) {
     const data = {
       query: `
-        query {
-          pageName: ${pageName} {
+      query{
+        pages(filters: { slug: { eq: "${pageName}" }} ){
             data {
               attributes {
                 ${seo}
@@ -37,14 +38,14 @@ export default function Page() {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((response) => {
-        // console.log(`${response.data.data}.${pageName}`,pageName);
+        console.log(response.data.data, pageName);
         if (response?.status === 200) {
           setLoad(true);
           setState([
-            ...response.data.data.pageName?.data.attributes.components,
+            ...response.data.data.pages?.data[0].attributes.components,
           ]);
           setSeoData({
-            ...response.data.data.pageName?.data.attributes.seo,
+            ...response.data.data.pages?.data[0].attributes.seo,
           });
         }
       })
@@ -58,13 +59,13 @@ export default function Page() {
     if (router.isReady) {
       const slug: any = router.query?.slug;
 
-      const words = slug?.split("-");
+      // const words = slug?.split("-");
 
-      for (let i = 0; i < words.length; i++) {
-        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-      }
-      const pageName = `page${words.join("")}`;
-      !load && slug && fetchData(pageName);
+      // for (let i = 0; i < words.length; i++) {
+      //   words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      // }
+      // const pageName = `page${words.join("")}`;
+      !load && slug && fetchData(slug);
       router.events.on("routeChangeComplete", () => router.reload());
       return router.events.off("routeChangeComplete", () => router.reload());
     }
@@ -108,7 +109,12 @@ export default function Page() {
               <Footer />
             </>
           ) : (
-            <div className="loading">Work In Progress</div>
+            <div className="loading">
+              <p className="h3">Work In Progress</p>
+              <Link href="/" className="h5" style={{color:"blue"}}>
+                Click here to go back
+              </Link>
+            </div>
           )}
         </>
       ) : (
