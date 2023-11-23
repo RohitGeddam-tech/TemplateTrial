@@ -1545,6 +1545,7 @@ input:checked + .slider:before {
       justify-content: flex-end;
       .btn-link {
         margin-right: 8px;
+        text-transform: capitalize;
       }
       a {
         text-decoration: none !important;
@@ -2134,7 +2135,7 @@ input:checked + .slider:before {
         display: flex;
         align-items: center;
         gap: 36px;
-        width: 50%;
+        width: 70%;
       }
       .right {
         display: flex;
