@@ -2096,7 +2096,7 @@ input:checked + .slider:before {
       .feature {
         .shrink,
         .normal {
-          min-width: none;
+          min-width: auto;
           .head,
           p.para-md {
             max-width: 100%;
