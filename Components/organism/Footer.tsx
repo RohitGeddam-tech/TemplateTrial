@@ -286,7 +286,7 @@ export const Footer = () => {
                   </div>
                 </div>
               </div>
-              <p className="para-md" style={{ marginTop: 24 }}>
+              <p className="para-md companyName" style={{ marginTop: 24 }}>
                 © Sugarlogger Technologies Pvt. Ltd.
               </p>
             </>
@@ -300,7 +300,7 @@ export const Footer = () => {
                   <GroupType data={group.components[3]} />
                 </div>
               )}
-              <p className="para-md" style={{ marginTop: 24 }}>
+              <p className="para-md companyName" style={{ marginTop: 24 }}>
                 © Sugarlogger Technologies Pvt. Ltd.
               </p>
             </>
