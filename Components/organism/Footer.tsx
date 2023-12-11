@@ -194,13 +194,13 @@ export const Footer = () => {
                 <div className="left">
                   <div className="logo">
                     <Link href="/">
-                      <Image
-                        width={130}
-                        height={60}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={
                           `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
+                        style={{ width: 130, height: 60 }}
                         alt="logo"
                       />
                     </Link>
