@@ -200,7 +200,12 @@ export const Footer = () => {
                           `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
-                        style={{ width: 130, height: 60 }}
+                        style={{
+                          width: "90%",
+                          maxHeight: "50px",
+                          maxWidth: "300px",
+                          cursor: "pointer",
+                        }}
                         alt="logo"
                       />
                     </Link>
