@@ -1528,8 +1528,8 @@ input:checked + .slider:before {
       .imgLink {
         a,
         img {
-          width: 90%;
-          max-width: 300px;
+          width: fit-content;
+          max-width: 90%;
           max-height: 50px;
           cursor: pointer;
         }
@@ -1954,8 +1954,8 @@ input:checked + .slider:before {
       .normal {
         width: 100%;
         display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: center;
+        justify-content: center;
         flex-direction: column;
         min-width: 360px;
         margin-top: 32px;
@@ -2221,6 +2221,10 @@ input:checked + .slider:before {
           gap: 20px;
           .logo {
             width: 100%;
+            img {
+              width: fit-content !important;
+              max-width: 90% !important;
+            }
           }
         }
         .right {
