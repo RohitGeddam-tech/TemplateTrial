@@ -38,7 +38,7 @@ export default function Page() {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((response) => {
-        console.log(response.data.data, pageName);
+        // console.log(response.data.data, pageName);
         if (response?.status === 200) {
           setLoad(true);
           setState([
