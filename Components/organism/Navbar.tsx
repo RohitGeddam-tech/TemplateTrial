@@ -76,18 +76,6 @@ export const Navbar = ({
       <div className="container">
         <div className="logo">
           <div className="imgLink">
-            {open ? (
-              <span className="material-icons-outlined" onClick={handleClick}>
-                close
-              </span>
-            ) : (
-              <span
-                className="material-icons-outlined onlyMobile"
-                onClick={handleClick}
-              >
-                menu
-              </span>
-            )}
             <Link href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -100,8 +88,20 @@ export const Navbar = ({
                 // onClick={handleClick}
               />
             </Link>
+            {open ? (
+              <span className="material-icons-outlined" onClick={handleClick}>
+                close
+              </span>
+            ) : (
+              <span
+                className="material-icons-outlined onlyMobile"
+                onClick={handleClick}
+              >
+                menu
+              </span>
+            )}
           </div>
-          <Button
+          {/* <Button
             cta_title={state?.button?.title}
             cta_action={state?.button?.cta_action}
             cta_type={state?.button?.type}
@@ -109,18 +109,22 @@ export const Navbar = ({
               setFormOpen(true);
             }}
             size={"small"}
-          />
+          /> */}
         </div>
         <div className="menu">
           {state.menus?.length > 0 &&
             state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.url !== '/' ? {
-                  pathname: "/[slug]",
-                  query: { slug: doc.url.replace("/", "") },
-                } : {
-                  pathname: "/",
-                }}
+                href={
+                  doc.url !== "/"
+                    ? {
+                        pathname: "/[slug]",
+                        query: { slug: doc.url.replace("/", "") },
+                      }
+                    : {
+                        pathname: "/",
+                      }
+                }
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
@@ -155,12 +159,16 @@ export const Navbar = ({
           {state.menus?.length > 0 &&
             state.menus?.map((doc: any, ind: number) => (
               <Link
-                href={doc.url !== '/' ? {
-                  pathname: "/[slug]",
-                  query: { slug: doc.url.replace("/", "") },
-                } : {
-                  pathname: "/",
-                }}
+                href={
+                  doc.url !== "/"
+                    ? {
+                        pathname: "/[slug]",
+                        query: { slug: doc.url.replace("/", "") },
+                      }
+                    : {
+                        pathname: "/",
+                      }
+                }
                 key={ind}
                 className={`${
                   typeof window !== "undefined" &&
@@ -177,6 +185,16 @@ export const Navbar = ({
                 />
               </Link>
             ))}
+            <Button
+              cta_title={state?.button?.title}
+              cta_action={state?.button?.cta_action}
+              cta_type={state?.button?.type}
+              size={"small"}
+              handleClick={() => {
+                setFormOpen(true);
+                handleClick();
+              }}
+            />
         </div>
       )}
       {formOpen && <Appointment setOpen={setFormOpen} />}

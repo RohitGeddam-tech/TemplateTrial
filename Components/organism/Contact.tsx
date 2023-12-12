@@ -368,7 +368,7 @@ export const Contact = ({
           <div key={ind}>
             {doc.type === "address" ? (
               <div key={ind} className="data">
-                <p className="para-lg">
+                <p className="para-lg" style={{ color: doc.title_color }}>
                   <span
                     className={`material-icons-${doc.icon_type}`}
                     style={{ color: doc.icon_color }}

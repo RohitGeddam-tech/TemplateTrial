@@ -250,7 +250,11 @@ const CommonComponent = (data: any = {}) => {
                       }}
                       image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                       title={doc.title}
-                      para={doc.desciption}
+                      para={
+                        doc.desciption?.length > 240
+                          ? `${doc.desciption?.slice(0, 240)}...`
+                          : doc.desciption
+                      }
                       subtitle={doc.subtitle}
                       description_color={info.desciption_color}
                       title_color={info.title_color}
@@ -312,7 +316,11 @@ const CommonComponent = (data: any = {}) => {
                       }}
                       image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                       title={doc.title}
-                      para={doc.desciption}
+                      para={
+                        doc.desciption?.length > 240
+                          ? `${doc.desciption?.slice(0, 240)}...`
+                          : doc.desciption
+                      }
                       subtitle={doc.subtitle}
                       description_color={info.desciption_color}
                       title_color={info.title_color}
@@ -371,6 +379,43 @@ const CommonComponent = (data: any = {}) => {
               description_color={info.description_color}
               title_color={info.title_color}
             />
+          </div>
+        </div>
+      );
+    case "ComponentComponentPrivacyPolicy":
+      return (
+        <div
+          className={`titleCard policy`}
+          style={
+            info.background_color
+              ? { backgroundColor: info.background_color }
+              : { backgroundColor: `white` }
+          }
+        >
+          <div className="container">
+            <p
+              className="h4"
+              style={{
+                color: info.title_color,
+                textAlign: "center",
+              }}
+            >
+              {info.Title}
+            </p>
+            <p
+              className="para-md"
+              style={{
+                color: info.description_color,
+              }}
+            >
+              {info.Description}
+            </p>
+            {info.DescriptionTitle?.map((doc: any, i: number) => (
+              <div key={i} className="policyDetail">
+                <p className="sub-lg">{doc.Title}</p>
+                <p className="para-md">{doc.Description}</p>
+              </div>
+            ))}
           </div>
         </div>
       );

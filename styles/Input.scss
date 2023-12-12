@@ -1418,6 +1418,18 @@ input:checked + .slider:before {
   @media (max-width: 540px) {
     .container {
       padding: 40px 0 !important;
+      .box {
+        .details {
+          .h2 {
+            font-size: 36px;
+            line-height: 48px;
+          }
+          .para-lg {
+            font-size: 16px;
+            line-height: 22px;
+          }
+        }
+      }
     }
   }
 }
@@ -1562,10 +1574,10 @@ input:checked + .slider:before {
   }
   @keyframes nav {
     from {
-      left: -740px;
+      right: -740px;
     }
     to {
-      left: 0;
+      right: 0;
     }
   }
   .mobileMenu {
@@ -1575,7 +1587,7 @@ input:checked + .slider:before {
     justify-content: flex-start;
     position: fixed;
     top: 82px;
-    left: -740px;
+    right: -740px;
     max-width: 740px;
     width: 100%;
     background-color: white;
@@ -1606,10 +1618,11 @@ input:checked + .slider:before {
           display: flex !important;
         }
         .imgLink {
-          width: 60%;
+          width: 100%;
           gap: 8px;
           display: flex;
           align-items: center;
+          justify-content: space-between;
           span {
             font-size: 24px !important;
             cursor: pointer;
@@ -1740,7 +1753,7 @@ input:checked + .slider:before {
       max-width: 440px;
       width: 100%;
       p.para-md {
-        color: var(--secondary-main);
+        color: var(--primary-main);
       }
       .input-group {
         width: 100%;
@@ -2063,7 +2076,7 @@ input:checked + .slider:before {
           max-width: 578px;
           flex-direction: row;
           &.lower {
-            max-width: 274px;
+            max-width: 300px;
             img {
               width: 65px;
               height: 65px;
@@ -2091,6 +2104,20 @@ input:checked + .slider:before {
         justify-content: flex-start;
         &.grid {
           justify-content: center;
+        }
+        &.line {
+          .shrink {
+            img {
+              width: 65px;
+              height: 65px;
+            }
+            .detail {
+              align-items: flex-start;
+            }
+            &.lower {
+              max-width: 100%;
+            }
+          }
         }
       }
       .feature {
@@ -2459,6 +2486,20 @@ input:checked + .slider:before {
       &:first-child {
         width: 98% !important;
       }
+    }
+  }
+}
+
+.policy {
+  width: 100%;
+  .container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    p{
+      width: 100%;
     }
   }
 }

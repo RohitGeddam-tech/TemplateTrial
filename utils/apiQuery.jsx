@@ -185,6 +185,17 @@ export const apiQuery = `
     icon_color
     value
   }
+},
+...on ComponentComponentPrivacyPolicy{
+  Title
+  Description
+  description_color
+  title_color
+  background_color
+  DescriptionTitle{
+    Title
+    Description
+  }
 }
 `;
 
