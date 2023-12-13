@@ -118,7 +118,7 @@ export default function Page() {
           )}
         </>
       ) : (
-        <div className="loading">Loading...</div>
+        <div className="loading"></div>
       )}
     </div>
   );
