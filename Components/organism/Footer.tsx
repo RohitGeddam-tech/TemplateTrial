@@ -90,7 +90,8 @@ export const Footer = () => {
 
   const GroupType = ({ data }: any) => {
     const info = data;
-    switch (info.__typename) {
+    // console.log(info);
+    switch (info?.__typename) {
       case "ComponentAtomsMenuGroupAtom":
         return (
           <div className="links">
@@ -121,11 +122,11 @@ export const Footer = () => {
                   // className={`${doc.active ? "active" : ""}`}
                 >
                   {/* <span
-                    style={{ fontSize: "24px", marginRight: "8px" }}
-                    className={`material-icons-${doc.icon_type}`}
-                  >
-                    {doc.icon}
-                  </span> */}
+                      style={{ fontSize: "24px", marginRight: "8px" }}
+                      className={`material-icons-${doc.icon_type}`}
+                    >
+                      {doc.icon}
+                    </span> */}
                   {doc.icon === "facebook" ? (
                     <Image
                       src={facebook}

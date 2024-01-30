@@ -2477,6 +2477,21 @@ input:checked + .slider:before {
   }
 }
 
+.bannerSlider{
+  .slick-slide {
+    div {
+      &:first-child {
+        width: 100% !important;
+      }
+      @media (max-width: 520px) {
+        &:first-child {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
 .slick-slide {
   div {
     &:first-child {
