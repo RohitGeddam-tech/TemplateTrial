@@ -13,13 +13,15 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
-  switch (info?.__typename) {
+  switch (info?.__typename) {    
+
     case "ComponentComponentAboutUsComponent":
       return (
         <About
           title={info.title}
           body={info.desciption}
-          image={`${process.env.NEXT_PUBLIC_API_URL}${info.image?.data?.attributes?.url}`}
+          image={info.image?.data?.attributes?.url !== undefined ?`${process.env.NEXT_PUBLIC_API_URL}${info.image?.data?.attributes?.url}`: ""}
+        
           bgColor={info.background_color}
           description_color={info.desciption_color}
           title_color={info.title_color}
