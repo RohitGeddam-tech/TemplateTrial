@@ -42,6 +42,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentCertificatesComponent":
       return (
+        (info.title ||  info.desciption  || info.images)?
         <div
           className={`titleCard`}
           style={
@@ -51,41 +52,48 @@ const CommonComponent = (data: any = {}) => {
           }
         >
           <div className="container">
-            <p
-              className="h4"
-              style={{
-                color: info.title_color,
-                textAlign: info.galleryAlignment,
-              }}
-            >
-              {info.title}
-            </p>
-            <p
-              className="para-md"
-              style={{
-                color: info.desciption_color,
-                textAlign: info.galleryAlignment,
-              }}
-            >
-              {info.desciption}
-            </p>
-            <Carousel
-              slidesToShow={3}
-              arrow={info.carousel_type === "arrows"}
-              dots={info.carousel_type === "dots"}
-            >
-              {info.images.length > 0 &&
-                info.images.map((doc: any, ind: number) => (
-                  <div className="imgGallery" key={ind}>
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
-                      alt={doc.image_alt_text}
-                    />
-                  </div>
-                ))}
-            </Carousel>
+           {info.title &&
+             <p
+             className="h4"
+             style={{
+               color: info.title_color,
+               textAlign: info.galleryAlignment,
+             }}
+           >
+             {info.title}
+           </p>
+           }
+           {info.desciption  &&
+             <p
+             className="para-md"
+             style={{
+               color: info.desciption_color,
+               textAlign: info.galleryAlignment,
+             }}
+           >
+             {info.desciption}
+           </p>
+           }
+           {
+            info.images &&  <Carousel
+            slidesToShow={3}
+            arrow={info.carousel_type === "arrows"}
+            dots={info.carousel_type === "dots"}
+          >
+            {info.images.length > 0 &&
+              info.images.map((doc: any, ind: number) => (
+                <div className="imgGallery" key={ind}>
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+                    alt={doc.image_alt_text}
+                  />
+                </div>
+              ))}
+          </Carousel>
+           }
           </div>
         </div>
+        :null
       );
     case "ComponentComponentOurTeamComponent":
       return (
@@ -204,133 +212,145 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentOurServicesComponent":
       return (
-        <div
-          className={`titleCard`}
-          style={
-            info.background_color
-              ? { backgroundColor: info.background_color }
-              : { backgroundColor: `white` }
+        (info.title  || info.desciption || info.cards)?<div
+        className={`titleCard`}
+        style={
+          info.background_color
+            ? { backgroundColor: info.background_color }
+            : { backgroundColor: `white` }
+        }
+      >
+        <div className="container">
+          {info.title &&
+            <p
+            className="h4"
+            style={{
+              color: info.title_color,
+              textAlign: info.serviceAlignment,
+            }}
+          >
+            {info.title}
+          </p>
           }
+         {
+          info.desciption  &&  <p
+          className="para-md"
+          style={{
+            color: info.desciption_color,
+            textAlign: info.serviceAlignment,
+          }}
         >
-          <div className="container">
-            <p
-              className="h4"
-              style={{
-                color: info.title_color,
-                textAlign: info.serviceAlignment,
-              }}
-            >
-              {info.title}
-            </p>
-            <p
-              className="para-md"
-              style={{
-                color: info.desciption_color,
-                textAlign: info.serviceAlignment,
-              }}
-            >
-              {info.desciption}
-            </p>
-            <Carousel
-              slidesToShow={3}
-              arrow={info.carousel_type === "arrows"}
-              dots={info.carousel_type === "dots"}
-            >
-              {info.cards.length > 0 &&
-                info.cards.map((doc: any, ind: number) => (
-                  <div key={ind}>
-                    <Card
-                      cardType={"default"}
-                      button={{
-                        cta_type: doc.cta_type,
-                        cta_icon: doc.cta_icon,
-                        cta_title: doc.cta_title,
-                        cta_action: doc.cta_action,
-                        cta_icon_type: doc.cta_icon_type,
-                        cta_icon_alignment: doc.cta_icon_alignment,
-                      }}
-                      image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
-                      title={doc.title}
-                      para={
-                        doc.desciption?.length > 240
-                          ? `${doc.desciption?.slice(0, 240)}...`
-                          : doc.desciption
-                      }
-                      subtitle={doc.subtitle}
-                      description_color={info.desciption_color}
-                      title_color={info.title_color}
-                      setOpen={setOpen}
-                    />
-                  </div>
-                ))}
-            </Carousel>
-          </div>
-          {open && <Appointment setOpen={setOpen} />}
+          {info.desciption}
+        </p>
+         }
+         {
+          info.cards &&    <Carousel
+          slidesToShow={3}
+          arrow={info.carousel_type === "arrows"}
+          dots={info.carousel_type === "dots"}
+        >
+          {info.cards.length > 0 &&
+            info.cards.map((doc: any, ind: number) => (
+              <div key={ind}>
+                <Card
+                  cardType={"default"}
+                  button={{
+                    cta_type: doc.cta_type,
+                    cta_icon: doc.cta_icon,
+                    cta_title: doc.cta_title,
+                    cta_action: doc.cta_action,
+                    cta_icon_type: doc.cta_icon_type,
+                    cta_icon_alignment: doc.cta_icon_alignment,
+                  }}
+                  image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+                  title={doc.title}
+                  para={
+                    doc.desciption?.length > 240
+                      ? `${doc.desciption?.slice(0, 240)}...`
+                      : doc.desciption
+                  }
+                  subtitle={doc.subtitle}
+                  description_color={info.desciption_color}
+                  title_color={info.title_color}
+                  setOpen={setOpen}
+                />
+              </div>
+            ))}
+        </Carousel>
+         }
         </div>
+        {open && <Appointment setOpen={setOpen} />}
+      </div> : null
       );
     case "ComponentComponentTestimonialsComponent":
       return (
-        <div
-          className={`titleCard`}
-          style={
-            info.background_color
-              ? { backgroundColor: info.background_color }
-              : { backgroundColor: `white` }
-          }
-        >
-          <div className="container">
-            <p
-              className="h4"
-              style={{
-                color: info.title_color,
-                textAlign: info.testAlignment,
+    (info.title || info.desciption || info.cards )?    <div
+    className={`titleCard`}
+    style={
+      info.background_color
+        ? { backgroundColor: info.background_color }
+        : { backgroundColor: `white` }
+    }
+  >
+    <div className="container">
+      {
+        info.title && <p
+        className="h4"
+        style={{
+          color: info.title_color,
+          textAlign: info.testAlignment,
+        }}
+      >
+        {info.title}
+      </p>
+      }
+      {
+        info.desciption && <p
+        className="para-md"
+        style={{
+          color: info.desciption_color,
+          textAlign: info.testAlignment,
+        }}
+      >
+        {info.desciption}
+      </p>
+      }
+     {
+      info.cards &&  <Carousel
+      slidesToShow={3}
+      arrow={info.type_caroursel === "arrows"}
+      dots={info.type_caroursel === "dots"}
+    >
+      {info.cards.length > 0 &&
+        info.cards.map((doc: any, ind: number) => (
+          <div key={ind}>
+            <Card
+              cardType={"testimonial"}
+              button={{
+                cta_type: doc.cta_type,
+                cta_icon: doc.cta_icon,
+                cta_title: doc.cta_title,
+                cta_action: doc.cta_action,
+                cta_icon_type: doc.cta_icon_type,
+                cta_icon_alignment: doc.cta_icon_alignment,
               }}
-            >
-              {info.title}
-            </p>
-            <p
-              className="para-md"
-              style={{
-                color: info.desciption_color,
-                textAlign: info.testAlignment,
-              }}
-            >
-              {info.desciption}
-            </p>
-            <Carousel
-              slidesToShow={3}
-              arrow={info.type_caroursel === "arrows"}
-              dots={info.type_caroursel === "dots"}
-            >
-              {info.cards.length > 0 &&
-                info.cards.map((doc: any, ind: number) => (
-                  <div key={ind}>
-                    <Card
-                      cardType={"testimonial"}
-                      button={{
-                        cta_type: doc.cta_type,
-                        cta_icon: doc.cta_icon,
-                        cta_title: doc.cta_title,
-                        cta_action: doc.cta_action,
-                        cta_icon_type: doc.cta_icon_type,
-                        cta_icon_alignment: doc.cta_icon_alignment,
-                      }}
-                      image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
-                      title={doc.title}
-                      para={
-                        doc.desciption?.length > 240
-                          ? `${doc.desciption?.slice(0, 240)}...`
-                          : doc.desciption
-                      }
-                      subtitle={doc.subtitle}
-                      description_color={info.desciption_color}
-                      title_color={info.title_color}
-                    />
-                  </div>
-                ))}
-            </Carousel>
+              image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+              title={doc.title}
+              para={
+                doc.desciption?.length > 240
+                  ? `${doc.desciption?.slice(0, 240)}...`
+                  : doc.desciption
+              }
+              subtitle={doc.subtitle}
+              description_color={info.desciption_color}
+              title_color={info.title_color}
+            />
           </div>
-        </div>
+        ))}
+    </Carousel>
+     }
+    </div>
+  </div>: null
       );
     case "ComponentComponentContactUsComponenet":
       return (
