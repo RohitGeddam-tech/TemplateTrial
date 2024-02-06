@@ -17,17 +17,22 @@ export const Team = ({
   description_color = "#212b36",
   title_color = "#212b36",
 }: teamProps) => {
+
   return (
+    (data.length>0)?
     <div className={`team ${view}`}>
       {data.length > 0 &&
         data.map((doc: any, ind: number) => (
-          <div className={`shrink ${teams > 5 ? "lower" : ""}`} key={ind}>
-            <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
-              alt="titleImg"
-            />
+         (doc.image?.data?.attributes?.url || doc.name || doc.designation || doc.description) ?<div className={`shrink ${teams > 5 ? "lower" : ""}`} key={ind}>
+           {
+            doc.image?.data?.attributes?.url ? <img
+            src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+            alt="titleImg"
+          /> : null
+           }
             <div className="detail">
-              <p
+              {
+                doc.name && <p
                 className="sub-sm"
                 style={{
                   color: title_color,
@@ -35,16 +40,19 @@ export const Team = ({
               >
                 {doc.name}
               </p>
-              <p
-                className="para-md"
-                style={{
-                  color: description_color,
-                }}
-              >
-                {doc.designation}
-              </p>
+              }
+             {
+              doc.designation &&  <p
+              className="para-md"
+              style={{
+                color: description_color,
+              }}
+            >
+              {doc.designation}
+            </p>
+             }
               {teams < 5 && (
-                <p
+               doc.desciption && <p
                   className="para-sm"
                   style={{
                     color: description_color,
@@ -54,8 +62,8 @@ export const Team = ({
                 </p>
               )}
             </div>
-          </div>
+          </div>:null
         ))}
-    </div>
+    </div> :null
   );
 };

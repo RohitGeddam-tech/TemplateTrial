@@ -13,11 +13,20 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
+
+
+  // console.log(!info.title +" title");
+  // console.log(info.desciption);
+  // console.log(info.cards);
+  // console.log(info.contact_details +" compoentnts page");
+
+
+  
   switch (info?.__typename) {    
 
     case "ComponentComponentAboutUsComponent":
       return (
-        <About
+      (info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
           title={info.title}
           body={info.desciption}
           image={info.image?.data?.attributes?.url !== undefined ?`${process.env.NEXT_PUBLIC_API_URL}${info.image?.data?.attributes?.url}`: ""}
@@ -38,7 +47,7 @@ const CommonComponent = (data: any = {}) => {
             info.component_type === "left_to_right" ? "left" : "right"
           }
           buttonVisible={info.button !== null && info.button !== undefined}
-        />
+        />:null
       );
     case "ComponentComponentCertificatesComponent":
       return (
@@ -84,7 +93,11 @@ const CommonComponent = (data: any = {}) => {
               info.images.map((doc: any, ind: number) => (
                 <div className="imgGallery" key={ind}>
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+                    src={
+                      doc.image?.data?.attributes?.url
+                        ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
+                        : ""
+                    }
                     alt={doc.image_alt_text}
                   />
                 </div>
@@ -97,6 +110,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentOurTeamComponent":
       return (
+             
         <div
           className={`titleCard`}
           style={
@@ -106,7 +120,7 @@ const CommonComponent = (data: any = {}) => {
           }
         >
           <div className="container">
-            <p
+          {info.title &&   <p
               className="h4"
               style={{
                 color: info.title_color,
@@ -114,23 +128,28 @@ const CommonComponent = (data: any = {}) => {
               }}
             >
               {info.title}
-            </p>
-            <p
-              className="para-md"
-              style={{
-                color: info.desciption_color,
-                textAlign: info.teamAlignment,
-              }}
-            >
-              {info.desciption}
-            </p>
-            <Team
+            </p>}
+           {
+            info.desciption &&  <p
+            className="para-md"
+            style={{
+              color: info.desciption_color,
+              textAlign: info.teamAlignment,
+            }}
+          >
+            {info.desciption}
+          </p>
+           }
+            {
+             info.cards.length > 0 &&
+              <Team
               data={info.cards}
               teams={info.cards?.length}
               view={info.view === "grid_view" ? "grid" : "line"}
               description_color={info.desciption_color}
               title_color={info.title_color}
             />
+            }
           </div>
         </div>
       );
@@ -284,7 +303,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentTestimonialsComponent":
       return (
-    (info.title || info.desciption || info.cards )?    <div
+    (info.cards.length > 0  || info.title || info.desciption ) ? <div
     className={`titleCard`}
     style={
       info.background_color
@@ -316,7 +335,8 @@ const CommonComponent = (data: any = {}) => {
       </p>
       }
      {
-      info.cards &&  <Carousel
+      (info.cards.length > 0) ?
+      <Carousel
       slidesToShow={3}
       arrow={info.type_caroursel === "arrows"}
       dots={info.type_caroursel === "dots"}
@@ -334,7 +354,7 @@ const CommonComponent = (data: any = {}) => {
                 cta_icon_type: doc.cta_icon_type,
                 cta_icon_alignment: doc.cta_icon_alignment,
               }}
-              image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
+              image={doc.image?.data?.attributes?.url !== undefined ?`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
               title={doc.title}
               para={
                 doc.desciption?.length > 240
@@ -347,26 +367,28 @@ const CommonComponent = (data: any = {}) => {
             />
           </div>
         ))}
-    </Carousel>
+    </Carousel>:null
      }
     </div>
   </div>: null
       );
     case "ComponentComponentContactUsComponenet":
       return (
+       (info.title || info.desciption ||info.contact_details) ?
         <Contact
-          description_color={info.desciption_color}
-          title_color={info.title_color}
-          title={info.title}
-          body={info.desciption}
-          details={info.contact_details}
-          bgColor={info.background_color}
-          formAlignment={info.component_alignment}
-        />
+        description_color={info.desciption_color}
+        title_color={info.title_color}
+        title={info.title}
+        body={info.desciption}
+        details={info.contact_details}
+        bgColor={info.background_color}
+        formAlignment={info.component_alignment}
+      />:null
+       
       );
     case "ComponentComponentFeatureComponent":
       return (
-        <div
+       (info.title || info.dexcription && info.cards.length > 0) && <div
           className={`titleCard`}
           style={
             info.background_color
@@ -375,7 +397,7 @@ const CommonComponent = (data: any = {}) => {
           }
         >
           <div className="container">
-            <p
+         {info.title &&    <p
               className="h4"
               style={{
                 color: info.title_color,
@@ -383,8 +405,9 @@ const CommonComponent = (data: any = {}) => {
               }}
             >
               {info.title}
-            </p>
-            <p
+            </p>}
+            {info.description &&  
+              <p
               className="para-md"
               style={{
                 color: info.description_color,
@@ -393,6 +416,7 @@ const CommonComponent = (data: any = {}) => {
             >
               {info.description}
             </p>
+            }
             <Feature
               data={info.cards}
               features={info.cards?.length}
@@ -405,7 +429,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentPrivacyPolicy":
       return (
-        <div
+      (info.title || info.Description || info.DescriptionTitle ) ?  <div
           className={`titleCard policy`}
           style={
             info.background_color
@@ -414,7 +438,7 @@ const CommonComponent = (data: any = {}) => {
           }
         >
           <div className="container">
-            <p
+           {  info.title && <p
               className="h4"
               style={{
                 color: info.title_color,
@@ -422,8 +446,9 @@ const CommonComponent = (data: any = {}) => {
               }}
             >
               {info.Title}
-            </p>
-            <p
+            </p>}
+            {
+              info.Description && <p
               className="para-md"
               style={{
                 color: info.description_color,
@@ -431,14 +456,15 @@ const CommonComponent = (data: any = {}) => {
             >
               {info.Description}
             </p>
-            {info.DescriptionTitle?.map((doc: any, i: number) => (
+            }
+          {info.DescriptionTitle?.map((doc: any, i: number) => (
               <div key={i} className="policyDetail">
                 <p className="sub-lg">{doc.Title}</p>
                 <p className="para-md">{doc.Description}</p>
               </div>
             ))}
           </div>
-        </div>
+        </div> : null
       );
     default:
       return <></>;

@@ -13,7 +13,7 @@ import { ButtonProps, classType, classSize, ButtonArrow } from "./Util";
 export const Button = ({
   cta_type = "primary",
   cta_icon = "arrow_forward",
-  cta_title = "title",
+  cta_title = "",
   cta_action = "open",
   cta_icon_type = "outlined",
   cta_icon_alignment = "none",

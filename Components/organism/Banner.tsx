@@ -21,77 +21,82 @@ interface bannerProps {
 }
 
 export const Banner = ({
-  title = "TITLE",
-  body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
-  mobImage = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+  title = "",
+  body = "",
+  image = "",
+  mobImage = "",
   alignment = "right",
   opacity = "partial",
   textAlign,
   bgColor,
   description_color = "#212b36",
   title_color = "#212b36",
-  button = {},
+  button = {}
+  
 }: bannerProps) => {
+  // console.log(button.cta_title);
+  
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
   return (
-    <div
-      className={`banner ${opacity} ${alignment}`}
-      style={
-        opacity === "no"
-          ? bgColor
-            ? { backgroundColor: bgColor }
-            : { backgroundColor: `var(--primary-main)` }
-          : { backgroundColor: `transparent` }
-      }
-    >
-      {opacity !== "no" && (
-        <div className="bgImg">
-          {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
-            <img src={mobImage} alt="background" />
-          ) : (
-            <img src={image} alt="background" />
-          )}
-        </div>
+  (title || body || image || mobImage || button.cta_title) ?   <div
+  className={`banner ${opacity} ${alignment}`}
+  style={
+    opacity === "no"
+      ? bgColor
+        ? { backgroundColor: bgColor }
+        : { backgroundColor: `var(--primary-main)` }
+      : { backgroundColor: `transparent` }
+  }
+>
+  {opacity !== "no" && (
+    <div className="bgImg">
+      {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
+        <img src={mobImage} alt="background" />
+      ) : (
+        <img src={image} alt="background" />
       )}
-      <div className="container">
-        <div className="box">
-          <div className="details">
-            <p
-              className="h2"
-              style={{
-                textAlign: textAlign ? textAlign : alignment,
-                color: title_color,
-              }}
-            >
-              {title}
-            </p>
-            <p
-              className="para-lg"
-              style={{
-                textAlign: textAlign ? textAlign : alignment,
-                color: description_color,
-              }}
-            >
-              {body}
-            </p>
-          </div>
-          <div
-            className="content"
-            style={{ justifyContent: textAlign ? textAlign : alignment }}
-          >
-            <Button
-              {...button}
-              handleClick={() => {
-                setOpen(true);
-              }}
-            />
-            {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
-          </div>
-        </div>
-      </div>
-      {open && <Appointment setOpen={setOpen} />}
     </div>
+  )}
+  <div className="container">
+    <div className="box">
+      <div className="details">
+     { title &&  <p
+          className="h2"
+          style={{
+            textAlign: textAlign ? textAlign : alignment,
+            color: title_color,
+          }}
+        >
+          {title}
+        </p>}
+        { body &&
+          <p
+          className="para-lg"
+          style={{
+            textAlign: textAlign ? textAlign : alignment,
+            color: description_color,
+          }}
+        >
+          {body}
+        </p>
+        }
+      </div>
+      <div
+        className="content"
+        style={{ justifyContent: textAlign ? textAlign : alignment }}
+      >
+      {button.cta_title &&   <Button
+          {...button}
+          handleClick={() => {
+            setOpen(true);
+          }}
+        />}
+        {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
+      </div>
+    </div>
+  </div>
+  {open && <Appointment setOpen={setOpen} />}
+</div> : null
   );
 };
