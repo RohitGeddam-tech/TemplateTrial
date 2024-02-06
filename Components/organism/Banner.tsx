@@ -32,7 +32,6 @@ export const Banner = ({
   description_color = "#212b36",
   title_color = "#212b36",
   button = {}
-  
 }: bannerProps) => {
 
   

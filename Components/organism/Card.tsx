@@ -43,7 +43,7 @@ const Card = ({
           className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
         >
           <div className="details">
-            <img src={image} alt="titleImg" />
+{ image &&  <img src={image} alt="titleImg" />}
             <div className="info">
               { title !==""  && 
                 <p
@@ -74,7 +74,7 @@ const Card = ({
         )
       ) : (
         <div className="card">
-          <img src={image} alt="titleImg" />
+          {image  && <img src={image} alt="titleImg" />}
           {title && (
             <p
               className="sub-md"

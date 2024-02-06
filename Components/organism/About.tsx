@@ -3,6 +3,7 @@ import { Button } from "../molecules/Button/Button";
 // import Image from "next/image";
 import { ButtonProps } from "../molecules/Button/Util";
 import { Appointment } from "./Appointment";
+import { log } from "console";
 
 interface aboutProps {
   image?: string;
@@ -51,7 +52,8 @@ export const About = ({
   ;
 
   const AboutDetails = () =>
-   ( title || body  || buttonVisible)?(
+ 
+   ( title || body || buttonVisible )?(
       <div className="details">
         {title && (
           <p className="h4" style={{ color: title_color }}>
@@ -74,24 +76,27 @@ export const About = ({
       </div>
     ):null;
 
-    
-    return !AboutImage() && !AboutDetails() ? null:
-      <div className={`about`} style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }}>
-      <div className="container">
-        {(AboutImage() && AboutDetails()) ? (
-          <div>
-            <div className={imageAlignment === "left" ? "left" : "right"} style={{ width: "35%" }}>
-              {<AboutImage/>}
-            </div>
-            <div className={imageAlignment === "right" ? "right" : "left"} style={{ width: "65%" }}>
-              {AboutDetails()}
-            </div>
-          </div>) : (AboutImage() || AboutDetails()) &&   <div className="center">
-        {AboutDetails() || <AboutImage/> }
-      </div>
-         }
-      </div>
-      {open && <Appointment setOpen={setOpen} />}
-    </div>
-};
 
+
+    return (
+      <div className={`about`} style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }}>
+        <div className="container">
+          {AboutImage() && AboutDetails() ? (
+            <div>
+              <div className={imageAlignment === "left" ? "left" : "right"} style={{ width: "35%" }}>
+                <AboutImage />
+              </div>
+              <div className={imageAlignment === "right" ? "right" : "left"} style={{ width: "65%" }}>
+                <AboutDetails />
+              </div>
+            </div>
+          ) : (
+            <div className="center">
+              {AboutDetails() || AboutImage()}
+            </div>
+          )}
+        </div>
+        {open && <Appointment setOpen={setOpen} />}
+      </div>
+    );
+};

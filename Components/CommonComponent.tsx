@@ -87,7 +87,7 @@ const CommonComponent = (data: any = {}) => {
                 <div className="imgGallery" key={ind}>
                   <img
                     src={
-                      doc.image?.data?.attributes?.url
+                      doc.image?.data?.attributes?.url !== undefined
                         ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
                         : ""
                     }
@@ -148,152 +148,141 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentBannerComponent":
       return (
-        <>
-          {info.banners?.length > 1 ? (
-            <>
-              <BannerCarousel slidesToShow={1} arrow={true} dots={true}>
-                {info.banners.map((doc: any, ind: number) => (
-                  <Banner
-                    title={doc.title}
-                    body={doc.body}
-                    textAlign={doc.content_alignment}
-                    key={ind}
-                    image={
-                      doc.image?.data?.attributes?.url
-                        ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
-                        : ""
-                    }
-                    mobImage={
-                      doc.mobile_image?.data?.attributes?.url
-                        ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
-                        : ""
-                    }
-                    bgColor={doc.bgColor}
-                    description_color={doc.desciption_color}
-                    title_color={doc.title_color}
-                    alignment={doc.content_alignment}
-                    opacity={doc.image_opacity}
-                    button={{
-                      cta_type: doc.cta_type,
-                      cta_icon: doc.cta_icon,
-                      cta_title: doc.cta_title,
-                      cta_action: doc.cta_action,
-                      cta_icon_type: doc.cta_icon_type,
-                      cta_icon_alignment: doc.cta_icon_alignment,
-                    }}
-                  />
-                ))}
-              </BannerCarousel>
-            </>
-          ) : (
-            <>
-              {info.banners.map((doc: any, ind: number) => (
-                <Banner
-                  title={doc.title}
-                  body={doc.body}
-                  textAlign={doc.content_alignment}
-                  alignment={doc.content_alignment}
-                  opacity={doc.image_opacity}
-                  key={ind}
-                  image={
-                    doc.image?.data?.attributes?.url
-                      ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
-                      : ""
-                  }
-                  mobImage={
-                    doc.mobile_image?.data?.attributes?.url
-                      ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
-                      : ""
-                  }
-                  bgColor={doc.bgColor}
-                  description_color={doc.desciption_color}
-                  title_color={doc.title_color}
-                  button={{
-                    cta_type: doc.cta_type,
-                    cta_icon: doc.cta_icon,
-                    cta_title: doc.cta_title,
-                    cta_action: doc.cta_action,
-                    cta_icon_type: doc.cta_icon_type,
-                    cta_icon_alignment: doc.cta_icon_alignment,
-                  }}
-                />
-              ))}
-            </>
-          )}
-        </>
-      );
-    case "ComponentComponentOurServicesComponent":
-      return (
-        (info.title  || info.desciption || info.cards.length >0)?<div
-        className={`titleCard`}
-        style={
-          info.background_color
-            ? { backgroundColor: info.background_color }
-            : { backgroundColor: `white` }
-        }
-      >
-        <div className="container">
-          {info.title &&
-            <p
-            className="h4"
-            style={{
-              color: info.title_color,
-              textAlign: info.serviceAlignment,
+        (info.banners?.length > 1 )? 
+        <BannerCarousel slidesToShow={1} arrow={true} dots={true}>
+        {info.banners.map((doc: any, ind: number) => (
+        (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
+            title={doc.title}
+            body={doc.body}
+            textAlign={doc.content_alignment}
+            key={ind}
+            image={
+              doc.image?.data?.attributes?.url !==undefined
+                ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
+                : ""
+            }
+            mobImage={
+              doc.mobile_image?.data?.attributes?.url !== undefined
+                ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
+                : ""
+            }
+            bgColor={doc.bgColor}
+            description_color={doc.desciption_color}
+            title_color={doc.title_color}
+            alignment={doc.content_alignment}
+            opacity={doc.image_opacity}
+            button={{
+              cta_type: doc.cta_type,
+              cta_icon: doc.cta_icon,
+              cta_title: doc.cta_title,
+              cta_action: doc.cta_action,
+              cta_icon_type: doc.cta_icon_type,
+              cta_icon_alignment: doc.cta_icon_alignment,
             }}
-          >
-            {info.title}
-          </p>
-          }
-         {
-          info.desciption  &&  <p
-          className="para-md"
-          style={{
-            color: info.desciption_color,
-            textAlign: info.serviceAlignment,
-          }}
-        >
-          {info.desciption}
-        </p>
-         }
-         {
-          info.cards &&    <Carousel
-          slidesToShow={3}
-          arrow={info.carousel_type === "arrows"}
-          dots={info.carousel_type === "dots"}
-        >
-          {info.cards.length > 0 &&
-            info.cards.map((doc: any, ind: number) => (
-              <div key={ind}>
-                <Card
-                  cardType={"default"}
-                  button={{
-                    cta_type: doc.cta_type,
-                    cta_icon: doc.cta_icon,
-                    cta_title: doc.cta_title,
-                    cta_action: doc.cta_action,
-                    cta_icon_type: doc.cta_icon_type,
-                    cta_icon_alignment: doc.cta_icon_alignment,
-                  }}
-                  image={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
-                  title={doc.title}
-                  para={
-                    doc.desciption?.length > 240
-                      ? `${doc.desciption?.slice(0, 240)}...`
-                      : doc.desciption
-                  }
-                  subtitle={doc.subtitle}
-                  description_color={info.desciption_color}
-                  title_color={info.title_color}
-                  setOpen={setOpen}
-                />
-              </div>
-            ))}
-        </Carousel>
-         }
-        </div>
-        {open && <Appointment setOpen={setOpen} />}
-      </div> : null
+          /> : null
+        ))}
+      </BannerCarousel>
+        :  info.banners && info.banners.map((doc: any, ind: number) => (
+         (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
+            title={doc.title}
+            body={doc.body}
+            textAlign={doc.content_alignment}
+            alignment={doc.content_alignment}
+            opacity={doc.image_opacity}
+            key={ind}
+            image={
+              doc.image?.data?.attributes?.url !== undefined
+                ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
+                : ""
+            }
+            mobImage={
+              doc.mobile_image?.data?.attributes?.url !==undefined
+                ? `${process.env.NEXT_PUBLIC_API_URL}${doc.mobile_image?.data?.attributes?.url}`
+                : ""
+            }
+            bgColor={doc.bgColor}
+            description_color={doc.desciption_color}
+            title_color={doc.title_color}
+            button={{
+              cta_type: doc.cta_type,
+              cta_icon: doc.cta_icon,
+              cta_title: doc.cta_title,
+              cta_action: doc.cta_action,
+              cta_icon_type: doc.cta_icon_type,
+              cta_icon_alignment: doc.cta_icon_alignment,
+            }}
+          /> : null
+        ))
       );
+      case "ComponentComponentOurServicesComponent":
+        return (
+          (info.title || info.desciption || info.cards.length > 0)? <div
+            className={`titleCard`}
+            style={
+              info.background_color
+                ? { backgroundColor: info.background_color }
+                : { backgroundColor: `white` }
+            }
+          >
+            <div className="container">
+             { info.title &&  <p
+                className="h4"
+                style={{
+                  color: info.title_color,
+                  textAlign: info.serviceAlignment,
+                }}
+              >
+                {info.title}
+              </p>}
+          { info.desciption &&   <p
+                className="para-md"
+                style={{
+                  color: info.desciption_color,
+                  textAlign: info.serviceAlignment,
+                }}
+              >
+                {info.desciption}
+              </p>}
+             {info.cards.length > 0 && 
+               <Carousel
+               slidesToShow={3}
+               arrow={info.carousel_type === "arrows"}
+               dots={info.carousel_type === "dots"}
+             >
+               {info.cards.length > 0 &&
+                 info.cards.map((doc: any, ind: number) => (
+                   <div key={ind}>
+                     <Card
+                       cardType={"default"}
+                       button={{
+                         cta_type: doc.cta_type,
+                         cta_icon: doc.cta_icon,
+                         cta_title: doc.cta_title,
+                         cta_action: doc.cta_action,
+                         cta_icon_type: doc.cta_icon_type,
+                         cta_icon_alignment: doc.cta_icon_alignment,
+                       }}
+                       image={doc.image?.data?.attributes?.url!== undefined ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
+                       title={doc.title}
+                       para={
+                         doc.desciption?.length > 240
+                           ? `${doc.desciption?.slice(0, 240)}...`
+                           : doc.desciption
+                       }
+                       subtitle={doc.subtitle}
+                       description_color={info.desciption_color}
+                       title_color={info.title_color}
+                       setOpen={setOpen}
+                     />
+                   </div>
+                 ))}
+             </Carousel>
+             }
+            </div>
+            {open && <Appointment setOpen={setOpen} />}
+          </div> : null
+        );
+
     case "ComponentComponentTestimonialsComponent":
       return (
     (info.cards.length > 0  || info.title || info.desciption ) ? <div
