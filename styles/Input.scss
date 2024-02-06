@@ -1648,6 +1648,15 @@ input:checked + .slider:before {
     justify-content: space-between;
     width: 100%;
     gap: 32px;
+    .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      .details .h4{
+        text-align: center;
+      }
+    }
     .details {
       p.h4 {
         color: var(--secondary-main);
@@ -1656,6 +1665,7 @@ input:checked + .slider:before {
         margin-bottom: 24px;
         color: var(--grayscale-darker);
       }
+
     }
     .imgBox {
       img {

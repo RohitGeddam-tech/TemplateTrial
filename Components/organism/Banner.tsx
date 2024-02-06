@@ -34,7 +34,7 @@ export const Banner = ({
   button = {}
   
 }: bannerProps) => {
-  // console.log(button.cta_title);
+
   
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();

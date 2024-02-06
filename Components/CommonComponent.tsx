@@ -14,13 +14,6 @@ const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
 
-
-  // console.log(!info.title +" title");
-  // console.log(info.desciption);
-  // console.log(info.cards);
-  // console.log(info.contact_details +" compoentnts page");
-
-
   
   switch (info?.__typename) {    
 
@@ -111,7 +104,7 @@ const CommonComponent = (data: any = {}) => {
     case "ComponentComponentOurTeamComponent":
       return (
              
-        <div
+    (info.title || info.desciption || info.cards.length > 0)?    <div
           className={`titleCard`}
           style={
             info.background_color
@@ -151,7 +144,7 @@ const CommonComponent = (data: any = {}) => {
             />
             }
           </div>
-        </div>
+        </div> :  null
       );
     case "ComponentComponentBannerComponent":
       return (
@@ -231,7 +224,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentOurServicesComponent":
       return (
-        (info.title  || info.desciption || info.cards)?<div
+        (info.title  || info.desciption || info.cards.length >0)?<div
         className={`titleCard`}
         style={
           info.background_color
@@ -417,13 +410,15 @@ const CommonComponent = (data: any = {}) => {
               {info.description}
             </p>
             }
-            <Feature
-              data={info.cards}
-              features={info.cards?.length}
-              alignment={info.content_alignment}
-              description_color={info.description_color}
-              title_color={info.title_color}
-            />
+           {
+            info.cards.length > 0 &&  <Feature
+            data={info.cards}
+            features={info.cards?.length}
+            alignment={info.content_alignment}
+            description_color={info.description_color}
+            title_color={info.title_color}
+          />
+           }
           </div>
         </div>
       );
