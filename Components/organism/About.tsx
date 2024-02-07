@@ -79,24 +79,60 @@ export const About = ({
 
 
     return (
-      <div className={`about`} style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }}>
-        <div className="container">
-          {AboutImage() && AboutDetails() ? (
-            <div>
-              <div className={imageAlignment === "left" ? "left" : "right"} style={{ width: "35%" }}>
-                <AboutImage />
-              </div>
-              <div className={imageAlignment === "right" ? "right" : "left"} style={{ width: "65%" }}>
-                <AboutDetails />
-              </div>
-            </div>
-          ) : (
-            <div className="center">
-              {AboutDetails() || AboutImage()}
-            </div>
-          )}
+      // <div className={`about`} style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }}>
+      //   <div className="container">
+      //     {AboutImage() && AboutDetails() ? (
+      //       <div>
+      //         <div className={imageAlignment === "left" ? "left" : "right"} style={{ width: "35%" }}>
+      //           <AboutImage />
+      //         </div>
+      //         <div className={imageAlignment === "right" ? "right" : "left"} style={{ width: "65%" }}>
+      //           <AboutDetails />
+      //         </div>
+      //       </div>
+      //     ) : (
+      //       <div className="center">
+      //         {AboutDetails() || AboutImage()}
+      //       </div>
+      //     )}
+      //   </div>
+      //   {open && <Appointment setOpen={setOpen} />}
+      // </div>
+
+
+    (AboutImage() && AboutDetails()) ? <div
+      className={`about`}
+      style={
+        bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
+      }
+    >
+      <div className="container">
+        <div
+          className="left"
+          style={{ width: imageAlignment === "left" ? "35%" : "65%" }}
+        >
+          {imageAlignment === "left" ? <AboutImage /> : <AboutDetails />}
         </div>
-        {open && <Appointment setOpen={setOpen} />}
+        <div
+          className="right"
+          style={{ width: imageAlignment === "right" ? "35%" : "65%" }}
+        >
+          {imageAlignment === "right" ? <AboutImage /> : <AboutDetails />}
+        </div>
       </div>
+      {open && <Appointment setOpen={setOpen} />}
+    </div> : <div
+      className={`about`}
+      style={
+        bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
+      }
+    >
+      <div className="container">
+       <div className="center">
+        { AboutImage() || AboutDetails()} 
+       </div>
+      </div>
+      {open && <Appointment setOpen={setOpen} />}
+    </div>
     );
 };

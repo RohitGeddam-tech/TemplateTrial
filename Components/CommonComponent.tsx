@@ -84,7 +84,7 @@ const CommonComponent = (data: any = {}) => {
           >
             {info.images.length > 0 &&
               info.images.map((doc: any, ind: number) => (
-                <div className="imgGallery" key={ind}>
+               (doc.image?.data?.attributes?.url) ?<div className="imgGallery" key={ind}>
                   <img
                     src={
                       doc.image?.data?.attributes?.url !== undefined
@@ -93,7 +93,7 @@ const CommonComponent = (data: any = {}) => {
                     }
                     alt={doc.image_alt_text}
                   />
-                </div>
+                </div>:null
               ))}
           </Carousel>
            }
@@ -251,30 +251,30 @@ const CommonComponent = (data: any = {}) => {
              >
                {info.cards.length > 0 &&
                  info.cards.map((doc: any, ind: number) => (
-                   <div key={ind}>
-                     <Card
-                       cardType={"default"}
-                       button={{
-                         cta_type: doc.cta_type,
-                         cta_icon: doc.cta_icon,
-                         cta_title: doc.cta_title,
-                         cta_action: doc.cta_action,
-                         cta_icon_type: doc.cta_icon_type,
-                         cta_icon_alignment: doc.cta_icon_alignment,
-                       }}
-                       image={doc.image?.data?.attributes?.url!== undefined ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
-                       title={doc.title}
-                       para={
-                         doc.desciption?.length > 240
-                           ? `${doc.desciption?.slice(0, 240)}...`
-                           : doc.desciption
-                       }
-                       subtitle={doc.subtitle}
-                       description_color={info.desciption_color}
-                       title_color={info.title_color}
-                       setOpen={setOpen}
-                     />
-                   </div>
+                  (doc.title || doc.image?.data?.attributes?.url || doc.cta_title || doc.desciption || doc.subtitle)?<div key={ind}>
+                      <Card
+                      cardType={"default"}
+                      button={{
+                        cta_type: doc.cta_type,
+                        cta_icon: doc.cta_icon,
+                        cta_title: doc.cta_title,
+                        cta_action: doc.cta_action,
+                        cta_icon_type: doc.cta_icon_type,
+                        cta_icon_alignment: doc.cta_icon_alignment,
+                      }}
+                      image={doc.image?.data?.attributes?.url!== undefined ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
+                      title={doc.title}
+                      para={
+                        doc.desciption?.length > 240
+                          ? `${doc.desciption?.slice(0, 240)}...`
+                          : doc.desciption
+                      }
+                      subtitle={doc.subtitle}
+                      description_color={info.desciption_color}
+                      title_color={info.title_color}
+                      setOpen={setOpen}
+                    />
+                   </div> : null
                  ))}
              </Carousel>
              }
@@ -325,8 +325,8 @@ const CommonComponent = (data: any = {}) => {
     >
       {info.cards.length > 0 &&
         info.cards.map((doc: any, ind: number) => (
-          <div key={ind}>
-            <Card
+          (doc.title || doc.image?.data?.attributes?.url || doc.cta_title || doc.desciption || doc.subtitle)?<div key={ind}>
+           <Card
               cardType={"testimonial"}
               button={{
                 cta_type: doc.cta_type,
@@ -347,7 +347,7 @@ const CommonComponent = (data: any = {}) => {
               description_color={info.desciption_color}
               title_color={info.title_color}
             />
-          </div>
+          </div> : null
         ))}
     </Carousel>:null
      }
@@ -356,7 +356,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentContactUsComponenet":
       return (
-       (info.title || info.desciption ||info.contact_details) ?
+       (info.title || info.desciption || info.contact_details) ?
         <Contact
         description_color={info.desciption_color}
         title_color={info.title_color}
@@ -370,7 +370,7 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentFeatureComponent":
       return (
-       (info.title || info.dexcription && info.cards.length > 0) && <div
+       (info.title || info.dexcription || info.cards.length > 0) ? <div
           className={`titleCard`}
           style={
             info.background_color
@@ -388,6 +388,7 @@ const CommonComponent = (data: any = {}) => {
             >
               {info.title}
             </p>}
+
             {info.description &&  
               <p
               className="para-md"
@@ -399,6 +400,7 @@ const CommonComponent = (data: any = {}) => {
               {info.description}
             </p>
             }
+
            {
             info.cards.length > 0 &&  <Feature
             data={info.cards}
@@ -409,46 +411,48 @@ const CommonComponent = (data: any = {}) => {
           />
            }
           </div>
-        </div>
+        </div> : null
       );
     case "ComponentComponentPrivacyPolicy":
+
+      
       return (
-      (info.title || info.Description || info.DescriptionTitle ) ?  <div
-          className={`titleCard policy`}
-          style={
-            info.background_color
-              ? { backgroundColor: info.background_color }
-              : { backgroundColor: `white` }
-          }
-        >
-          <div className="container">
-           {  info.title && <p
-              className="h4"
-              style={{
-                color: info.title_color,
-                textAlign: "center",
-              }}
-            >
-              {info.Title}
-            </p>}
-            {
-              info.Description && <p
-              className="para-md"
-              style={{
-                color: info.description_color,
-              }}
-            >
-              {info.Description}
-            </p>
-            }
+    (info.Title || info.Description || info.DescriptionTitle)?<div
+        className={`titleCard policy`}
+        style={
+          info.background_color
+            ? { backgroundColor: info.background_color }
+            : { backgroundColor: `white` }
+        }
+      >
+        <div className="container">
+        {info.Title &&
+            <p
+            className="h4"
+            style={{
+              color: info.title_color,
+              textAlign: "center",
+            }}
+          >
+            {info.Title}
+          </p>
+        }
+        { info.Description && <p
+            className="para-md"
+            style={{
+              color: info.description_color,
+            }}
+          >
+            {info.Description}
+          </p>}
           {info.DescriptionTitle?.map((doc: any, i: number) => (
-              <div key={i} className="policyDetail">
-                <p className="sub-lg">{doc.Title}</p>
-                <p className="para-md">{doc.Description}</p>
-              </div>
-            ))}
-          </div>
-        </div> : null
+            <div key={i} className="policyDetail">
+              <p className="sub-lg">{doc.Title}</p>
+              <p className="para-md">{doc.Description}</p>
+            </div>
+          ))}
+        </div>
+      </div> :  null
       );
     default:
       return <></>;

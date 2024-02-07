@@ -35,75 +35,67 @@ const Card = ({
   title_color = "#212b36",
   setOpen,
 }: cardProps) => {
-  
-  return (
-    <>
-      {cardType === "testimonial" ? (
-        <div
-          className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
-        >
-          <div className="details">
-{ image &&  <img src={image} alt="titleImg" />}
-            <div className="info">
-              { title !==""  && 
-                <p
-                  className="para-md"
-                  style={{ fontWeight: "600", color: title_color }}
-                >
-                  {title}
-                </p>
-              }
-              { subtitle  && 
-                <p className="para-md" style={{ color: description_color }}>
-                  {subtitle}
-                </p>
-              }
-            </div>
-          </div>
-          {para && (
-            <p className="para-lg" style={{ color: description_color }}>
-              {para}
-            </p>
-          )}
-        </div>
-      ) : cardType === "images" ? (
-        image && (
-          <div className="imgGallery">
-            <img src={image} alt="titleImg" />
-          </div>
-        )
-      ) : (
-        <div className="card">
-          {image  && <img src={image} alt="titleImg" />}
-          {title && (
+  return cardType === "testimonial" ? (
+    <div
+      className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
+    >
+      <div className="details">
+        {image && <img src={image} alt="titleImg" />}
+        <div className="info">
+          {title !== "" && (
             <p
-              className="sub-md"
+              className="para-md"
               style={{ fontWeight: "600", color: title_color }}
             >
               {title}
             </p>
           )}
           {subtitle && (
-            <p className="para-lg" style={{ color: description_color }}>
+            <p className="para-md" style={{ color: description_color }}>
               {subtitle}
             </p>
           )}
-          {para && (
-            <p className="para-sm" style={{ color: description_color }}>
-              {para}
-            </p>
-          )}
-          {button && (
-            <Button
-              {...button}
-              handleClick={() => {
-                setOpen(true);
-              }}
-            />
-          )}
         </div>
+      </div>
+      {para && (
+        <p className="para-lg" style={{ color: description_color }}>
+          {para}
+        </p>
       )}
-    </>
+    </div>
+  ) : cardType === "images" ? (
+    image && (
+      <div className="imgGallery">
+        <img src={image} alt="titleImg" />
+      </div>
+    )
+  ) : (
+    <div className="card">
+      {image && <img src={image} alt="titleImg" />}
+      {title && (
+        <p className="sub-md" style={{ fontWeight: "600", color: title_color }}>
+          {title}
+        </p>
+      )}
+      {subtitle && (
+        <p className="para-lg" style={{ color: description_color }}>
+          {subtitle}
+        </p>
+      )}
+      {para && (
+        <p className="para-sm" style={{ color: description_color }}>
+          {para}
+        </p>
+      )}
+      {button && (
+        <Button
+          {...button}
+          handleClick={() => {
+            setOpen(true);
+          }}
+        />
+      )}
+    </div>
   );
 };
 
