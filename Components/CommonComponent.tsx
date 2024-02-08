@@ -13,6 +13,7 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
+  console.log(info.title+ " about title");
   
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
@@ -88,7 +89,7 @@ const CommonComponent = (data: any = {}) => {
                         ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
                         : ""
                     }
-                    alt={doc.image_alt_text}
+                 alt={doc.image_alt_text}
                   />
                 </div>:null
               ))}
@@ -360,7 +361,7 @@ const CommonComponent = (data: any = {}) => {
       />:null
       );
     case "ComponentComponentFeatureComponent":
-      return ( (info.title || info.dexcription || info.card?.length > 0) ? <div
+      return ( (info.title || info.description || info.card?.length > 0 ) ? <div
           className={`titleCard`}
           style={
             info.background_color
