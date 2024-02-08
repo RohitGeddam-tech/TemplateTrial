@@ -20,8 +20,7 @@ export const Button = ({
   size = "medium",
   handleClick = () => {},
 }: ButtonProps) => {  
-  return (
-    <>
+  return (    <>
       {cta_title !== "" && cta_title !== null && (
         <button
           className={`btn ${classType(cta_type)} ${classSize(size)} `}

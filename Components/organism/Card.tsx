@@ -36,13 +36,13 @@ const Card = ({
   setOpen,
 }: cardProps) => {
   return cardType === "testimonial" ? (
-    <div
+   (image || title || subtitle || para) ? <div
       className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
     >
-      <div className="details">
+    { ( image || title  || subtitle)? <div className="details">
         {image && <img src={image} alt="titleImg" />}
         <div className="info">
-          {title !== "" && (
+          {title && (
             <p
               className="para-md"
               style={{ fontWeight: "600", color: title_color }}
@@ -56,13 +56,13 @@ const Card = ({
             </p>
           )}
         </div>
-      </div>
+      </div> : null}
       {para && (
         <p className="para-lg" style={{ color: description_color }}>
           {para}
         </p>
       )}
-    </div>
+    </div> : null
   ) : cardType === "images" ? (
     image && (
       <div className="imgGallery">
@@ -70,7 +70,7 @@ const Card = ({
       </div>
     )
   ) : (
-    <div className="card">
+    (image || title || subtitle || para || button) ?  <div className="card">
       {image && <img src={image} alt="titleImg" />}
       {title && (
         <p className="sub-md" style={{ fontWeight: "600", color: title_color }}>
@@ -95,7 +95,7 @@ const Card = ({
           }}
         />
       )}
-    </div>
+    </div> : null
   );
 };
 

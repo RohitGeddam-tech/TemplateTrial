@@ -31,71 +31,77 @@ export const Banner = ({
   bgColor,
   description_color = "#212b36",
   title_color = "#212b36",
-  button = {}
+  button = {},
 }: bannerProps) => {
-
-  
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
-  return (
-  (title || body || image || mobImage || button.cta_title) ?   <div
-  className={`banner ${opacity} ${alignment}`}
-  style={
-    opacity === "no"
-      ? bgColor
-        ? { backgroundColor: bgColor }
-        : { backgroundColor: `var(--primary-main)` }
-      : { backgroundColor: `transparent` }
-  }
->
-  {opacity !== "no" && (
-    <div className="bgImg">
-      {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
-        <img src={mobImage} alt="background" />
-      ) : (
-        <img src={image} alt="background" />
+  return (title || body || image || mobImage || button.cta_title) ? (
+    <div
+      className={`banner ${opacity} ${alignment}`}
+      style={
+        opacity === "no"
+          ? bgColor
+            ? { backgroundColor: bgColor }
+            : { backgroundColor: `var(--primary-main)` }
+          : { backgroundColor: `transparent` }
+      }
+    >
+      {opacity !== "no" && (
+        <div className="bgImg">
+          {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
+            <img src={mobImage} alt="background" />
+          ) : (
+            <img src={image} alt="background" />
+          )}
+        </div>
       )}
+      {title || body || button.cta_title ? (
+        <div className="container">
+          <div className="box">
+          {(title || body )  ?<div className="details">
+              {title && (
+                <p
+                  className="h2"
+                  style={{
+                    textAlign: textAlign ? textAlign : alignment,
+                    color: title_color,
+                  }}
+                >
+                  {title}
+                </p>
+              )}
+              {body && (
+                <p
+                  className="para-lg"
+                  style={{
+                    textAlign: textAlign ? textAlign : alignment,
+                    color: description_color,
+                  }}
+                >
+                  {body}
+                </p>
+              )}
+            </div>: null}
+            {button.cta_title && (
+              <div
+                className="content"
+                style={{ justifyContent: textAlign ? textAlign : alignment }}
+              >
+                {button.cta_title && (
+                  <Button
+                    {...button}
+                    handleClick={() => {
+                      setOpen(true);
+                    }}
+                  />
+                )}
+                {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
+              </div>
+            )}
+          </div>
+        </div>
+      ) : null}
+      {open && <Appointment setOpen={setOpen} />}
     </div>
-  )}
-  <div className="container">
-    <div className="box">
-      <div className="details">
-     { title &&  <p
-          className="h2"
-          style={{
-            textAlign: textAlign ? textAlign : alignment,
-            color: title_color,
-          }}
-        >
-          {title}
-        </p>}
-        { body &&
-          <p
-          className="para-lg"
-          style={{
-            textAlign: textAlign ? textAlign : alignment,
-            color: description_color,
-          }}
-        >
-          {body}
-        </p>
-        }
-      </div>
-      <div
-        className="content"
-        style={{ justifyContent: textAlign ? textAlign : alignment }}
-      >
-      {button.cta_title &&   <Button
-          {...button}
-          handleClick={() => {
-            setOpen(true);
-          }}
-        />}
-        {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
-      </div>
-    </div>
-  </div>
-  {open && <Appointment setOpen={setOpen} />}
-</div> : null
-  );
+  ) : null;
 };

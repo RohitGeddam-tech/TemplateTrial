@@ -3,7 +3,6 @@ import { Button } from "../molecules/Button/Button";
 // import Image from "next/image";
 import { ButtonProps } from "../molecules/Button/Util";
 import { Appointment } from "./Appointment";
-import { log } from "console";
 
 interface aboutProps {
   image?: string;
@@ -52,7 +51,6 @@ export const About = ({
   ;
 
   const AboutDetails = () =>
- 
    ( title || body || buttonVisible )?(
       <div className="details">
         {title && (
@@ -79,28 +77,7 @@ export const About = ({
 
 
     return (
-      // <div className={`about`} style={bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }}>
-      //   <div className="container">
-      //     {AboutImage() && AboutDetails() ? (
-      //       <div>
-      //         <div className={imageAlignment === "left" ? "left" : "right"} style={{ width: "35%" }}>
-      //           <AboutImage />
-      //         </div>
-      //         <div className={imageAlignment === "right" ? "right" : "left"} style={{ width: "65%" }}>
-      //           <AboutDetails />
-      //         </div>
-      //       </div>
-      //     ) : (
-      //       <div className="center">
-      //         {AboutDetails() || AboutImage()}
-      //       </div>
-      //     )}
-      //   </div>
-      //   {open && <Appointment setOpen={setOpen} />}
-      // </div>
-
-
-    (AboutImage() && AboutDetails()) ? <div
+      (AboutImage() && AboutDetails()) ? <div
       className={`about`}
       style={
         bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
@@ -121,7 +98,7 @@ export const About = ({
         </div>
       </div>
       {open && <Appointment setOpen={setOpen} />}
-    </div> : <div
+    </div> : ( AboutImage() || AboutDetails()) ?     <div
       className={`about`}
       style={
         bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
@@ -133,6 +110,7 @@ export const About = ({
        </div>
       </div>
       {open && <Appointment setOpen={setOpen} />}
-    </div>
+    </div> :null
+    
     );
 };
