@@ -360,7 +360,7 @@ const CommonComponent = (data: any = {}) => {
       />:null
       );
     case "ComponentComponentFeatureComponent":
-      return ( (info.title || info.description || info.card?.length > 0 ) ? <div
+      return ( (info.title || info.description || info.cards?.length > 0 ) ? <div
           className={`titleCard`}
           style={
             info.background_color
