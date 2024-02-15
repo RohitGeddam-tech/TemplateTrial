@@ -13,7 +13,6 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
-  console.log(info.title+ " about title");
   
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
