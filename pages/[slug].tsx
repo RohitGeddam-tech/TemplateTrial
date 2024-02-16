@@ -15,13 +15,13 @@ export default function Page() {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
-  // const [slugName, setSlugName] = useState<any>("");
+  // const [slugName, setSlugName] = useState<any>(""); 
 
   async function fetchData(pageName: any) {
     const data = {
       query: `
       query{
-        pages(filters: { slug: { eq: "${pageName}" }} ){
+        pages(filters: { slug: {eq:"${pageName}"}} ){
             data {
               attributes {
                 ${seo}

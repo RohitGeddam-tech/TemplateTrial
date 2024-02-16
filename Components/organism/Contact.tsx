@@ -49,7 +49,7 @@ export const Contact = ({
 
     async function fetchData() {
       const data = {
-        query: `
+     query: `
       query{
         contactUsFrom {
           data {

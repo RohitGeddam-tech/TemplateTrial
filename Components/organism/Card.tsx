@@ -21,6 +21,7 @@ export interface cardProps {
   description_color?: string;
   title_color?: string;
   setOpen?: any;
+  sub_title?:string;
 }
 
 const Card = ({

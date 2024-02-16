@@ -13,8 +13,7 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
-  console.log(info.title+ " about title");
-  
+
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
       return ((info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
@@ -111,7 +110,7 @@ const CommonComponent = (data: any = {}) => {
           <div className="container">
           {info.title &&   <p
               className="h4"
-              style={{
+              style={{ 
                 color: info.title_color,
                 textAlign: info.teamAlignment,
               }}

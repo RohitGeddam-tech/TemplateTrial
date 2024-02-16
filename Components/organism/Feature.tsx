@@ -17,6 +17,7 @@ export const Feature = ({
   description_color="black",
   title_color="black",
 }: featureProps) => {
+  console.log(data);
   
   
   return (
@@ -25,19 +26,21 @@ export const Feature = ({
         data.map((doc, ind) => (
           <div key={ind}>
             {alignment === "vertical" ? (
-           (doc.image?.data?.attributes?.url || doc.title || doc.description)  ? <div className="shrink">
+           (doc.image?.data?.attributes?.url || doc.title || doc.sub_title || doc.description)  ? <div className="shrink">
               {(doc.image?.data?.attributes?.url || doc.title) && <div className="head">
                 {doc.image?.data?.attributes?.url ?<img src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`} alt="titleImg" />:null}
                 { doc.title &&   <p className="para-lg" style={{color:title_color}}>{doc.title}</p>}
                 </div>}
+                {doc.sub_title && <div className="para-sm" style={{color:title_color}}>{doc.sub_title}</div> }
                {doc.description &&  <p className="para-md" style={{color:description_color}}>{doc.description}</p>}
               </div> :null
             ) : (
-              (doc.image?.data?.attributes?.url || doc.title || doc.description) ?  <div className="normal">
+              (doc.image?.data?.attributes?.url || doc.title || doc.sub_title || doc.description) ?  <div className="normal">
                  {(doc.image?.data?.attributes?.url || doc.title) && <div className="head">
                 {doc.image?.data?.attributes?.url ?<img src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`} alt="titleImg" />:null}
                 { doc.title &&   <p className="para-lg" style={{color:title_color}}>{doc.title}</p>}
                 </div>}
+                {doc.sub_title && <div className="para-sm" style={{color:title_color}}>{doc.sub_title}</div> }
                 {doc.description &&  <p className="para-md" style={{color:description_color}}>{doc.description}</p>}
               </div>  : null
             )}

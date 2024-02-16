@@ -8,13 +8,14 @@ import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
 import Link from "next/link";
+import WhatsAppButton from "../Components/organism/WhatsApp";
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
   // console.log(process.env.NEXT_PUBLIC_API_URL)
-  async function fetchData() {
+  async function fetchData() { 
     const data = {
       query: `
       query{
@@ -95,6 +96,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              <WhatsAppButton/>
               <Footer />
             </>
           ) : (
