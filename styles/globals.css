@@ -673,9 +673,6 @@ p {
 }
 
 
-
-
-/* whatsapp */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
@@ -690,12 +687,12 @@ p {
   align-items: center;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  text-decoration: none; /* Remove underline from anchor tag */
+  text-decoration: none; 
   transition: transform 0.2s;
 }
 
 .whatsapp-btn:hover {
-  transform: scale(1.1); /* Scale up the button on hover */
+  transform: scale(1.1); 
 }
 
 .whatsapp-btn img {
