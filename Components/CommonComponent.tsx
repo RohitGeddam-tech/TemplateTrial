@@ -13,7 +13,8 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
-
+ 
+  
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
       return ((info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
@@ -360,7 +361,7 @@ const CommonComponent = (data: any = {}) => {
       />:null
       );
     case "ComponentComponentFeatureComponent":
-      return ( (info.title || info.description || info.card?.length > 0 ) ? <div
+      return ( (info.title || info.description || info.cards?.length > 0 ) ? <div
           className={`titleCard`}
           style={
             info.background_color
