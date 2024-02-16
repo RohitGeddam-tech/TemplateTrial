@@ -9,7 +9,6 @@ import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
 import Link from "next/link";
 
-
 const Home = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);

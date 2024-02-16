@@ -47,7 +47,7 @@ export const Banner = ({
       }
     >
       
-      {title || body || button.cta_title|| image || mobImage || opacity !== "no" ? (
+      {title || body || button.cta_title|| image || mobImage || opacity  ? (
         <div className="container">
                        
                        {opacity !== "no" && (
@@ -66,7 +66,7 @@ export const Banner = ({
             <p
               className="h2"
               style={{
-                textAlign: textAlign ? textAlign : alignment,
+                textAlign: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment,
                 color: title_color,
               }}
             >
@@ -77,7 +77,7 @@ export const Banner = ({
             <p
               className="para-lg"
               style={{
-                textAlign: textAlign ? textAlign : alignment,
+                textAlign: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment,
                 color: description_color,
               }}
             >
@@ -88,7 +88,7 @@ export const Banner = ({
         {button.cta_title && (
           <div
             className="content"
-            style={{ justifyContent: textAlign ? textAlign : alignment }}
+            style={{ justifyContent: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment }}
           >
             {button.cta_title && (
               <Button
@@ -104,8 +104,7 @@ export const Banner = ({
       </div> : null
      }
 
-
-        </div>
+      </div>
       ) : null}
       {open && <Appointment setOpen={setOpen} />}
     </div>
