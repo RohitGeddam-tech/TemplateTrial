@@ -21,10 +21,10 @@ interface bannerProps {
 }
 
 export const Banner = ({
-  title = "TITLE",
-  body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  image = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
-  mobImage = "https://start.sugarlogger.com/static/media/Main-Banner.be4fadf0.jpg",
+  title = "",
+  body = "",
+  image = "",
+  mobImage = "",
   alignment = "right",
   opacity = "partial",
   textAlign,
@@ -35,7 +35,7 @@ export const Banner = ({
 }: bannerProps) => {
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
-  return (
+  return (title || body || image || mobImage || button.cta_title) ? (
     <div
       className={`banner ${opacity} ${alignment}`}
       style={
@@ -55,43 +55,53 @@ export const Banner = ({
           )}
         </div>
       )}
-      <div className="container">
-        <div className="box">
-          <div className="details">
-            <p
-              className="h2"
-              style={{
-                textAlign: textAlign ? textAlign : alignment,
-                color: title_color,
-              }}
-            >
-              {title}
-            </p>
-            <p
-              className="para-lg"
-              style={{
-                textAlign: textAlign ? textAlign : alignment,
-                color: description_color,
-              }}
-            >
-              {body}
-            </p>
-          </div>
-          <div
-            className="content"
-            style={{ justifyContent: textAlign ? textAlign : alignment }}
-          >
-            <Button
-              {...button}
-              handleClick={() => {
-                setOpen(true);
-              }}
-            />
-            {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
+      {title || body || button.cta_title ? (
+        <div className="container">
+          <div className="box">
+          {(title || body )  ?<div className="details">
+              {title && (
+                <p
+                  className="h2"
+                  style={{
+                    textAlign: textAlign ? textAlign : alignment,
+                    color: title_color,
+                  }}
+                >
+                  {title}
+                </p>
+              )}
+              {body && (
+                <p
+                  className="para-lg"
+                  style={{
+                    textAlign: textAlign ? textAlign : alignment,
+                    color: description_color,
+                  }}
+                >
+                  {body}
+                </p>
+              )}
+            </div>: null}
+            {button.cta_title && (
+              <div
+                className="content"
+                style={{ justifyContent: textAlign ? textAlign : alignment }}
+              >
+                {button.cta_title && (
+                  <Button
+                    {...button}
+                    handleClick={() => {
+                      setOpen(true);
+                    }}
+                  />
+                )}
+                {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      ) : null}
       {open && <Appointment setOpen={setOpen} />}
     </div>
-  );
+  ) : null;
 };
