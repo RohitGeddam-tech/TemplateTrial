@@ -46,7 +46,11 @@ export const Banner = ({
           : { backgroundColor: `transparent` }
       }
     >
-      {opacity !== "no" && (
+      
+      {title || body || button.cta_title|| image || mobImage || opacity !== "no" ? (
+        <div className="container">
+                       
+                       {opacity !== "no" && (
         <div className="bgImg">
           {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
             <img src={mobImage} alt="background" />
@@ -55,50 +59,52 @@ export const Banner = ({
           )}
         </div>
       )}
-      {title || body || button.cta_title ? (
-        <div className="container">
-          <div className="box">
-          {(title || body )  ?<div className="details">
-              {title && (
-                <p
-                  className="h2"
-                  style={{
-                    textAlign: textAlign ? textAlign : alignment,
-                    color: title_color,
-                  }}
-                >
-                  {title}
-                </p>
-              )}
-              {body && (
-                <p
-                  className="para-lg"
-                  style={{
-                    textAlign: textAlign ? textAlign : alignment,
-                    color: description_color,
-                  }}
-                >
-                  {body}
-                </p>
-              )}
-            </div>: null}
+     { (title || body || button.cta_title  ) ?
+      <div className="box">
+      {(title || body )  ?<div className="details">
+          {title && (
+            <p
+              className="h2"
+              style={{
+                textAlign: textAlign ? textAlign : alignment,
+                color: title_color,
+              }}
+            >
+              {title}
+            </p>
+          )}
+          {body && (
+            <p
+              className="para-lg"
+              style={{
+                textAlign: textAlign ? textAlign : alignment,
+                color: description_color,
+              }}
+            >
+              {body}
+            </p>
+          )}
+        </div>: null}
+        {button.cta_title && (
+          <div
+            className="content"
+            style={{ justifyContent: textAlign ? textAlign : alignment }}
+          >
             {button.cta_title && (
-              <div
-                className="content"
-                style={{ justifyContent: textAlign ? textAlign : alignment }}
-              >
-                {button.cta_title && (
-                  <Button
-                    {...button}
-                    handleClick={() => {
-                      setOpen(true);
-                    }}
-                  />
-                )}
-                {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
-              </div>
+              <Button
+                {...button}
+                handleClick={() => {
+                  setOpen(true);
+                }}
+              />
             )}
+            {/* <Button Type={buttonb} label={secondButton} size="small" /> */}
           </div>
+        )}
+      </div> : null
+     }
+
+
         </div>
       ) : null}
       {open && <Appointment setOpen={setOpen} />}

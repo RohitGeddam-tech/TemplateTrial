@@ -8,7 +8,7 @@ import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
 import Link from "next/link";
-import WhatsAppButton from "../Components/organism/WhatsApp";
+
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
@@ -96,7 +96,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-              <WhatsAppButton/>
+      
               <Footer />
             </>
           ) : (
