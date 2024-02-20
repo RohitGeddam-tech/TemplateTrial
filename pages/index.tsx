@@ -8,6 +8,7 @@ import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
 import Link from "next/link";
+import WhatsApp from "../Components/organism/WhatsApp";
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
@@ -51,7 +52,7 @@ const Home = () => {
     !load && fetchData();
   }, [load]);
 
-  const [font, theme] = ConfigData();
+  const [font, theme, number] = ConfigData();
   // console.log(font);
   return (
     <div className={theme}>
@@ -96,6 +97,10 @@ const Home = () => {
                 ))}
               </div>
       
+             {
+              
+               number && <WhatsApp data={number}/>
+             }
               <Footer />
             </>
           ) : (

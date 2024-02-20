@@ -17,8 +17,7 @@ export const Feature = ({
   description_color="black",
   title_color="black",
 }: featureProps) => {
-  console.log(data);
-  
+
   
   return (
    data?.length > 0 ? <div className={`feature ${features % 4 === 0 ? "small" : ""}`}>

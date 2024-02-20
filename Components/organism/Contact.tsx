@@ -347,7 +347,8 @@ export const Contact = ({
 
   const ContactDetails = () => (
     <div className="details">
-      <p
+      {
+        title && <p
         className="h4"
         style={{
           color: title_color,
@@ -355,14 +356,18 @@ export const Contact = ({
       >
         {title}
       </p>
+      }
+    {
+      body && 
       <p
-        className="para-md"
-        style={{
-          color: description_color,
-        }}
-      >
-        {body}
-      </p>
+      className="para-md"
+      style={{
+        color: description_color,
+      }}
+    >
+      {body}
+    </p>
+    }
       {details.length > 0 &&
         details.map((doc, ind) => (
           <div key={ind}>
