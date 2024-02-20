@@ -48,6 +48,7 @@ export const Footer = () => {
             attributes {
               footer_type
               background_color
+              text_color
               components{
                 __typename
                 ...on ComponentAtomsMenuGroupAtom{
@@ -80,7 +81,7 @@ export const Footer = () => {
     const response = await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
-    console.log(response.data.data.footer.data.attributes.background_color);
+    console.log(response.data.data.footer.data.attributes.text_color);
     // return response.data.data;
     setState({ ...response.data.data.navbar.data.attributes });
     setGroup({ ...response.data.data.footer.data.attributes });
@@ -186,6 +187,7 @@ export const Footer = () => {
       );
   }, [group]);
 
+console.log(group?.text_color);
 
   return (
     <div className="footer" style={{ backgroundColor: group?.background_color || "#fff" }}>
