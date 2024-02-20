@@ -7,29 +7,31 @@ import axios from "axios";
 import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
+import Link from "next/link";
+import WhatsAppButton from "../Components/organism/WhatsApp";
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
   // console.log(process.env.NEXT_PUBLIC_API_URL)
-  async function fetchData() {
+  async function fetchData() { 
     const data = {
       query: `
-        query{
-            pageHome{
-              data{
-               attributes{
+      query{
+        pages(filters: { slug: { eq: null }} ){
+            data {
+              attributes {
                 ${seo}
-                 components{
-                   __typename
-                   ${apiQuery}
-                 }
-               }
-             }
-           }
-      }
-      `,
+                components {
+                  __typename
+                  ${apiQuery}
+                }
+              }
+            }
+          }
+        }
+        `,
     };
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
@@ -38,9 +40,9 @@ const Home = () => {
         if (response?.status === 200) {
           setLoad(true);
           setState([
-            ...response.data.data.pageHome?.data.attributes.components,
+            ...response.data.data.pages?.data[0].attributes.components,
           ]);
-          setSeoData({...response.data.data.pageHome?.data.attributes.seo});
+          setSeoData({ ...response.data.data.pages?.data[0].attributes.seo });
         }
       })
       .catch((err) => console.log(err));
@@ -50,7 +52,7 @@ const Home = () => {
     !load && fetchData();
   }, [load]);
 
-  const [font, theme] = ConfigData();
+  const [font, theme, number] = ConfigData();
   // console.log(font);
   return (
     <div className={theme}>
@@ -94,14 +96,22 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+             {
+               number && <WhatsAppButton data={number}/>
+             }
               <Footer />
             </>
           ) : (
-            <div className="loading">Work In Progress</div>
+            <div className="loading">
+              <p className="h3">Work In Progress</p>
+              <Link href="/" className="h5" style={{ color: "blue" }}>
+                Click here to go back
+              </Link>
+            </div>
           )}
         </>
       ) : (
-        <div className="loading">Loading...</div>
+        <div className="loading"></div>
       )}
     </div>
   );

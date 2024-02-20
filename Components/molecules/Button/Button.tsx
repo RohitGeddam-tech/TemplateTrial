@@ -13,38 +13,41 @@ import { ButtonProps, classType, classSize, ButtonArrow } from "./Util";
 export const Button = ({
   cta_type = "primary",
   cta_icon = "arrow_forward",
-  cta_title = "title",
+  cta_title = "",
   cta_action = "open",
   cta_icon_type = "outlined",
   cta_icon_alignment = "none",
   size = "medium",
   handleClick = () => {},
-}: ButtonProps) => {
-  return (
-    <button
-      className={`btn ${classType(cta_type)} ${classSize(size)} `}
-      // disabled={state === "disabled"}
-      // style={styles}
-      onClick={() => handleClick(cta_action)}
-    >
-      {cta_icon_alignment === "leading" ? (
-        <span
-          style={{ fontSize: "16px", marginRight: "8px" }}
-          className={`material-icons-${cta_icon_type}`}
+}: ButtonProps) => {  
+  return (    <>
+      {cta_title !== "" && cta_title !== null && (
+        <button
+          className={`btn ${classType(cta_type)} ${classSize(size)} `}
+          // disabled={state === "disabled"}
+          // style={styles}
+          onClick={() => handleClick(cta_action)}
         >
-          {cta_icon}
-        </span>
-      ) : null}
-      {cta_title}
-      {cta_icon_alignment === "trailing" ? (
-        <span
-          style={{ fontSize: "16px", marginLeft: "8px" }}
-          className={`material-icons-${cta_icon_type}`}
-        >
-          {cta_icon}
-        </span>
-      ) : null}
-    </button>
+          {cta_icon_alignment === "leading" ? (
+            <span
+              style={{ fontSize: "16px", marginRight: "8px" }}
+              className={`material-icons-${cta_icon_type}`}
+            >
+              {cta_icon}
+            </span>
+          ) : null}
+          {cta_title}
+          {cta_icon_alignment === "trailing" ? (
+            <span
+              style={{ fontSize: "16px", marginLeft: "8px" }}
+              className={`material-icons-${cta_icon_type}`}
+            >
+              {cta_icon}
+            </span>
+          ) : null}
+        </button>
+      )}
+    </>
   );
 };
 

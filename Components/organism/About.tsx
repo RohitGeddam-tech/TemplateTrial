@@ -20,11 +20,11 @@ interface aboutProps {
 
 export const About = ({
   button = { size: "small", cta_title: "button", cta_type: "primary" },
-  image = "https://staging.sugarlogger.com/static/media/Logo.652fce25.svg",
+  image = "",
   subtitleVisible = true,
-  subtitle = "subtitle",
-  title = "title",
-  body = "body",
+  subtitle = "",
+  title = "",
+  body = "",
   buttonVisible = true,
   imageAlignment = "left",
   bgColor,
@@ -32,39 +32,52 @@ export const About = ({
   title_color = "#212b36",
 }: aboutProps) => {
   const [open, setOpen] = useState<any>(false);
-  const AboutImage = () => (
-    <div className="imgBox">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image}
-        alt="logo"
-        // onClick={() => (window.location.href = "/")}
-      />
-      {subtitleVisible && <p className="caption">{subtitle}</p>}
-    </div>
-  );
 
-  const AboutDetails = () => (
-    <div className="details">
-      <p className="h4" style={{ color: title_color }}>
-        {title}
-      </p>
-      <p className="para-md" style={{ color: description_color }}>
-        {body}
-      </p>
-      {buttonVisible && (
-        <Button
-          {...button}
-          handleClick={() => {
-            setOpen(true);
-          }}
-        />
-      )}
-    </div>
-  );
+  const AboutImage = () =>
+  {
+    if(image===""){
+      return null;
+    }
+    return  <div className="imgBox">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img
+      src={image}
+      alt="logo"
+      // onClick={() => (window.location.href = "/")}
+    />
+    {subtitleVisible && <p className="caption">{subtitle}</p>}
+  </div>
+  }
+  ;
 
-  return (
-    <div
+  const AboutDetails = () =>
+   ( title || body || buttonVisible )?(
+      <div className="details">
+        {title && (
+          <p className="h4" style={{ color: title_color }}>
+            {title}
+          </p>
+        )}
+        {body && (
+          <p className="para-md" style={{ color: description_color }}>
+            {body}
+          </p>
+        )}
+        {buttonVisible && (
+          <Button
+            {...button}
+            handleClick={() => {
+              setOpen(true);
+            }}
+          />
+        )}
+      </div>
+    ):null;
+
+
+
+    return (
+      (AboutImage() && AboutDetails()) ? <div
       className={`about`}
       style={
         bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
@@ -85,6 +98,19 @@ export const About = ({
         </div>
       </div>
       {open && <Appointment setOpen={setOpen} />}
-    </div>
-  );
+    </div> : ( AboutImage() || AboutDetails()) ?     <div
+      className={`about`}
+      style={
+        bgColor ? { backgroundColor: bgColor } : { backgroundColor: `white` }
+      }
+    >
+      <div className="container">
+       <div className="center">
+        { AboutImage() || AboutDetails()} 
+       </div>
+      </div>
+      {open && <Appointment setOpen={setOpen} />}
+    </div> :null
+    
+    );
 };

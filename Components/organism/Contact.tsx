@@ -49,7 +49,7 @@ export const Contact = ({
 
     async function fetchData() {
       const data = {
-        query: `
+     query: `
       query{
         contactUsFrom {
           data {
@@ -347,7 +347,8 @@ export const Contact = ({
 
   const ContactDetails = () => (
     <div className="details">
-      <p
+      {
+        title && <p
         className="h4"
         style={{
           color: title_color,
@@ -355,20 +356,24 @@ export const Contact = ({
       >
         {title}
       </p>
+      }
+    {
+      body && 
       <p
-        className="para-md"
-        style={{
-          color: description_color,
-        }}
-      >
-        {body}
-      </p>
+      className="para-md"
+      style={{
+        color: description_color,
+      }}
+    >
+      {body}
+    </p>
+    }
       {details.length > 0 &&
         details.map((doc, ind) => (
           <div key={ind}>
             {doc.type === "address" ? (
               <div key={ind} className="data">
-                <p className="para-lg">
+                <p className="para-lg" style={{ color: doc.title_color }}>
                   <span
                     className={`material-icons-${doc.icon_type}`}
                     style={{ color: doc.icon_color }}

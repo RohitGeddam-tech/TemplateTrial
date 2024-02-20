@@ -1,27 +1,32 @@
-/* eslint-disable react/no-unescaped-entities */
+import { useRouter } from "next/router";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Components/organism/Navbar";
 import axios from "axios";
 import { Footer } from "../Components/organism/Footer";
 import { apiQuery, seo } from "../utils/apiQuery";
-import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
+import CommonComponent from "../Components/CommonComponent";
+import Link from "next/link";
+import WhatsAppButton from "../Components/organism/WhatsApp";
 
-const Theme1 = () => {
+export default function Page() {
+  const router = useRouter();
+  //   console.log(router.query.slug);
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
+  // const [slugName, setSlugName] = useState<any>(""); 
 
-  async function fetchData() {
+  async function fetchData(pageName: any) {
     const data = {
       query: `
-        query {
-          pageBranch{
-            data{
-              attributes{
+      query{
+        pages(filters: { slug: {eq:"${pageName}"}} ){
+            data {
+              attributes {
                 ${seo}
-                components{
+                components {
                   __typename
                   ${apiQuery}
                 }
@@ -34,30 +39,49 @@ const Theme1 = () => {
     await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((response) => {
+        // console.log(response.data.data, pageName);
         if (response?.status === 200) {
           setLoad(true);
-          setState([...response.data.data.pageBranch?.data.attributes.components]);
+          setState([
+            ...response.data.data.pages?.data[0].attributes.components,
+          ]);
           setSeoData({
-            ...response.data.data.pageBranch?.data.attributes.seo,
+            ...response.data.data.pages?.data[0].attributes.seo,
           });
-        }})
-        .catch((err) => console.log(err));;
-    // console.log(response.data.data.pageBranch?.data.attributes.components);
-    // return response.data.data;
+        }
+      })
+      .catch((err) => {
+        console.log(err, "error");
+        setLoad(true);
+      });
   }
-
   useEffect(() => {
-    !load && fetchData();
-  }, [load]);
+    // if (router.isReady) {
+    if (router.isReady) {
+      const slug: any = router.query?.slug;
+
+      // const words = slug?.split("-");
+
+      // for (let i = 0; i < words.length; i++) {
+      //   words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+      // }
+      // const pageName = `page${words.join("")}`;
+      !load && slug && fetchData(slug);
+      router.events.on("routeChangeComplete", () => router.reload());
+      return router.events.off("routeChangeComplete", () => router.reload());
+    }
+  }, [load, router]);
+
+  //   useEffect(() => {
+  //     !load && slugName !== "" && fetchData(slugName);
+  //   }, [load, slugName]);
+
+  const [font, theme, number] = ConfigData();
+
   
-  const [font,theme] = ConfigData();
   return (
     <div className={theme}>
       <Head>
-        {/* <style>
-          @import url('https://fonts.googleapis.com/css?family={font}
-          :wght@400;700&display=swap');
-        </style> */}
         {load && Object.keys(seoData).length > 0 && (
           <>
             <div>hello</div>
@@ -85,17 +109,23 @@ const Theme1 = () => {
                   </div>
                 ))}
               </div>
+              {
+               number && <WhatsAppButton data={number}/>
+             }
               <Footer />
             </>
           ) : (
-            <div className="loading">Work In Progress</div>
+            <div className="loading">
+              <p className="h3">Work In Progress</p>
+              <Link href="/" className="h5" style={{color:"blue"}}>
+                Click here to go back
+              </Link>
+            </div>
           )}
         </>
       ) : (
-        <div className="loading">Loading...</div>
+        <div className="loading"></div>
       )}
     </div>
   );
-};
-
-export default Theme1;
+}

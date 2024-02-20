@@ -24,5 +24,9 @@ export default function BannerCarousel({
     nextArrow: <SliderNextArrow />,
     prevArrow: <SliderPrevArrow />,
   };
-  return <Slider {...settings}>{children}</Slider>;
+  return (
+    <div className="bannerSlider">
+      <Slider {...settings}>{children}</Slider>
+    </div>
+  );
 }

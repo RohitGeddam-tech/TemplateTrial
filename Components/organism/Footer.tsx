@@ -47,6 +47,7 @@ export const Footer = () => {
           data {
             attributes {
               footer_type
+              background_color
               components{
                 __typename
                 ...on ComponentAtomsMenuGroupAtom{
@@ -79,7 +80,7 @@ export const Footer = () => {
     const response = await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
-    // console.log(response.data.data);
+    console.log(response.data.data.footer.data.attributes.background_color);
     // return response.data.data;
     setState({ ...response.data.data.navbar.data.attributes });
     setGroup({ ...response.data.data.footer.data.attributes });
@@ -90,7 +91,8 @@ export const Footer = () => {
 
   const GroupType = ({ data }: any) => {
     const info = data;
-    switch (info.__typename) {
+    // console.log(info);
+    switch (info?.__typename) {
       case "ComponentAtomsMenuGroupAtom":
         return (
           <div className="links">
@@ -121,11 +123,11 @@ export const Footer = () => {
                   // className={`${doc.active ? "active" : ""}`}
                 >
                   {/* <span
-                    style={{ fontSize: "24px", marginRight: "8px" }}
-                    className={`material-icons-${doc.icon_type}`}
-                  >
-                    {doc.icon}
-                  </span> */}
+                      style={{ fontSize: "24px", marginRight: "8px" }}
+                      className={`material-icons-${doc.icon_type}`}
+                    >
+                      {doc.icon}
+                    </span> */}
                   {doc.icon === "facebook" ? (
                     <Image
                       src={facebook}
@@ -184,8 +186,9 @@ export const Footer = () => {
       );
   }, [group]);
 
+
   return (
-    <div className={`footer`} style={{ backgroundColor: `white` }}>
+    <div className="footer" style={{ backgroundColor: group?.background_color || "#fff" }}>
       {group.components?.length > 0 && sm !== null && (
         <div className="container">
           {group.footer_type === "default" ? (
@@ -194,13 +197,18 @@ export const Footer = () => {
                 <div className="left">
                   <div className="logo">
                     <Link href="/">
-                      <Image
-                        width={130}
-                        height={60}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={
                           `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
+                        style={{
+                          width: "90%",
+                          maxHeight: "50px",
+                          maxWidth: "300px",
+                          cursor: "pointer",
+                        }}
                         alt="logo"
                       />
                     </Link>
@@ -212,8 +220,9 @@ export const Footer = () => {
                           href={doc.url}
                           key={ind}
                           // className={`${doc.active ? "active" : ""}`}
+                          
                         >
-                          <p className="para-md">{doc.title}</p>
+                          <p className="para-md" style={{ color: group?.text_color || "#212b36" }}>{doc.title}</p>
                         </Link>
                       ))}
                   </div>
@@ -286,7 +295,7 @@ export const Footer = () => {
                   </div>
                 </div>
               </div>
-              <p className="para-md" style={{ marginTop: 24 }}>
+              <p className="para-md companyName" style={{ marginTop: 24, color: group?.text_color || "#212b36"  }}>
                 © Sugarlogger Technologies Pvt. Ltd.
               </p>
             </>
@@ -300,7 +309,7 @@ export const Footer = () => {
                   <GroupType data={group.components[3]} />
                 </div>
               )}
-              <p className="para-md" style={{ marginTop: 24 }}>
+              <p className="para-md companyName" style={{ marginTop: 24, color: group?.text_color || "#212b36" }}>
                 © Sugarlogger Technologies Pvt. Ltd.
               </p>
             </>
