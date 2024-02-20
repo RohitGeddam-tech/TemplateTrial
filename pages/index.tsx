@@ -52,7 +52,7 @@ const Home = () => {
     !load && fetchData();
   }, [load]);
 
-  const [font, theme] = ConfigData();
+  const [font, theme, number] = ConfigData();
   // console.log(font);
   return (
     <div className={theme}>
@@ -96,7 +96,9 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-              <WhatsAppButton/>
+             {
+               number && <WhatsAppButton data={number}/>
+             }
               <Footer />
             </>
           ) : (

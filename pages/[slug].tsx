@@ -8,6 +8,7 @@ import { apiQuery, seo } from "../utils/apiQuery";
 import { ConfigData } from "../utils/resource";
 import CommonComponent from "../Components/CommonComponent";
 import Link from "next/link";
+import WhatsAppButton from "../Components/organism/WhatsApp";
 
 export default function Page() {
   const router = useRouter();
@@ -75,7 +76,9 @@ export default function Page() {
   //     !load && slugName !== "" && fetchData(slugName);
   //   }, [load, slugName]);
 
-  const [font, theme] = ConfigData();
+  const [font, theme, number] = ConfigData();
+
+  
   return (
     <div className={theme}>
       <Head>
@@ -106,6 +109,9 @@ export default function Page() {
                   </div>
                 ))}
               </div>
+              {
+               number && <WhatsAppButton data={number}/>
+             }
               <Footer />
             </>
           ) : (
