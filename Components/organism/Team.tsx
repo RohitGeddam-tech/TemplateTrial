@@ -23,7 +23,7 @@ export const Team = ({
     <div className={`team ${view}`}>
       {data.length > 0 &&
         data.map((doc: any, ind: number) => (
-         (doc.image?.data?.attributes?.url || doc.name || doc.designation || doc.description) ?<div className={`shrink ${teams > 5 ? "lower" : ""}`} key={ind}>
+         (doc.image?.data?.attributes?.url || doc.name || doc.designation || doc.desciption) ?<div className={`shrink ${teams > 5 ? "lower" : ""}`} key={ind}>
            {
             doc.image?.data?.attributes?.url ? <img
             src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}

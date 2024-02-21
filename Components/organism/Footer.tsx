@@ -49,6 +49,7 @@ export const Footer = () => {
               footer_type
               background_color
               text_color
+              hide_logo
               components{
                 __typename
                 ...on ComponentAtomsMenuGroupAtom{
@@ -81,7 +82,7 @@ export const Footer = () => {
     const response = await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
-    // console.log(response.data.data.footer.data.attributes.text_color);
+    // console.log(response.data.data.footer.data.attributes.hide_logo);
     // return response.data.data;
     setState({ ...response.data.data.navbar.data.attributes });
     setGroup({ ...response.data.data.footer.data.attributes });
@@ -197,7 +198,7 @@ export const Footer = () => {
             <>
               <div className="insideFooter">
                 <div className="left">
-                  <div className="logo">
+                { !group?.hide_logo && <div className="logo">
                     <Link href="/">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -214,7 +215,7 @@ export const Footer = () => {
                         alt="logo"
                       />
                     </Link>
-                  </div>
+                  </div>}
                   <div className="links">
                     {state.menus?.length > 0 &&
                       state.menus?.map((doc: any, ind: number) => (

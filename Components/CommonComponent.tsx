@@ -14,7 +14,7 @@ const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
  
-  
+   
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
       return ((info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
