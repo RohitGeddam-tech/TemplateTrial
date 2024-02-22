@@ -41,6 +41,7 @@ const CommonComponent = (data: any = {}) => {
         />:null
       );
     case "ComponentComponentCertificatesComponent":
+     
       return (
         (info.title ||  info.desciption  || info.images )?
         <div
@@ -77,8 +78,8 @@ const CommonComponent = (data: any = {}) => {
            {
             info.images?.length &&  <Carousel
             slidesToShow={3}
-            arrow={info.carousel_type === "arrows"}
-            dots={info.carousel_type === "dots"}
+            arrow={info?.certi_carousel === "arrows"}
+            dots={info?.certi_carousel === "dots"}
           >
             {info?.images?.length > 0 &&
               info.images.map((doc: any, ind: number) => (
@@ -144,7 +145,9 @@ const CommonComponent = (data: any = {}) => {
       );
     case "ComponentComponentBannerComponent":
       return ((info.banners?.length > 1 )? 
-        <BannerCarousel slidesToShow={1} arrow={true} dots={true}>
+        <BannerCarousel slidesToShow={1}
+         arrow={true}
+          dots={true}>
         {info.banners.map((doc: any, ind: number) => (
         (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
             title={doc.title}

@@ -110,12 +110,13 @@ export const apiQuery = `
     component_type
   },
   ... on ComponentComponentCertificatesComponent {
+    certi_carousel:carousel_type
     title
     title_color
     desciption
     desciption_color
     background_color
-    galleryAlignment:text_allignment
+    galleryAlignment: text_allignment
     images {
       image_alt_text
       image {
@@ -127,6 +128,7 @@ export const apiQuery = `
       }
     }
   },
+
   ... on ComponentComponentOurTeamComponent{
     title
  title_color

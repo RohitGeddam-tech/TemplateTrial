@@ -223,7 +223,6 @@ export const Footer = () => {
                           href={doc.url}
                           key={ind}
                           // className={`${doc.active ? "active" : ""}`}
-                          
                         >
                           <p className="para-md" style={{ color: group?.text_color || "#212b36" }}>{doc.title}</p>
                         </Link>
