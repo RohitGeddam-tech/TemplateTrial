@@ -13,12 +13,11 @@ import { Feature } from "./organism/Feature";
 const CommonComponent = (data: any = {}) => {
   const [open, setOpen] = useState<any>(false);
   const info = data.data;
- 
    
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
       return ((info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
-          title={info.title}
+          title={info.title.replaceAll('&nbsp;',"\u00A0")}
           body={info.desciption}
           image={info.image?.data?.attributes?.url !== undefined ?`${process.env.NEXT_PUBLIC_API_URL}${info.image?.data?.attributes?.url}`: ""}
         
@@ -150,7 +149,7 @@ const CommonComponent = (data: any = {}) => {
           dots={true}>
         {info.banners.map((doc: any, ind: number) => (
         (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
-            title={doc.title}
+            title={doc.title?.replaceAll('&crarr;','\u021b5')}
             body={doc.body}
             textAlign={doc.content_alignment}
             key={ind}
@@ -182,7 +181,7 @@ const CommonComponent = (data: any = {}) => {
       </BannerCarousel>
         :  info.banners && info.banners.map((doc: any, ind: number) => (
          (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
-            title={doc.title}
+            title={doc.title?.replaceAll('&#8629;','\u021b5')}
             body={doc.body}
             textAlign={doc.content_alignment}
             alignment={doc.content_alignment}
@@ -260,7 +259,7 @@ const CommonComponent = (data: any = {}) => {
                         cta_icon_alignment: doc.cta_icon_alignment,
                       }}
                       image={doc.image?.data?.attributes?.url!== undefined ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
-                      title={doc.title}
+                      title={doc.title.replaceAll('&nbsp;',"\u00A0")}
                       para={
                         doc.desciption?.length > 240
                           ? `${doc.desciption?.slice(0, 240)}...`

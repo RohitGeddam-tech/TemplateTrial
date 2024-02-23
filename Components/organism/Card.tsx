@@ -21,7 +21,7 @@ export interface cardProps {
   description_color?: string;
   title_color?: string;
   setOpen?: any;
-  sub_title?:string;
+  sub_title?: string;
 }
 
 const Card = ({
@@ -36,46 +36,53 @@ const Card = ({
   title_color = "#212b36",
   setOpen,
 }: cardProps) => {
+  const val = title.split("\\n");
+  console.log(val);
+  
   return cardType === "testimonial" ? (
-   (image || title || subtitle || para) ? <div
-      className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
-    >
-    { ( image || title  || subtitle)? <div className="details">
-        {image && <img src={image} alt="titleImg" />}
-        <div className="info">
-          {title && (
-            <p
-              className="para-md"
-              style={{ fontWeight: "600", color: title_color }}
-            >
-              {title}
-            </p>
-          )}
-          {subtitle && (
-            <p className="para-md" style={{ color: description_color }}>
-              {subtitle}
-            </p>
-          )}
-        </div>
-      </div> : null}
-      {para && (
-        <p className="para-lg" style={{ color: description_color }}>
-          {para}
-        </p>
-      )}
-    </div> : null
+    image || title || subtitle || para ? (
+      <div
+        className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
+      >
+        {image || title || subtitle ? (
+          <div className="details">
+            {image && <img src={image} alt="titleImg" />}
+            <div className="info">
+              {title && (
+                <p
+                  className="para-md"
+                  style={{ fontWeight: "600", color: title_color }}
+                >
+                  {title}
+                </p>
+              )}
+              {subtitle && (
+                <p className="para-md" style={{ color: description_color }}>
+                  {subtitle}
+                </p>
+              )}
+            </div>
+          </div>
+        ) : null}
+        {para && (
+          <p className="para-lg" style={{ color: description_color }}>
+            {para}
+          </p>
+        )}
+      </div>
+    ) : null
   ) : cardType === "images" ? (
     image && (
       <div className="imgGallery">
         <img src={image} alt="titleImg" />
       </div>
     )
-  ) : (
-    (image || title || subtitle || para || button) ?  <div className="card">
+  ) : image || title || subtitle || para || button ? (
+    <div className="card">
       {image && <img src={image} alt="titleImg" />}
       {title && (
         <p className="sub-md" style={{ fontWeight: "600", color: title_color }}>
-          {title}
+          {val}
         </p>
       )}
       {subtitle && (
@@ -96,8 +103,8 @@ const Card = ({
           }}
         />
       )}
-    </div> : null
-  );
+    </div>
+  ) : null;
 };
 
 export default Card;
