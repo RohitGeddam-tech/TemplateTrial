@@ -75,7 +75,7 @@ export const Banner = ({
             <p
               className="h2"
               style={{
-                textAlign: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment,
+                textAlign: textAlign ? textAlign : alignment,
                 color: title_color,
               }}
             >
@@ -86,7 +86,7 @@ export const Banner = ({
             <p
               className="para-lg"
               style={{
-                textAlign: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment,
+                textAlign:  textAlign ? textAlign : alignment,
                 color: description_color,
               }}
             >
@@ -97,7 +97,7 @@ export const Banner = ({
         {button.cta_title && (
           <div
             className="content"
-            style={{ justifyContent: textAlign ==="right" ? "center" : textAlign ? textAlign : alignment }}
+            style={{ justifyContent:  textAlign ? textAlign : alignment }}
           >
             {button.cta_title && (
               <Button

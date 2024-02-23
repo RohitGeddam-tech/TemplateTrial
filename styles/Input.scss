@@ -1888,7 +1888,7 @@ input:checked + .slider:before {
       div {
         &:nth-child(1) {
           display: flex !important;
-          align-items: center;
+          align-items: flex-start;
           justify-content: center;
         }
       }
@@ -2018,7 +2018,7 @@ input:checked + .slider:before {
       width: 100%;
       margin-top: 8px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-around;
       flex-wrap: wrap;
       .shrink,
@@ -2090,7 +2090,7 @@ input:checked + .slider:before {
       .shrink {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: column;
         max-width: 301px;
