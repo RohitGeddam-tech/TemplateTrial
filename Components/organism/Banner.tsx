@@ -11,6 +11,8 @@ interface bannerProps {
   body?: string;
   alignment?: "left" | "right" | "center";
   opacity?: "partial" | "full" | "no";
+  content_position:"top "|"center"|"bottom";
+ content_box_opacity: "partial" | "full" | "no";
   image?: string;
   mobImage?: string;
   textAlign?: "left" | "right" | "center";
@@ -27,6 +29,8 @@ export const Banner = ({
   mobImage = "",
   alignment = "right",
   opacity = "partial",
+  content_position = "center",
+  content_box_opacity = "partial" ,
   textAlign,
   bgColor,
   description_color = "#212b36",
@@ -35,15 +39,20 @@ export const Banner = ({
 }: bannerProps) => {
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
+
+  console.log(content_position , content_box_opacity,opacity);
+  
   return (title || body || image || mobImage || button.cta_title) ? (
     <div
-      className={`banner ${opacity} ${alignment}`}
+      className={`banner ${opacity} ${alignment} ${content_position==="center"? "middle" : content_position}`}
       style={
         opacity === "no"
           ? bgColor
-            ? { backgroundColor: bgColor }
+            ? { backgroundColor: bgColor}
             : { backgroundColor: `var(--primary-main)` }
-          : { backgroundColor: `transparent` }
+          : { backgroundColor: `transparent`} 
+        
+          
       }
     >
       
@@ -60,7 +69,7 @@ export const Banner = ({
         </div>
       )}
      { (title || body || button.cta_title  ) ?
-      <div className="box">
+      <div className={`box ${content_box_opacity}`}  >
       {(title || body )  ?<div className="details">
           {title && (
             <p

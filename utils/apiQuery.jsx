@@ -31,6 +31,8 @@ export const apiQuery = `
       content_alignment,
       background_color,
       image_alt_text,
+      content_position,
+      content_box_opacity,
       mobile_image{
         data{
           attributes{

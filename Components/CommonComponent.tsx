@@ -143,7 +143,7 @@ const CommonComponent = (data: any = {}) => {
           </div>
         </div> :  null
       );
-    case "ComponentComponentBannerComponent":
+    case "ComponentComponentBannerComponent":      
       return ((info.banners?.length > 1 )? 
         <BannerCarousel slidesToShow={1}
          arrow={true}
@@ -169,6 +169,8 @@ const CommonComponent = (data: any = {}) => {
             title_color={doc.title_color}
             alignment={doc.content_alignment}
             opacity={doc.image_opacity}
+            content_box_opacity={doc.content_box_opacity}
+            content_position={doc.content_position}
             button={{
               cta_type: doc.cta_type,
               cta_icon: doc.cta_icon,
@@ -201,6 +203,8 @@ const CommonComponent = (data: any = {}) => {
             bgColor={doc.bgColor}
             description_color={doc.desciption_color}
             title_color={doc.title_color}
+            content_box_opacity={doc.content_box_opacity}
+            content_position={doc.content_position}
             button={{
               cta_type: doc.cta_type,
               cta_icon: doc.cta_icon,
