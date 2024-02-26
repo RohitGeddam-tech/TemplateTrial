@@ -223,6 +223,8 @@ const CommonComponent = (data: any = {}) => {
         ))
       );
       case "ComponentComponentOurServicesComponent":
+        console.log(info);
+        
         return ((info.title || info.desciption || info.cards?.length > 0)? <div
             className={`titleCard`}
             style={
@@ -271,6 +273,12 @@ const CommonComponent = (data: any = {}) => {
                       }}
                       image={doc.image?.data?.attributes?.url!== undefined ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
                       title={doc.title}
+                      font_size_title_card={doc.font_size_title_card}
+                      font_type_title_card= {doc.font_type_title_card}
+                      font_weight_title_card= {doc.font_weight_title_card}
+                      font_size_desc_card={doc.font_size_desc_card}
+                      font_type_desc_card={doc.font_type_desc_card}
+                      font_weight_desc_card={doc.font_weight_desc_card}
                       para={
                         doc.desciption?.length > 240
                           ? `${doc.desciption?.slice(0, 240)}...`
@@ -280,6 +288,7 @@ const CommonComponent = (data: any = {}) => {
                       description_color={info.desciption_color}
                       title_color={info.title_color}
                       setOpen={setOpen}
+
                     />
                    </div> : null
                  ))}
@@ -382,7 +391,6 @@ const CommonComponent = (data: any = {}) => {
       />:null
       );
     case "ComponentComponentFeatureComponent":
-
       return ( (info.title || info.description || info.cards?.length > 0 ) ? <div
           className={`titleCard`}
           style={
@@ -397,6 +405,9 @@ const CommonComponent = (data: any = {}) => {
               style={{
                 color: info.title_color,
                 textAlign: info.featureAlignment,
+                fontSize:info.title_font_size,
+                fontStyle:info.title_font_type,
+                fontWeight:info.title_font_weight
               }}
             >
               {info.title}
@@ -407,6 +418,9 @@ const CommonComponent = (data: any = {}) => {
               style={{
                 color: info.description_color,
                 textAlign: info.featureAlignment,
+                fontSize:info.description_font_size,
+                fontStyle:info.description_font_type,
+                fontWeight:info.description_font_weight,
               }}
             >
               {info.description}
@@ -419,12 +433,6 @@ const CommonComponent = (data: any = {}) => {
             alignment={info.content_alignment}
             description_color={info.description_color}
             title_color={info.title_color}
-            title_font_size={info.title_font_size}
-            title_font_type={info.title_font_type}
-            title_font_weight={info.title_font_weight}
-            description_font_size={info.description_font_size}
-            description_font_type={info.description_font_type}
-            description_font_weight={info.description_font_weight}
                        />
            }
           </div>

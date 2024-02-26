@@ -61,6 +61,12 @@ export const apiQuery = `
       cta_type,
       cta_title,
       cta_action,
+      font_size_title_card:title_font_size,
+    font_type_title_card:title_font_type
+    font_weight_title_card:title_font_weight
+    font_size_desc_card:description_font_size 
+    font_type_desc_card:description_font_type
+    font_weight_desc_card:description_font_weight
       image{
         data{
           attributes{
@@ -172,6 +178,12 @@ export const apiQuery = `
   cards{
     description
     title
+    font_size_title_feat:title_font_size
+    font_type_title_feat:title_font_type
+    font_weight_title_feat:title_font_weight
+    font_size_desc_feat:description_font_size 
+    font_type_desc_feat:description_font_type
+    font_weight_desc_feat:description_font_weight
     sub_title
     image{
       data{
@@ -192,7 +204,7 @@ export const apiQuery = `
   desciption_color
   font_size_desc:description_font_size 
   font_type_desc:description_font_type
-  font_weight_desx:description_font_weight
+  font_weight_desc:description_font_weight
   background_color
   component_alignment
   contact_details {

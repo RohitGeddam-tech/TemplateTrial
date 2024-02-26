@@ -54,8 +54,7 @@ export const Contact = ({
   description_font_weight="",
   description_color,
 }: contactProps) => {
-  console.log(description_font_size,description_font_weight);
-  
+
   const ContactForm = () => {
     const [state, setState] = useState<any>([]);
     const [formInfo, setFormInfo] = useState<any>({});

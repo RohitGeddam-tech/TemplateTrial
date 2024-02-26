@@ -22,11 +22,29 @@ export interface cardProps {
   title_color?: string;
   setOpen?: any;
   sub_title?:string;
+  font_size_title_feat?:string;
+  font_type_title_feat?:string;
+  font_weight_title_feat?: string;
+  font_size_desc_feat?:string;
+  font_type_desc_feat?:string;
+  font_weight_desc_feat?: string;
+  font_size_title_card?:string;
+  font_type_title_card?:string;
+  font_weight_title_card?: string;
+  font_size_desc_card?:string;
+  font_type_desc_card?:string;
+  font_weight_desc_card?: string;
 }
 
 const Card = ({
   cardType,
   title = "",
+  font_size_title_card= "",
+  font_type_title_card= "",
+  font_weight_title_card=  "",
+  font_size_desc_card="",
+  font_type_desc_card="",
+  font_weight_desc_card="",
   para = "",
   button,
   subtitle = "",
@@ -36,6 +54,8 @@ const Card = ({
   title_color = "#212b36",
   setOpen,
 }: cardProps) => {
+  console.log(font_size_desc_card);
+  
   return cardType === "testimonial" ? (
    (image || title || subtitle || para) ? <div
       className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
@@ -46,7 +66,7 @@ const Card = ({
           {title && (
             <p
               className="para-md"
-              style={{ fontWeight: "600", color: title_color }}
+              style={{ color: title_color,fontWeight: font_weight_title_card, fontStyle:font_type_title_card,fontSize:font_size_title_card }}
             >
               {title}
             </p>
@@ -74,7 +94,7 @@ const Card = ({
     (image || title || subtitle || para || button) ?  <div className="card">
       {image && <img src={image} alt="titleImg" />}
       {title && (
-        <p className="sub-md" style={{ fontWeight: "600", color: title_color }}>
+        <p className="sub-md" style={{ color: title_color ,fontWeight: font_weight_title_card, fontStyle:font_type_title_card,fontSize:font_size_title_card}}>
           {title}
         </p>
       )}
@@ -84,7 +104,7 @@ const Card = ({
         </p>
       )}
       {para && (
-        <p className="para-sm" style={{ color: description_color }}>
+        <p className="para-sm" style={{ color: description_color,fontWeight :font_weight_desc_card }}>
           {para}
         </p>
       )}
