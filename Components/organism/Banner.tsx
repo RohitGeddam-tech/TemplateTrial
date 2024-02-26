@@ -10,8 +10,11 @@ import { log } from "console";
 interface bannerProps {
   title?: string;
   title_font_size?:string;
-  title_font_type?:string;
+  title_font_type?:"default"| "italic"|"bold";
   title_font_weight?: string;
+  description_font_size?: string;
+  description_font_type: "default"| "italic"|"bold";
+  description_font_weight?:string;
   body?: string;
   alignment?: "left" | "right" | "center";
   opacity?: "partial" | "full" | "no";
@@ -28,9 +31,12 @@ interface bannerProps {
 
 export const Banner = ({
   title = "",
-  title_font_size="",
-  title_font_type="",
-  title_font_weight="",
+  title_font_size="36",
+  title_font_type="default",
+  title_font_weight="600",
+  description_font_size="14",
+  description_font_type="bold",
+  description_font_weight="300",
   body = "",
   image = "",
   mobImage = "",
@@ -97,6 +103,9 @@ export const Banner = ({
               style={{
                 textAlign:  textAlign ? textAlign : alignment,
                 color: description_color,
+                fontSize: description_font_size,
+                fontStyle: description_font_type,
+                fontWeight: description_font_weight,
               }}
             >
               {body}

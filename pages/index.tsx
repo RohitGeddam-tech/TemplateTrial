@@ -45,7 +45,8 @@ const Home = () => {
           setSeoData({ ...response.data.data.pages?.data[0].attributes.seo });
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)
+      );
     // return response.data.data;
   }
   useEffect(() => {
@@ -86,11 +87,11 @@ const Home = () => {
       </Head>
       {load ? (
         <>
-          {state.length > 0 ? (
+          {state.length > 0? (
             <>
               <Navbar />
               <div style={{ marginTop: "81px" }}>
-                {state.map((doc: any, ind: number) => (
+                {state?.map((doc: any, ind: number) => (
                   <div key={ind}>
                     <CommonComponent data={doc} />
                   </div>
@@ -98,7 +99,6 @@ const Home = () => {
               </div>
       
              {
-              
                number && <WhatsApp data={number}/>
              }
               <Footer />

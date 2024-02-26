@@ -17,10 +17,10 @@ interface aboutProps {
   description_color?: string;
   title_color?: string;
   font_size_title_about?:string;
-  font_type_title_about?:string;
+  font_type_title_about?:"default"| "italic"|"bold";
   font_weight_title_about?: string;
   font_size_desc_about?:string;
-  font_type_desc_about?:string;
+  font_type_desc_about?:"default"| "italic"|"bold";
   font_weight_desc_about?: string;
 }
 
@@ -30,12 +30,12 @@ export const About = ({
   subtitleVisible = true,
   subtitle = "",
   title = "",
-  font_size_title_about= "",
-  font_type_title_about= "",
-  font_weight_title_about=  "",
-  font_size_desc_about="",
-  font_type_desc_about="",
-  font_weight_desc_about="",
+  font_size_title_about= "36",
+  font_type_title_about= "bold",
+  font_weight_title_about= "600",
+  font_size_desc_about="14",
+  font_type_desc_about="default",
+  font_weight_desc_about="300",
   body = "",
   buttonVisible = true,
   imageAlignment = "left",

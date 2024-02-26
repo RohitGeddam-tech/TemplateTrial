@@ -30,10 +30,10 @@ interface contactProps {
   description_color?: string;
   title_color?: string;
   title_font_size?:string;
-  title_font_type?:string;
+  title_font_type?:"default"| "italic"|"bold";
   title_font_weight?: string;
   description_font_size?:string;
-  description_font_type?:string;
+  description_font_type?:"default"| "italic"|"bold";
   description_font_weight?: string;
 }
 
@@ -46,12 +46,12 @@ export const Contact = ({
   formTitle = "Request a call back",
   bgColor,
   title_color,
-  title_font_size="",
-  title_font_type="",
-  title_font_weight="",
-  description_font_size="",
-  description_font_type="",
-  description_font_weight="",
+  title_font_size="36",
+  title_font_type="default",
+  title_font_weight="600",
+  description_font_size="14",
+  description_font_type="default",
+  description_font_weight="300",
   description_color,
 }: contactProps) => {
 
@@ -402,7 +402,7 @@ export const Contact = ({
                   </span>
                   {doc.title} :
                 </p>
-                <p className="para-md" style={{fontSize:description_font_size,fontStyle:description_font_type,fontWeight:description_font_weight,}}>{doc.value}</p>
+                <p className="para-md">{doc.value}</p>
               </div>
             ) : (
               <Link

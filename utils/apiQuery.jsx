@@ -5,6 +5,9 @@ export const apiQuery = `
       title_font_size
       title_font_type
       title_font_weight
+      description_font_size
+      description_font_type
+      description_font_weight
       image{
         data{
           attributes{
@@ -58,7 +61,6 @@ export const apiQuery = `
       title,
       subtitle,
       desciption,
-      card_type,
       cta_type,
       cta_title,
       cta_action,

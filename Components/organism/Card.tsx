@@ -23,41 +23,39 @@ export interface cardProps {
   setOpen?: any;
   sub_title?:string;
   font_size_title_feat?:string;
-  font_type_title_feat?:string;
+  font_type_title_feat?:"default"| "italic"|"bold";
   font_weight_title_feat?: string;
   font_size_desc_feat?:string;
-  font_type_desc_feat?:string;
+  font_type_desc_feat?:"default"| "italic"|"bold";
   font_weight_desc_feat?: string;
   font_size_title_card?:string;
-  font_type_title_card?:string;
+  font_type_title_card?:"default"| "italic"|"bold";
   font_weight_title_card?: string;
   font_size_desc_card?:string;
-  font_type_desc_card?:string;
+  font_type_desc_card?:"default"| "italic"|"bold";
   font_weight_desc_card?: string;
-  card_size?:string;
+  card_size?:"large" | "small";
 }
 
 const Card = ({
   cardType,
   title = "",
-  font_size_title_card= "",
-  font_type_title_card= "",
-  font_weight_title_card=  "",
-  font_size_desc_card="",
-  font_type_desc_card="",
-  font_weight_desc_card="",
+  font_size_title_card= "36",
+  font_type_title_card= "bold",
+  font_weight_title_card=  "600",
+  font_size_desc_card="14",
+  font_type_desc_card="default",
+  font_weight_desc_card="300",
   para = "",
   button,
   subtitle = "",
   image = "",
-  card_size="",
+  card_size="large",
   testimonial = { details: "top", imageType: "circle" },
   description_color = "#212b36",
   title_color = "#212b36",
   setOpen,
 }: cardProps) => {
-
-  console.log(card_size);
   
   return cardType === "testimonial" ? (
    (image || title || subtitle || para) ? <div
@@ -75,14 +73,14 @@ const Card = ({
             </p>
           )}
           {subtitle && (
-            <p className="para-md" style={{ color: description_color }}>
+            <p className="para-md" style={{ color: description_color,}}>
               {subtitle}
             </p>
           )}
         </div>
       </div> : null}
       {para && (
-        <p className="para-lg" style={{ color: description_color }}>
+        <p className="para-lg" style={{ color: description_color, fontWeight :font_weight_desc_card,fontStyle:font_type_desc_card,fontSize:font_size_desc_card  }}>
           {para}
         </p>
       )}
