@@ -16,6 +16,12 @@ interface aboutProps {
   bgColor?: string;
   description_color?: string;
   title_color?: string;
+  font_size_title_about?:string;
+  font_type_title_about?:string;
+  font_weight_title_about?: string;
+  font_size_desc_about?:string;
+  font_type_desc_about?:string;
+  font_weight_desc_about?: string;
 }
 
 export const About = ({
@@ -24,6 +30,12 @@ export const About = ({
   subtitleVisible = true,
   subtitle = "",
   title = "",
+  font_size_title_about= "",
+  font_type_title_about= "",
+  font_weight_title_about=  "",
+  font_size_desc_about="",
+  font_type_desc_about="",
+  font_weight_desc_about="",
   body = "",
   buttonVisible = true,
   imageAlignment = "left",
@@ -54,12 +66,12 @@ export const About = ({
    ( title || body || buttonVisible )?(
       <div className="details">
         {title && (
-          <p className="h4" style={{ color: title_color }}>
+          <p className="h4" style={{ color: title_color,fontStyle:font_type_title_about,fontSize:font_size_title_about,fontWeight:font_weight_title_about }}>
             {title}
           </p>
         )}
         {body && (
-          <p className="para-md" style={{ color: description_color }}>
+          <p className="para-md" style={{ color: description_color,fontStyle:font_type_desc_about,fontSize:font_size_desc_about,fontWeight:font_weight_desc_about }}>
             {body}
           </p>
         )}

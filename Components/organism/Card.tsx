@@ -34,6 +34,7 @@ export interface cardProps {
   font_size_desc_card?:string;
   font_type_desc_card?:string;
   font_weight_desc_card?: string;
+  card_size?:string;
 }
 
 const Card = ({
@@ -49,16 +50,18 @@ const Card = ({
   button,
   subtitle = "",
   image = "",
+  card_size="",
   testimonial = { details: "top", imageType: "circle" },
   description_color = "#212b36",
   title_color = "#212b36",
   setOpen,
 }: cardProps) => {
-  console.log(font_size_desc_card);
+
+  console.log(card_size);
   
   return cardType === "testimonial" ? (
    (image || title || subtitle || para) ? <div
-      className={`testimonialCard ${testimonial.details} ${testimonial.imageType}`}
+      className={`testimonialCard ${testimonial.details} ${testimonial.imageType} ${card_size}`}
     >
     { ( image || title  || subtitle)? <div className="details">
         {image && <img src={image} alt="titleImg" />}
@@ -91,7 +94,7 @@ const Card = ({
       </div>
     )
   ) : (
-    (image || title || subtitle || para || button) ?  <div className="card">
+    (image || title || subtitle || para || button) ?  <div className={`card ${card_size}`}>
       {image && <img src={image} alt="titleImg" />}
       {title && (
         <p className="sub-md" style={{ color: title_color ,fontWeight: font_weight_title_card, fontStyle:font_type_title_card,fontSize:font_size_title_card}}>
@@ -104,7 +107,7 @@ const Card = ({
         </p>
       )}
       {para && (
-        <p className="para-sm" style={{ color: description_color,fontWeight :font_weight_desc_card }}>
+        <p className="para-sm" style={{ color: description_color,fontWeight :font_weight_desc_card,fontStyle:font_type_desc_card,fontSize:font_size_desc_card }}>
           {para}
         </p>
       )}

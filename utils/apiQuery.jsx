@@ -53,6 +53,7 @@ export const apiQuery = `
     background_color,
     serviceAlignment:text_allignment,
     carousel_type,
+    card_type,
     cards{
       title,
       subtitle,
@@ -82,8 +83,10 @@ export const apiQuery = `
     desciption_color,
     title,
     title_color,
+  
     testAlignment:text_allignment,
     background_color,
+    testi_card_type:card_type,
     cards{
       title,
       subtitle,
@@ -92,6 +95,12 @@ export const apiQuery = `
       cta_type,
       cta_title,
       cta_action,
+      testi_title_font_size: title_font_size,
+      testi_title_font_type:title_font_type
+      testi_title_font_weight:title_font_weight
+      testi_description_font_size:description_font_size 
+      testi_description_font_type:description_font_type
+      testi_description_font_weight:description_font_weight
       image{
         data{
           attributes{
@@ -106,6 +115,12 @@ export const apiQuery = `
   ... on ComponentComponentAboutUsComponent {
     title
     title_color
+  about_title_font_size:title_font_size
+  about_title_font_type:title_font_type
+  about_title_font_weight:title_font_weight
+  about_description_font_size:description_font_size
+  about_description_font_type:description_font_type
+  about_description_font_weight:description_font_weight
     desciption
     desciption_color
     image_caption
@@ -124,6 +139,12 @@ export const apiQuery = `
     certi_carousel:carousel_type
     title
     title_color
+    certi_title_font_size:title_font_size
+    certi_title_font_type:title_font_type
+    certi_title_font_weight:title_font_weight
+    certi_description_font_size:description_font_size
+    certi_description_font_type:description_font_type
+    certi_description_font_weight:description_font_weight
     desciption
     desciption_color
     background_color
@@ -147,6 +168,7 @@ export const apiQuery = `
  desciption_color
  teamAlignment:text_allignment
  view:content_alignment,
+ team_card_type:card_type,
  cards{
    name
    desciption
@@ -175,6 +197,7 @@ export const apiQuery = `
   description_color
   background_color
   content_alignment
+  feature_card_type:card_type,
   cards{
     description
     title

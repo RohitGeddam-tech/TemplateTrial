@@ -17,6 +17,9 @@ const CommonComponent = (data: any = {}) => {
    
   switch (info?.__typename) {    
     case "ComponentComponentAboutUsComponent":
+
+   
+      
       return ((info.title || info.desciption || info.image?.data?.attributes?.url || info.image_caption)?  <About
           title={info.title}
           body={info.desciption}
@@ -25,6 +28,12 @@ const CommonComponent = (data: any = {}) => {
           bgColor={info.background_color}
           description_color={info.desciption_color}
           title_color={info.title_color}
+          font_size_title_about= {info.about_title_font_size}
+          font_type_title_about= {info.about_title_font_type}
+          font_weight_title_about=  {info.about_title_font_weight}
+          font_size_desc_about={info.about_description_font_size}
+          font_type_desc_about={info.about_description_font_type}
+          font_weight_desc_about= {info.about_description_font_weight}
           button={{
             cta_type: info.cta_type,
             cta_icon: info.cta_icon,
@@ -41,7 +50,7 @@ const CommonComponent = (data: any = {}) => {
         />:null
       );
     case "ComponentComponentCertificatesComponent":
-     
+
       return (
         (info.title ||  info.desciption  || info.images )?
         <div
@@ -59,6 +68,9 @@ const CommonComponent = (data: any = {}) => {
              style={{
                color: info.title_color,
                textAlign: info.galleryAlignment,
+               fontSize:info.certi_title_font_size,
+              fontWeight:info.certi_title_font_weight,
+              fontStyle:info.certi_title_font_type
              }}
            >
              {info.title}
@@ -70,6 +82,9 @@ const CommonComponent = (data: any = {}) => {
              style={{
                color: info.desciption_color,
                textAlign: info.galleryAlignment,
+               fontSize:info.certi_description_font_size,
+               fontWeight:info.certi_description_font_weight,
+               fontStyle:info.certi_description_font_type
              }}
            >
              {info.desciption}
@@ -223,8 +238,7 @@ const CommonComponent = (data: any = {}) => {
         ))
       );
       case "ComponentComponentOurServicesComponent":
-        console.log(info);
-        
+    
         return ((info.title || info.desciption || info.cards?.length > 0)? <div
             className={`titleCard`}
             style={
@@ -300,6 +314,8 @@ const CommonComponent = (data: any = {}) => {
         );
 
     case "ComponentComponentTestimonialsComponent":
+      console.log(info);
+      
       return ((info.cards?.length > 0  || info.title || info.desciption ) ? <div
     className={`titleCard`}
     style={
@@ -340,9 +356,10 @@ const CommonComponent = (data: any = {}) => {
     >
       {info.cards?.length > 0 &&
         info.cards.map((doc: any, ind: number) => (
-          (doc.title || doc.image?.data?.attributes?.url || doc.cta_title || doc.desciption || doc.subtitle)?<div key={ind}>
+          (doc?.title || doc?.image?.data?.attributes?.url || doc?.cta_title || doc?.desciption || doc?.subtitle)?<div key={ind}>
            <Card
               cardType={"testimonial"}
+              card_size={info.testi_card_type}
               button={{
                 cta_type: doc.cta_type,
                 cta_icon: doc.cta_icon,
@@ -353,6 +370,12 @@ const CommonComponent = (data: any = {}) => {
               }}
               image={doc.image?.data?.attributes?.url !== undefined ?`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`: ""}
               title={doc.title}
+              font_size_title_card={doc.testi_title_font_size}
+              font_type_title_card= {doc.testi_title_font_type}
+              font_weight_title_card= {doc.testi_title_font_weight}
+              font_size_desc_card={doc.testi_description_font_size}
+              font_type_desc_card={doc.testi_description_font_type}
+              font_weight_desc_card={doc.testi_description_font_weight}
               para={
                 doc.desciption?.length > 240
                   ? `${doc.desciption?.slice(0, 240)}...`
@@ -370,7 +393,7 @@ const CommonComponent = (data: any = {}) => {
   </div>: null
       );
     case "ComponentComponentContactUsComponenet":
-      // console.log(info);
+
       
       return (
        (info.title || info.desciption || info.contact_details) ?
