@@ -143,7 +143,7 @@ const CommonComponent = (data: any = {}) => {
           </div>
         </div> :  null
       );
-    case "ComponentComponentBannerComponent":      
+    case "ComponentComponentBannerComponent": 
       return ((info.banners?.length > 1 )? 
         <BannerCarousel slidesToShow={1}
          arrow={true}
@@ -151,6 +151,9 @@ const CommonComponent = (data: any = {}) => {
         {info.banners.map((doc: any, ind: number) => (
         (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
             title={doc.title}
+            title_font_size={doc.title_font_size}
+            title_font_type={doc.title_font_type}
+            title_font_weight={doc.title_font_weight}
             body={doc.body}
             textAlign={doc.content_alignment}
             key={ind}
@@ -185,6 +188,9 @@ const CommonComponent = (data: any = {}) => {
         :  info.banners && info.banners.map((doc: any, ind: number) => (
          (doc.title || doc.body || doc.image?.data?.attributes?.url ||  doc.mobile_image?.data?.attributes?.url ) ? <Banner
             title={doc.title}
+            title_font_size={doc.title_font_size}
+            title_font_type={doc.title_font_type}
+            title_font_weight={doc.title_font_weight}
             body={doc.body}
             textAlign={doc.content_alignment}
             alignment={doc.content_alignment}
@@ -355,12 +361,20 @@ const CommonComponent = (data: any = {}) => {
   </div>: null
       );
     case "ComponentComponentContactUsComponenet":
+      // console.log(info);
+      
       return (
        (info.title || info.desciption || info.contact_details) ?
         <Contact
         description_color={info.desciption_color}
         title_color={info.title_color}
         title={info.title}
+        title_font_size={info.font_size_title}
+        title_font_type={info.font_type_title}
+        title_font_weight={info.font_weight_title}
+        description_font_size={info.font_size_desc}
+        description_font_type={info.font_type_desc}
+        description_font_weight={info.font_weight_desc}
         body={info.desciption}
         details={info.contact_details}
         bgColor={info.background_color}
@@ -368,6 +382,7 @@ const CommonComponent = (data: any = {}) => {
       />:null
       );
     case "ComponentComponentFeatureComponent":
+
       return ( (info.title || info.description || info.cards?.length > 0 ) ? <div
           className={`titleCard`}
           style={
@@ -404,7 +419,13 @@ const CommonComponent = (data: any = {}) => {
             alignment={info.content_alignment}
             description_color={info.description_color}
             title_color={info.title_color}
-          />
+            title_font_size={info.title_font_size}
+            title_font_type={info.title_font_type}
+            title_font_weight={info.title_font_weight}
+            description_font_size={info.description_font_size}
+            description_font_type={info.description_font_type}
+            description_font_weight={info.description_font_weight}
+                       />
            }
           </div>
         </div> : null

@@ -5,9 +5,13 @@ import { ButtonProps } from "../molecules/Button/Util";
 import { Appointment } from "./Appointment";
 // import Image from "next/image";
 import useWindowSize from "../../utils/useWindowSize";
+import { log } from "console";
 
 interface bannerProps {
   title?: string;
+  title_font_size?:string;
+  title_font_type?:string;
+  title_font_weight?: string;
   body?: string;
   alignment?: "left" | "right" | "center";
   opacity?: "partial" | "full" | "no";
@@ -24,6 +28,9 @@ interface bannerProps {
 
 export const Banner = ({
   title = "",
+  title_font_size="",
+  title_font_type="",
+  title_font_weight="",
   body = "",
   image = "",
   mobImage = "",
@@ -39,9 +46,8 @@ export const Banner = ({
 }: bannerProps) => {
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
-
-  console.log(content_position , content_box_opacity,opacity);
-  
+    // console.log(title_font_type,title_font_size,title_font_weight);
+    
   return (title || body || image || mobImage || button.cta_title) ? (
     <div
       className={`banner ${opacity} ${alignment} ${content_position==="center"? "middle" : content_position}`}
@@ -59,7 +65,7 @@ export const Banner = ({
       {title || body || button.cta_title|| image || mobImage || opacity  ? (
         <div className="container">
                        
-                       {opacity !== "no" && (
+    {opacity !== "no" && (
         <div className="bgImg">
           {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
             <img src={mobImage} alt="background" />
@@ -77,6 +83,9 @@ export const Banner = ({
               style={{
                 textAlign: textAlign ? textAlign : alignment,
                 color: title_color,
+                fontSize: title_font_size,
+                fontStyle: title_font_type,
+                fontWeight: title_font_weight,
               }}
             >
               {title}

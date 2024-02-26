@@ -29,6 +29,12 @@ interface contactProps {
   bgColor?: string;
   description_color?: string;
   title_color?: string;
+  title_font_size?:string;
+  title_font_type?:string;
+  title_font_weight?: string;
+  description_font_size?:string;
+  description_font_type?:string;
+  description_font_weight?: string;
 }
 
 export const Contact = ({
@@ -40,8 +46,16 @@ export const Contact = ({
   formTitle = "Request a call back",
   bgColor,
   title_color,
+  title_font_size="",
+  title_font_type="",
+  title_font_weight="",
+  description_font_size="",
+  description_font_type="",
+  description_font_weight="",
   description_color,
 }: contactProps) => {
+  console.log(description_font_size,description_font_weight);
+  
   const ContactForm = () => {
     const [state, setState] = useState<any>([]);
     const [formInfo, setFormInfo] = useState<any>({});
@@ -226,7 +240,9 @@ export const Contact = ({
       >
         {Object.keys(formInfo).length > 0 && (
           <>
-            <p className="para-md">{formTitle}</p>
+            <p className="para-md"
+          
+            >{formTitle}</p>
             {state.length > 0 &&
               state.map((doc: any, ind: number) => (
                 <div key={ind} style={{ width: "100%" }}>
@@ -352,7 +368,11 @@ export const Contact = ({
         className="h4"
         style={{
           color: title_color,
+          fontSize:title_font_size,
+          fontWeight:title_font_weight,
+          fontStyle:title_font_type
         }}
+       
       >
         {title}
       </p>
@@ -363,6 +383,7 @@ export const Contact = ({
       className="para-md"
       style={{
         color: description_color,
+        fontSize:description_font_size,fontStyle:description_font_type,fontWeight:description_font_weight,
       }}
     >
       {body}
@@ -382,7 +403,7 @@ export const Contact = ({
                   </span>
                   {doc.title} :
                 </p>
-                <p className="para-md">{doc.value}</p>
+                <p className="para-md" style={{fontSize:description_font_size,fontStyle:description_font_type,fontWeight:description_font_weight,}}>{doc.value}</p>
               </div>
             ) : (
               <Link
