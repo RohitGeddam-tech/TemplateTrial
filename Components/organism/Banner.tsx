@@ -5,6 +5,7 @@ import { ButtonProps } from "../molecules/Button/Util";
 import { Appointment } from "./Appointment";
 // import Image from "next/image";
 import useWindowSize from "../../utils/useWindowSize";
+import { useFormattedText } from "../../utils/useFormattedText";
 
 interface bannerProps {
   title?: string;
@@ -35,9 +36,6 @@ export const Banner = ({
 }: bannerProps) => {
   const [open, setOpen] = useState<any>(false);
   const [width] = useWindowSize();
-
-  let str = title;
-  const formattedText = str.replace(/ /g, "\u00a0").split("\n");
 
   // str = str.replace(/ /g, '\u00a0');
   // str = str.split("\n").join("<br/>");
@@ -70,28 +68,20 @@ export const Banner = ({
               {title || body ? (
                 <div className="details">
                   {title && (
-                    <>
-                      {formattedText.map((line, index) => (
-                        // Use React.Fragment to represent each line with a key
-                        <p
-                          key={index}
-                          className="h2"
-                          style={{
-                            textAlign:
-                              textAlign === "right"
-                                ? "center"
-                                : textAlign
-                                ? textAlign
-                                : alignment,
-                            color: title_color,
-                          }}
-                        >
-                          {line}
-                          {/* Add a <br/> after each line except the last one */}
-                          {index < formattedText.length - 1 && <br />}
-                        </p>
-                      ))}
-                    </>
+                    <p
+                      className="h2"
+                      style={{
+                        textAlign:
+                          textAlign === "right"
+                            ? "center"
+                            : textAlign
+                            ? textAlign
+                            : alignment,
+                        color: title_color,
+                      }}
+                    >
+                      {useFormattedText(title)}
+                    </p>
                   )}
                   {/* {title && (
                     <p
