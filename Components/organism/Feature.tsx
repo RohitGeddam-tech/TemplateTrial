@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { cardProps } from "./Card";
+import { useFormattedText } from "../../utils/useFormattedText";
 
 interface featureProps {
   features?: number;
@@ -16,7 +17,6 @@ export const Feature = ({
   alignment = "vertical",
   description_color = "black",
   title_color = "black",
-
 }: featureProps) => {
   return data?.length > 0 ? (
     <div className={`feature ${features % 4 === 0 ? "small" : ""}`}>
@@ -47,14 +47,14 @@ export const Feature = ({
                             fontWeight: doc.font_weight_title_feat,
                           }}
                         >
-                          {doc.title}
+                          {useFormattedText(doc.title)}
                         </p>
                       )}
                     </div>
                   )}
                   {doc.sub_title && (
                     <div className="para-sm" style={{ color: title_color }}>
-                      {doc.sub_title}
+                      {useFormattedText(doc.sub_title)}
                     </div>
                   )}
                   {doc.description && (
@@ -67,7 +67,7 @@ export const Feature = ({
                         fontWeight: doc.font_weight_desc_feat,
                       }}
                     >
-                      {doc.description}
+                      {useFormattedText(doc.description)}
                     </p>
                   )}
                 </div>
@@ -87,19 +87,19 @@ export const Feature = ({
                     ) : null}
                     {doc.title && (
                       <p className="para-lg" style={{ color: title_color }}>
-                        {doc.title}
+                        {useFormattedText(doc.title)}
                       </p>
                     )}
                   </div>
                 )}
                 {doc.sub_title && (
                   <div className="para-sm" style={{ color: title_color }}>
-                    {doc.sub_title}
+                    {useFormattedText(doc.sub_title)}
                   </div>
                 )}
                 {doc.description && (
                   <p className="para-md" style={{ color: description_color }}>
-                    {doc.description}
+                    {useFormattedText(doc.description)}
                   </p>
                 )}
               </div>
