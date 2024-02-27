@@ -35,6 +35,7 @@ export const Feature = ({
                         <img
                           src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                           alt="titleImg"
+                          loading="lazy"
                         />
                       ) : null}
                       {doc.title && (
@@ -83,6 +84,7 @@ export const Feature = ({
                       <img
                         src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                         alt="titleImg"
+                        loading="lazy"
                       />
                     ) : null}
                     {doc.title && (

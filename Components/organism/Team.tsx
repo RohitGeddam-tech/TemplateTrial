@@ -31,6 +31,7 @@ export const Team = ({
                 <img
                   src={`${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`}
                   alt="titleImg"
+                  loading="lazy"
                 />
               ) : null}
               <div className="detail">

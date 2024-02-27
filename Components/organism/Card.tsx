@@ -64,7 +64,7 @@ const Card = ({
       >
         {image || title || subtitle ? (
           <div className="details">
-            {image && <img src={image} alt="titleImg" />}
+            {image && <img src={image} alt="titleImg" loading="lazy" />}
             <div className="info">
               {title && (
                 <p
@@ -105,12 +105,12 @@ const Card = ({
   ) : cardType === "images" ? (
     image && (
       <div className="imgGallery">
-        <img src={image} alt="titleImg" />
+        <img src={image} alt="titleImg" loading="lazy" />
       </div>
     )
   ) : image || title || subtitle || para || button ? (
     <div className={`card ${card_size}`}>
-      {image && <img src={image} alt="titleImg" />}
+      {image && <img src={image} alt="titleImg" loading="lazy" />}
       {title && (
         <p
           className="sub-md"

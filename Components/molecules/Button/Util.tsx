@@ -59,5 +59,12 @@ interface ArrowButton {
 }
 
 export const ButtonArrow = ({ imgStyle }: ArrowButton) => {
-  return <img src={"/arrow-right-short.svg"} alt="arrow" style={imgStyle} />;
+  return (
+    <img
+      src={"/arrow-right-short.svg"}
+      loading="lazy"
+      alt="arrow"
+      style={imgStyle}
+    />
+  );
 };

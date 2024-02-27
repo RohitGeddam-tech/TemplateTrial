@@ -206,6 +206,7 @@ export const Footer = () => {
                           `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
+                        loading="lazy"
                         style={{
                           width: "90%",
                           maxHeight: "50px",
