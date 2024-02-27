@@ -72,9 +72,9 @@ export const Banner = ({
           {opacity !== "no" && (
             <div className="bgImg">
               {width <= 768 && mobImage !== undefined && mobImage !== "" ? (
-                <img src={mobImage} alt="background" />
+                <img src={mobImage} alt="background" loading="lazy" />
               ) : (
-                <img src={image} alt="background" />
+                <img src={image} alt="background" loading="lazy" />
               )}
             </div>
           )}

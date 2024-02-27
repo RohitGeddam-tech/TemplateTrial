@@ -56,6 +56,7 @@ export const About = ({
         <img
           src={image}
           alt="logo"
+          loading="lazy"
           // onClick={() => (window.location.href = "/")}
         />
         {subtitleVisible && <p className="caption">{useFormattedText(subtitle)}</p>}

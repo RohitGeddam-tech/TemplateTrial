@@ -106,9 +106,9 @@ const Home = () => {
           ) : (
             <div className="loading">
               <p className="h3">Work In Progress</p>
-              <Link href="/" className="h5" style={{ color: "blue" }}>
+              {/* <Link href="/" className="h5" style={{ color: "blue" }}>
                 Click here to go back
-              </Link>
+              </Link> */}
             </div>
           )}
         </>

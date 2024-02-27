@@ -53,15 +53,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const filteredMap = response.data.data.navbar.data.attributes.menus?.filter(
     (doc: any) => doc.url !== "/"
   );
-  const paths = filteredMap?.map(
-    (menu: any) => ({
-      params: { slug: menu.url.replace("/", "") },
-    })
-  );
+  const paths = filteredMap?.map((menu: any) => ({
+    params: { slug: menu.url.replace("/", "") },
+  }));
 
   return {
     paths,
-    fallback: true, // false or "blocking"
+    fallback: false, // false or "blocking"
   };
 };
 
@@ -93,104 +91,31 @@ export async function getStaticProps({ params }: any) {
   });
   const repo = await res.json();
 
-  return { props: { repo } };
+  return { props: { repo: repo || [] } };
 }
 
 type Props = { repo: any };
 
 export default function Page({ repo }: Props) {
-  // console.log(repo);
+  const state =
+    repo && Object.keys(repo).length > 0
+      ? [...repo.data.pages?.data[0].attributes.components]
+      : [];
 
-  const router = useRouter();
-  //   console.log(router.query.slug);
-  const [state, setState] = useState<any>([]);
-  const [load, setLoad] = useState<any>(false);
-  const [seoData, setSeoData] = useState<any>({});
-  // const [slugName, setSlugName] = useState<any>("");
-
-  async function fetchData(pageName: any) {
-    const data = {
-      query: `
-      query{
-        pages(filters: { slug: {eq:"${pageName}"}} ){
-            data {
-              attributes {
-                ${seo}
-                components {
-                  __typename
-                  ${apiQuery}
-                }
-              }
-            }
-          }
+  const seoData =
+    repo && Object.keys(repo).length > 0
+      ? {
+          ...repo.data.pages?.data[0].attributes.seo,
         }
-        `,
-    };
-    await axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
-      .then((response) => {
-        // console.log(response.data.data, pageName);
-        if (response?.status === 200) {
-          setLoad(true);
-          setState([
-            ...response.data.data.pages?.data[0].attributes.components,
-          ]);
-          setSeoData({
-            ...response.data.data.pages?.data[0].attributes.seo,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err, "error");
-        setLoad(true);
-      });
-  }
-
-  useEffect(() => {
-    if (router.isReady) {
-      const slug: any = router.query?.slug;
-
-      // const words = slug?.split("-");
-
-      // for (let i = 0; i < words.length; i++) {
-      //   words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-      // }
-      // const pageName = `page${words.join("")}`;
-      !load && slug && fetchData(slug);
-      router.events.on("routeChangeComplete", () => router.reload());
-      return router.events.off("routeChangeComplete", () => router.reload());
-    }
-  }, [load, router]);
-
-  // useEffect(() => {
-  //   console.log(repo);
-
-  //   if (
-  //     repo !== null &&
-  //     repo !== undefined &&
-  //     Object.keys(repo).length > 0 &&
-  //     !load
-  //   ) {
-  //     setState([...repo.data.pages?.data[0].attributes.components]);
-  //     setSeoData({
-  //       ...repo.data.pages?.data[0].attributes.seo,
-  //     });
-  //     setLoad(true);
-  //   }
-  // }, [load, repo]);
-
-  //   useEffect(() => {
-  //     !load && slugName !== "" && fetchData(slugName);
-  //   }, [load, slugName]);
+      : null;
 
   const [font, theme, number] = ConfigData();
 
   return (
     <div className={theme}>
       <Head>
-        {load && Object.keys(seoData).length > 0 && (
+        {Object.keys(seoData).length > 0 && (
           <>
-            <div>hello</div>
             <title>{seoData.title}</title>
             {seoData.meta.length > 0 &&
               seoData.meta.map(({ type, type_value, content }: any) =>
@@ -203,33 +128,33 @@ export default function Page({ repo }: Props) {
           </>
         )}
       </Head>
-      {load ? (
-        <>
-          {state.length > 0 ? (
-            <>
-              <Navbar />
-              <div style={{ marginTop: "81px" }}>
-                {state.map((doc: any, ind: number) => (
-                  <div key={ind}>
-                    <CommonComponent data={doc} />
-                  </div>
-                ))}
-              </div>
-              {number && <WhatsAppButton data={number} />}
-              <Footer />
-            </>
-          ) : (
-            <div className="loading">
-              <p className="h3">Work In Progress</p>
-              <Link href="/" className="h5" style={{ color: "blue" }}>
-                Click here to go back
-              </Link>
+      {/* {load ? ( */}
+      <>
+        {state.length > 0 ? (
+          <>
+            <Navbar />
+            <div style={{ marginTop: "81px" }}>
+              {state.map((doc: any, ind: number) => (
+                <div key={ind}>
+                  <CommonComponent data={doc} />
+                </div>
+              ))}
             </div>
-          )}
-        </>
-      ) : (
-        <div className="loading"></div>
-      )}
+            {number && <WhatsAppButton data={number} />}
+            <Footer />
+          </>
+        ) : (
+          <div className="loading">
+            <p className="h3">Work In Progress</p>
+            <Link href="/" className="h5" style={{ color: "blue" }}>
+              Click here to go back
+            </Link>
+          </div>
+        )}
+      </>
+      {/* ) : (
+         <div className="loading"></div>
+       )} */}
     </div>
   );
 }

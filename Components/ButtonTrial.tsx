@@ -64,6 +64,7 @@ export const ButtonTrial = ({
           alt="arrow"
           width={width}
           height={height}
+          loading="lazy"
         />
       ) : null}{" "}
       {onlyLabel ? `${label}` : ""}{" "}
@@ -73,6 +74,7 @@ export const ButtonTrial = ({
           alt="arrow"
           width={width}
           height={height}
+          loading="lazy"
         />
       ) : null}{" "}
       {arrow && arrowLast ? (
@@ -81,6 +83,7 @@ export const ButtonTrial = ({
           alt="arrow"
           width={width}
           height={height}
+          loading="lazy"
         />
       ) : null}
     </button>

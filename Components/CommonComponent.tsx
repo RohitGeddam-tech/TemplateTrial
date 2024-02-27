@@ -108,6 +108,7 @@ const CommonComponent = (data: any = {}) => {
                               ? `${process.env.NEXT_PUBLIC_API_URL}${doc.image?.data?.attributes?.url}`
                               : ""
                           }
+                          loading="lazy"
                           alt={doc.image_alt_text}
                         />
                       </div>
