@@ -10,13 +10,103 @@ import CommonComponent from "../Components/CommonComponent";
 import Link from "next/link";
 import WhatsAppButton from "../Components/organism/WhatsApp";
 
-export default function Page() {
+import type { GetStaticPaths } from "next";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = {
+    query: `
+    query{
+      navbar{
+        data{
+          attributes{
+            menus{
+              title,
+              url
+            },
+            url,
+            button{
+              title,
+              cta_action,
+              type,
+              icon_type,
+              icon
+            },
+            logo{
+              data{
+                attributes{
+                  url
+                }
+              }
+            }
+          }
+        }
+      },
+    }
+    `,
+  };
+  const response = await axios
+    .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
+    .then((res) => {
+      return res;
+    });
+  // const filteredMap = response.data.data.navbar.data.attributes.menus?.
+  const filteredMap = response.data.data.navbar.data.attributes.menus?.filter(
+    (doc: any) => doc.url !== "/"
+  );
+  const paths = filteredMap?.map(
+    (menu: any) => ({
+      params: { slug: menu.url.replace("/", "") },
+    })
+  );
+
+  return {
+    paths,
+    fallback: true, // false or "blocking"
+  };
+};
+
+export async function getStaticProps({ params }: any) {
+  // console.log(params.slug, "trial");
+  const data = {
+    query: `
+    query{
+      pages(filters: { slug: {eq:"${params.slug}"}} ){
+          data {
+            attributes {
+              ${seo}
+              components {
+                __typename
+                ${apiQuery}
+              }
+            }
+          }
+        }
+      }
+      `,
+  };
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  const repo = await res.json();
+
+  return { props: { repo } };
+}
+
+type Props = { repo: any };
+
+export default function Page({ repo }: Props) {
+  // console.log(repo);
+
   const router = useRouter();
   //   console.log(router.query.slug);
   const [state, setState] = useState<any>([]);
   const [load, setLoad] = useState<any>(false);
   const [seoData, setSeoData] = useState<any>({});
-  // const [slugName, setSlugName] = useState<any>(""); 
+  // const [slugName, setSlugName] = useState<any>("");
 
   async function fetchData(pageName: any) {
     const data = {
@@ -55,8 +145,8 @@ export default function Page() {
         setLoad(true);
       });
   }
+
   useEffect(() => {
-    // if (router.isReady) {
     if (router.isReady) {
       const slug: any = router.query?.slug;
 
@@ -72,13 +162,29 @@ export default function Page() {
     }
   }, [load, router]);
 
+  // useEffect(() => {
+  //   console.log(repo);
+
+  //   if (
+  //     repo !== null &&
+  //     repo !== undefined &&
+  //     Object.keys(repo).length > 0 &&
+  //     !load
+  //   ) {
+  //     setState([...repo.data.pages?.data[0].attributes.components]);
+  //     setSeoData({
+  //       ...repo.data.pages?.data[0].attributes.seo,
+  //     });
+  //     setLoad(true);
+  //   }
+  // }, [load, repo]);
+
   //   useEffect(() => {
   //     !load && slugName !== "" && fetchData(slugName);
   //   }, [load, slugName]);
 
   const [font, theme, number] = ConfigData();
 
-  
   return (
     <div className={theme}>
       <Head>
@@ -109,15 +215,13 @@ export default function Page() {
                   </div>
                 ))}
               </div>
-              {
-               number && <WhatsAppButton data={number}/>
-             }
+              {number && <WhatsAppButton data={number} />}
               <Footer />
             </>
           ) : (
             <div className="loading">
               <p className="h3">Work In Progress</p>
-              <Link href="/" className="h5" style={{color:"blue"}}>
+              <Link href="/" className="h5" style={{ color: "blue" }}>
                 Click here to go back
               </Link>
             </div>
