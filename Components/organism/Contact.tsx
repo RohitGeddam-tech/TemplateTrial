@@ -8,6 +8,7 @@ import Textarea from "../molecules/Textarea/Textarea";
 import axios from "axios";
 import moment from "moment";
 import { KeyboardDateTimePicker } from "@material-ui/pickers";
+import { useFormattedText } from "../../utils/useFormattedText";
 // import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
@@ -29,6 +30,12 @@ interface contactProps {
   bgColor?: string;
   description_color?: string;
   title_color?: string;
+  title_font_size?: string;
+  title_font_type?: "default" | "italic" | "bold";
+  title_font_weight?: string;
+  description_font_size?: string;
+  description_font_type?: "default" | "italic" | "bold";
+  description_font_weight?: string;
 }
 
 export const Contact = ({
@@ -40,6 +47,12 @@ export const Contact = ({
   formTitle = "Request a call back",
   bgColor,
   title_color,
+  title_font_size = "36",
+  title_font_type = "default",
+  title_font_weight = "600",
+  description_font_size = "14",
+  description_font_type = "default",
+  description_font_weight = "300",
   description_color,
 }: contactProps) => {
   const ContactForm = () => {
@@ -49,7 +62,7 @@ export const Contact = ({
 
     async function fetchData() {
       const data = {
-     query: `
+        query: `
       query{
         contactUsFrom {
           data {
@@ -226,7 +239,7 @@ export const Contact = ({
       >
         {Object.keys(formInfo).length > 0 && (
           <>
-            <p className="para-md">{formTitle}</p>
+            <p className="para-md">{useFormattedText(formTitle)}</p>
             {state.length > 0 &&
               state.map((doc: any, ind: number) => (
                 <div key={ind} style={{ width: "100%" }}>
@@ -347,27 +360,32 @@ export const Contact = ({
 
   const ContactDetails = () => (
     <div className="details">
-      {
-        title && <p
-        className="h4"
-        style={{
-          color: title_color,
-        }}
-      >
-        {title}
-      </p>
-      }
-    {
-      body && 
-      <p
-      className="para-md"
-      style={{
-        color: description_color,
-      }}
-    >
-      {body}
-    </p>
-    }
+      {title && (
+        <p
+          className="h4"
+          style={{
+            color: title_color,
+            fontSize: title_font_size,
+            fontWeight: title_font_weight,
+            fontStyle: title_font_type,
+          }}
+        >
+          {useFormattedText(title)}
+        </p>
+      )}
+      {body && (
+        <p
+          className="para-md"
+          style={{
+            color: description_color,
+            fontSize: description_font_size,
+            fontStyle: description_font_type,
+            fontWeight: description_font_weight,
+          }}
+        >
+          {useFormattedText(body)}
+        </p>
+      )}
       {details.length > 0 &&
         details.map((doc, ind) => (
           <div key={ind}>
@@ -380,9 +398,9 @@ export const Contact = ({
                   >
                     {doc.icon}
                   </span>
-                  {doc.title} :
+                  {useFormattedText(doc.title)} :
                 </p>
-                <p className="para-md">{doc.value}</p>
+                <p className="para-md">{useFormattedText(doc.value)}</p>
               </div>
             ) : (
               <Link
@@ -401,9 +419,9 @@ export const Contact = ({
                   >
                     {doc.icon}
                   </span>
-                  {doc.title} :
+                  {useFormattedText(doc.title)} :
                 </p>
-                <p className="para-md">{doc.value}</p>
+                <p className="para-md">{useFormattedText(doc.value)}</p>
               </Link>
             )}
           </div>

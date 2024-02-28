@@ -19,6 +19,7 @@ export default function Carousel({
   dots,
   slidesToShow,
 }: carouselProps) {
+  
   const settings = {
     dots: dots,
     infinite: false,

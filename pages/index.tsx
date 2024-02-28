@@ -8,7 +8,7 @@ import { apiQuery, seo } from "../utils/apiQuery";
 import CommonComponent from "../Components/CommonComponent";
 import { ConfigData } from "../utils/resource";
 import Link from "next/link";
-import WhatsAppButton from "../Components/organism/WhatsApp";
+import WhatsApp from "../Components/organism/WhatsApp";
 
 const Home = () => {
   const [state, setState] = useState<any>([]);
@@ -45,7 +45,8 @@ const Home = () => {
           setSeoData({ ...response.data.data.pages?.data[0].attributes.seo });
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err)
+      );
     // return response.data.data;
   }
   useEffect(() => {
@@ -86,27 +87,28 @@ const Home = () => {
       </Head>
       {load ? (
         <>
-          {state.length > 0 ? (
+          {state.length > 0? (
             <>
               <Navbar />
               <div style={{ marginTop: "81px" }}>
-                {state.map((doc: any, ind: number) => (
+                {state?.map((doc: any, ind: number) => (
                   <div key={ind}>
                     <CommonComponent data={doc} />
                   </div>
                 ))}
               </div>
+      
              {
-               number && <WhatsAppButton data={number}/>
+               number && <WhatsApp data={number}/>
              }
               <Footer />
             </>
           ) : (
             <div className="loading">
               <p className="h3">Work In Progress</p>
-              <Link href="/" className="h5" style={{ color: "blue" }}>
+              {/* <Link href="/" className="h5" style={{ color: "blue" }}>
                 Click here to go back
-              </Link>
+              </Link> */}
             </div>
           )}
         </>

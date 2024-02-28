@@ -48,6 +48,8 @@ export const Footer = () => {
             attributes {
               footer_type
               background_color
+              text_color
+              hide_logo
               components{
                 __typename
                 ...on ComponentAtomsMenuGroupAtom{
@@ -80,7 +82,7 @@ export const Footer = () => {
     const response = await axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, data)
       .then((res) => res);
-    console.log(response.data.data.footer.data.attributes.background_color);
+    // console.log(response.data.data.footer.data.attributes.hide_logo);
     // return response.data.data;
     setState({ ...response.data.data.navbar.data.attributes });
     setGroup({ ...response.data.data.footer.data.attributes });
@@ -187,6 +189,7 @@ export const Footer = () => {
   }, [group]);
 
 
+
   return (
     <div className="footer" style={{ backgroundColor: group?.background_color || "#fff" }}>
       {group.components?.length > 0 && sm !== null && (
@@ -195,7 +198,7 @@ export const Footer = () => {
             <>
               <div className="insideFooter">
                 <div className="left">
-                  <div className="logo">
+                { !group?.hide_logo && <div className="logo">
                     <Link href="/">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -203,6 +206,7 @@ export const Footer = () => {
                           `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                           ""
                         }
+                        loading="lazy"
                         style={{
                           width: "90%",
                           maxHeight: "50px",
@@ -212,7 +216,7 @@ export const Footer = () => {
                         alt="logo"
                       />
                     </Link>
-                  </div>
+                  </div>}
                   <div className="links">
                     {state.menus?.length > 0 &&
                       state.menus?.map((doc: any, ind: number) => (
@@ -220,7 +224,6 @@ export const Footer = () => {
                           href={doc.url}
                           key={ind}
                           // className={`${doc.active ? "active" : ""}`}
-                          
                         >
                           <p className="para-md" style={{ color: group?.text_color || "#212b36" }}>{doc.title}</p>
                         </Link>

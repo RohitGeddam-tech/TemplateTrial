@@ -1309,13 +1309,22 @@ input:checked + .slider:before {
           color: var(--grayscale-darker);
         }
       }
+      &.full {
+        background: #fff;
+      }
+      &.partial{
+       background: rgba(255, 255, 255, 0.75)
+      }
+      &.no{
+        background: transparent;
+      }
     }
   }
   &.left,
   &.center,
   &.right {
     .container {
-      padding: 107px 109px;
+      padding: 32px 32px;
     }
   }
   &.left {
@@ -1365,25 +1374,41 @@ input:checked + .slider:before {
         }
       }
     }
+  }
+  &.top {
     .container {
-      @media (max-width: 540px) {
-        justify-content: flex-end;
-    
-        align-items: center; 
-        .box {
-           justify-content: center !important;
-          .content {
-            justify-content: center !important;
-          }
-          .details {
-            p {
-              text-align: center !important; 
-            }
+      align-items: flex-start;
+    }
+  }
+  &.middle {
+    .container {
+      align-items: center;
+    }
+  }
+  &.bottom {
+    .container {
+      align-items: flex-end;
+    }
+  }
+  .container {
+    @media (max-width: 540px) {
+      justify-content: flex-end;
+
+      align-items: center;
+      .box {
+        justify-content: center !important;
+        .content {
+          justify-content: center !important;
+        }
+        .details {
+          p {
+            text-align: center !important;
           }
         }
       }
-      }
+    }
   }
+
   .bgImg {
     position: absolute;
     z-index: -1;
@@ -1400,15 +1425,12 @@ input:checked + .slider:before {
   }
   &.partial {
     .bgImg {
-      opacity: 0.9;
+      opacity: 0.2;
     }
   }
   &.full {
     .bgImg {
-      opacity: 0.2;
-    }
-    .box {
-      background: transparent !important;
+      opacity: 0.9;
     }
   }
   // &.no {
@@ -1420,17 +1442,23 @@ input:checked + .slider:before {
     }
   }
   @media (max-width: 640px) {
-    height: 100vh;
+      //  height: 100vh;
+    height: 78vh;
+    // max-height: 100%;
     .bgImg {
-      height: 100vh;
+      // height: 100vh;
+ 
+      height: 100%;
       img {
         width: 100%;
-        height: 100vh;
+        // height: 100vh;
+        height: 100%;
       }
     }
     .container {
       padding: 40px !important;
-      height: 100vh;
+      // height: 100vh;
+      height: 100%;
     }
   }
   @media (max-width: 540px) {
@@ -1448,7 +1476,6 @@ input:checked + .slider:before {
           }
         }
       }
-     
     }
   }
 }
@@ -1548,7 +1575,8 @@ input:checked + .slider:before {
   left: 0;
   z-index: 9999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-  padding: 16px 0;
+  padding: 16px 0;    
+  min-height: 80px;
   .container {
     display: flex;
     align-items: center;
@@ -1667,15 +1695,15 @@ input:checked + .slider:before {
     justify-content: space-between;
     width: 100%;
     gap: 32px;
-    .center{
+    .center {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 100%;
-      .details .h4{
+      .details .h4 {
         text-align: center;
       }
-      .p h4{
+      .p h4 {
         text-align: center;
       }
     }
@@ -1687,7 +1715,6 @@ input:checked + .slider:before {
         margin-bottom: 24px;
         color: var(--grayscale-darker);
       }
-
     }
     .imgBox {
       img {
@@ -1869,7 +1896,7 @@ input:checked + .slider:before {
         &:nth-child(1) {
           display: flex !important;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
         }
       }
     }
@@ -1887,8 +1914,10 @@ input:checked + .slider:before {
       max-width: 380px;
       width: 95%;
       padding: 24px;
+      padding-top: 40px;
       flex-direction: column;
       align-items: flex-start;
+
       gap: 10px;
       height: 420px;
       background: transparent;
@@ -1903,11 +1932,11 @@ input:checked + .slider:before {
         img {
           width: 100px;
           height: 100px;
+          margin-right: 10px;
         }
         .info {
           flex-direction: column;
           align-items: flex-start;
-          margin-left: 10px;
           p {
             &.para-md {
               color: var(--grayscale-darker);
@@ -1935,21 +1964,27 @@ input:checked + .slider:before {
           order: 1;
         }
       }
+      &.small{
+        height: 290px !important;
+      }
     }
     .imgGallery {
       display: flex;
       max-width: 380px;
       width: 95%;
-      // padding: 48px;
+      min-height: 300px;
+      height: 400px;
       flex-direction: column;
       align-items: flex-start !important;
-      justify-content: flex-start !important;
+      justify-content: center !important;
+
       background: #fff;
       box-shadow: 0px 4px 15px 0px rgba(22, 28, 36, 0.2);
       margin: 20px 0;
+
       img {
         width: 100%;
-        // height: 250px;
+        height: 100%;
         // margin-bottom: 20px;
       }
     }
@@ -1962,7 +1997,7 @@ input:checked + .slider:before {
       align-items: flex-start !important;
       justify-content: flex-start !important;
       // gap: 20px;
-      height : 600px;
+      height: 600px;
       position: relative;
       background: #fff;
       box-shadow: 0px 4px 15px 0px rgba(22, 28, 36, 0.2);
@@ -1995,7 +2030,7 @@ input:checked + .slider:before {
       width: 100%;
       margin-top: 8px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-around;
       flex-wrap: wrap;
       .shrink,
@@ -2067,7 +2102,7 @@ input:checked + .slider:before {
       .shrink {
         width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: column;
         max-width: 301px;
@@ -2133,6 +2168,7 @@ input:checked + .slider:before {
   }
   @media (max-width: 520px) {
     padding: 20px;
+    padding-bottom: 50px;
     .container {
       max-width: 95%;
       padding: 0;
@@ -2149,7 +2185,7 @@ input:checked + .slider:before {
             }
             .detail {
               align-items: flex-start;
-              .para-sm{
+              .para-sm {
                 text-align: left;
               }
             }
@@ -2516,7 +2552,7 @@ input:checked + .slider:before {
   }
 }
 
-.bannerSlider{
+.bannerSlider {
   .slick-slide {
     div {
       &:first-child {
@@ -2552,7 +2588,7 @@ input:checked + .slider:before {
     justify-content: flex-start;
     flex-direction: column;
     gap: 20px;
-    p{
+    p {
       width: 100%;
     }
   }

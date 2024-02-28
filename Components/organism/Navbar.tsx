@@ -83,6 +83,7 @@ export const Navbar = ({
                   `${process.env.NEXT_PUBLIC_API_URL}${state?.logo?.data?.attributes?.url}` ||
                   image
                 }
+                loading="lazy"
                 alt="logo"
                 // onClick={() => (window.location.href = "/")}
                 // onClick={handleClick}
