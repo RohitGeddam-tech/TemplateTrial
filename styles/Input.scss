@@ -1394,7 +1394,7 @@ input:checked + .slider:before {
     @media (max-width: 540px) {
       justify-content: flex-end;
 
-      align-items: center;
+      align-items: flex-end !important;
       .box {
         justify-content: center !important;
         .content {
